@@ -1,0 +1,96 @@
+.App {
+  text-align: center;
+}
+
+.header__logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+  float: left;
+}
+
+.header {
+  background-color: #222;
+  color: white;
+}
+
+.header__username {
+  font-size: 18px;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mR20 {
+  margin-right: 20px;
+}
+
+.app__description {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.login {
+  width: 300px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.dashboard {
+  padding: 30px;
+}
+
+.dashboard__item {
+  text-align: center;
+}
+.dashboard__thumbnail {
+  width: 128px;
+}
+.assessment {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.question-paper {
+  text-align: left;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.question {
+  padding: 15px;
+}
+.question__text {
+  padding-bottom: 10px;
+}
+.question__text {
+  padding-bottom: 10px;
+}
+
+.question__option {
+  /*padding-bottom: 5px;*/
+}
+.question__title {
+  padding-left: 10px;
+}
+.question__label {
+  font-weight: normal;
+}
+
+.question-paper__actions {
+  padding: 15px 0px;
+}
+
+.question-paper__body{
+  min-height: 300px;
+}

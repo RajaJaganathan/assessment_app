@@ -1,0 +1,142 @@
+[
+  {
+    "questionNo": 1,
+    "question": "What does HTML stand for?",
+    "options": [
+      {
+        "text": "Hyperlinks and Text Markup Language",
+        "answer": true,
+        "userChecked": false
+      },
+      {
+        "text": "Home Tool Markup Language",
+        "answer": false,
+        "userChecked": false
+      },
+      {
+        "text": "Hyper Text Markup Language",
+        "answer": false,
+        "userChecked": false
+      }
+    ]
+  },
+  {
+    "questionNo": 2,
+    "question": "Who is making the Web standards?",
+    "options": [
+      {
+        "text": "The World Wide Web Consortium",
+        "answer": true,
+        "userChecked": false
+      },
+      {
+        "text": "Google",
+        "answer": false,
+        "userChecked": false
+      },
+      {
+        "text": "Mozilla",
+        "answer": false,
+        "userChecked": false
+      },
+      {
+        "text": "Microsoft",
+        "answer": false,
+        "userChecked": false
+      }
+    ]
+  },{
+    "questionNo": 3,
+    "question": "What does HTML stand for?",
+    "options": [
+      {
+        "text": "Hyperlinks and Text Markup Language",
+        "answer": true,
+        "userChecked": false
+      },
+      {
+        "text": "Home Tool Markup Language",
+        "answer": false,
+        "userChecked": false
+      },
+      {
+        "text": "Hyper Text Markup Language",
+        "answer": false,
+        "userChecked": false
+      }
+    ]
+  },
+  {
+    "questionNo": 4,
+    "question": "Who is making the Web standards?",
+    "options": [
+      {
+        "text": "The World Wide Web Consortium",
+        "answer": true,
+        "userChecked": false
+      },
+      {
+        "text": "Google",
+        "answer": false,
+        "userChecked": false
+      },
+      {
+        "text": "Mozilla",
+        "answer": false,
+        "userChecked": false
+      },
+      {
+        "text": "Microsoft",
+        "answer": false,
+        "userChecked": false
+      }
+    ]
+  },
+  {
+    "questionNo": 5,
+    "question": "What does HTML stand for?",
+    "options": [
+      {
+        "text": "Hyperlinks and Text Markup Language",
+        "answer": true,
+        "userChecked": false
+      },
+      {
+        "text": "Home Tool Markup Language",
+        "answer": false,
+        "userChecked": false
+      },
+      {
+        "text": "Hyper Text Markup Language",
+        "answer": false,
+        "userChecked": false
+      }
+    ]
+  },
+  {
+    "questionNo": 6,
+    "question": "Who is making the Web standards?",
+    "options": [
+      {
+        "text": "The World Wide Web Consortium",
+        "answer": true,
+        "userChecked": false
+      },
+      {
+        "text": "Google",
+        "answer": false,
+        "userChecked": false
+      },
+      {
+        "text": "Mozilla",
+        "answer": false,
+        "userChecked": false
+      },
+      {
+        "text": "Microsoft",
+        "answer": false,
+        "userChecked": false
+      }
+    ]
+  }
+]
