@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+
 import { Modal, Button, ProgressBar } from "react-bootstrap";
 
 import DashboardCard from "../components/DashboardCard";
@@ -41,6 +43,7 @@ class QuestionBankManageContainer extends Component {
     return (
       <div>
         <div className="row p20">
+          <Link to="/questionbanks" className="pull-left">Go Question Banks</Link>
           <Button className="pull-right" onClick={this.onShowCreateQuestionModal}>
             Create Question
           </Button>
