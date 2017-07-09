@@ -19,11 +19,12 @@ class QuestionPaper extends Component {
     options.forEach(item => {
       item.userChecked = false;
     });
-    question.userChecked = true;
+    question.isUserAnswered = true;
+    this.props.onChoiceClick();
   }
 
-  renderQuestionOptions(options, question) {
-    return options.map((item, key) =>
+  renderQuestionOptions(question) {
+    return question.options.map((item, key) =>
       <div key={key} className="question__options">
         <div className="question__option">
           <label className="question__label">
@@ -32,7 +33,7 @@ class QuestionPaper extends Component {
               name={question.questionNo}
               id={"questionNo" + question.questionNo}
               value={true}
-              onChange={e => this.onChoosingHandler(options, item)}
+              onChange={e => this.onChoosingHandler(question.options, question)}
             />
             <span className="question__title">
               {item.text}
@@ -53,14 +54,13 @@ class QuestionPaper extends Component {
           {item.question}
         </div>
         <div className="question__body" />
-        {this.renderQuestionOptions(item.options, item)}
+        {this.renderQuestionOptions(item)}
       </div>
     );
   }
 
   render() {
     const questions = this.props.questions;
-    const currentQuestions = questions.slice(0);
     return (
       <div className="row">
         <div className="col-xs-12">
@@ -74,7 +74,7 @@ class QuestionPaper extends Component {
             </div>
             <div className="question-paper__body">
               <Panel>
-                {this.renderQuestions(currentQuestions)}
+                {this.renderQuestions(questions)}
               </Panel>
             </div>
             <div className="question-paper__actions">
@@ -107,7 +107,8 @@ class QuestionPaper extends Component {
 
 QuestionPaper.propTypes = {
   questions: PropTypes.array.isRequired,
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
+  onChoiceClick: PropTypes.func
 };
 
 export default QuestionPaper;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, ProgressBar } from "react-bootstrap";
 
 import QuestionPaper from "../components/QuestionPaper";
 import { loadQuestions } from "../actions/questionActions";
@@ -10,9 +10,11 @@ class QuestionPaperContainer extends Component {
     super(props);
     this.showResult = this.showResult.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
+    this.onChoiceClick = this.onChoiceClick.bind(this);
     this.state = {
       isQuestionLoading: false,
-      resultText: ""
+      resultText: "",
+      noOfAnswered: 0
     };
   }
 
@@ -31,15 +33,27 @@ class QuestionPaperContainer extends Component {
     const { questions = [] } = this.props;
     questions.forEach(q => {
       q.isRightAnswer = q.options.some(opt => {
-        return opt.userChecked === true && opt.answer === true;
+        return opt.userChecked && opt.answer;
       });
     });
 
     const rightAnswer = questions.filter(q => q.isRightAnswer);
-    const resultText = `${rightAnswer.length}/${questions.length} is right`;
+    const resultText = `You got ${rightAnswer.length}/${questions.length} correct answer !!!`;
+
     this.setState({
       showModal: true,
       resultText
+    });
+  }
+
+  onChoiceClick() {
+    const noOfAnswered = this.props.questions.reduce((acc, currentItem) => {
+      return acc + (currentItem.isUserAnswered ? 1 : 0);
+    }, 0);
+    const totalQuestions = this.props.questions.length;
+    const ratioAnswered = (noOfAnswered/totalQuestions) * 100;
+    this.setState({
+      noOfAnswered:ratioAnswered
     });
   }
 
@@ -54,9 +68,11 @@ class QuestionPaperContainer extends Component {
     return (
       <div>
         {this.state.isQuestionLoading ? <h3> Loading ... </h3> : null}
+        <ProgressBar active now={this.state.noOfAnswered} />
         <QuestionPaper
           questions={this.props.questions}
           onSubmit={this.showResult}
+          onChoiceClick={this.onChoiceClick}
         />
         <Modal show={this.state.showModal} onHide={this.onCloseModal}>
           <Modal.Header closeButton>
