@@ -35,7 +35,7 @@ class QuestionPaper extends Component {
               onChange={e => this.onChoosingHandler(options, item)}
             />
             <span className="question__title">
-              {" "}{item.text}{" "}
+              {item.text}
             </span>
           </label>
         </div>
@@ -48,7 +48,7 @@ class QuestionPaper extends Component {
       <div key={index} className="question">
         <div className="question__text">
           <span className="question__no">
-            {item.questionNo}).{" "}
+            {item.questionNo}).
           </span>
           {item.question}
         </div>

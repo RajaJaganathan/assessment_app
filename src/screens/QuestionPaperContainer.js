@@ -1,35 +1,31 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import QuestionPaper from "../components/QuestionPaper";
+import { loadQuestions } from "../actions/questionActions";
 
 class QuestionPaperContainer extends Component {
   constructor(props) {
     super(props);
     this.showResult = this.showResult.bind(this);
     this.state = {
-      isLoading: false,
-      questions: []
+      isQuestionLoading: false
     };
   }
 
-  componentDidMount() {
-    this.setState({ isLoading: true });
-    fetch("api/v1/questions", {
-      credentials: "include"
-    })
-      .then(res => res.json())
-      .then(questions => {
-        this.setState({
-          questions,
-          isLoading: false
-        });
-      })
-      .catch(error => {
-        console.error(error);
-      });
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.questions) {
+      this.setState({ isQuestionLoading: false });
+    }
   }
+
+  componentDidMount() {
+    this.setState({ isQuestionLoading: true });
+    this.props.loadQuestions();
+  }
+
   showResult() {
-    const {questions=[]} = this.state;
+    const { questions = [] } = this.props;
     questions.forEach(q => {
       q.isRightAnswer = q.options.some(opt => {
         return opt.userChecked === true && opt.answer === true;
@@ -45,9 +41,9 @@ class QuestionPaperContainer extends Component {
   render() {
     return (
       <div>
-        {this.state.isLoading ? <h3> Loading ... </h3> : null}
+        {this.state.isQuestionLoading ? <h3> Loading ... </h3> : null}
         <QuestionPaper
-          questions={this.state.questions}
+          questions={this.props.questions}
           onSubmit={this.showResult}
         />
       </div>
@@ -55,4 +51,23 @@ class QuestionPaperContainer extends Component {
   }
 }
 
-export default QuestionPaperContainer;
+QuestionPaperContainer.defaultProps = {
+  isQuestionLoading: true,
+  questions: []
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loadQuestions: () => dispatch(loadQuestions())
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    questions: state.question.questions
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+  QuestionPaperContainer
+);

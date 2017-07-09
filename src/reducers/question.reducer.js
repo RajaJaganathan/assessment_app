@@ -3,8 +3,8 @@ export default (state = {}, action) => {
     case "QUESTION_LOADED":
       return {
         ...state,
-        loggedIn: true
-      };
+        questions: action.questions
+      }
     default:
       return state;
   }
