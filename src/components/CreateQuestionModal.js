@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Button, Checkbox, Modal, Form, FormGroup, FormControl, Col, ControlLabel } from "react-bootstrap";
+import { Button, Checkbox, Radio,  Modal, Form, FormGroup, FormControl, Col, ControlLabel } from "react-bootstrap";
 
 class CreateQuestionModal extends Component {
   constructor(props) {
@@ -24,28 +24,35 @@ class CreateQuestionModal extends Component {
                   <FormControl componentClass="textarea" placeholder="enter question" />
                 </Col>
               </FormGroup>
+              <FormGroup controlId="formHorizontalPassword">
+                <Col componentClass={ControlLabel} sm={2}>
+                  Choice
+                </Col>
+                <Col sm={8}>
+                  <Radio className="pull-left mR10"> <input/> </Radio>
+                  <Checkbox className="pull-left mR10">Correct</Checkbox>
+                </Col>
+                <Col sm={2}>
+                  <Button>Add</Button>
+                </Col>
+              </FormGroup>
 
               <FormGroup controlId="formHorizontalPassword">
                 <Col componentClass={ControlLabel} sm={2}>
                   Tags
                 </Col>
                 <Col sm={10}>
-                  <Checkbox className="pull-left"> Math </Checkbox>
-                  <Checkbox className="pull-left"> General</Checkbox>
-                  <Checkbox className="pull-left"> History</Checkbox>
-                  <Checkbox className="pull-left"> Tamil</Checkbox>
-                </Col>
-              </FormGroup>
-
-              <FormGroup>
-                <Col smOffset={2} sm={10}>
-                  <Button onClick={(e)=>this.props.onCreateQuestion(this.refs.createQuestionForm)}>Create</Button>
+                  <Checkbox className="pull-left mR10"> Math </Checkbox>
+                  <Checkbox className="pull-left mR10"> General</Checkbox>
+                  <Checkbox className="pull-left mR10"> History</Checkbox>
+                  <Checkbox className="pull-left mR10"> Tamil</Checkbox>
                 </Col>
               </FormGroup>
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.props.onHide}>Close</Button>
+            <Button onClick={this.props.onHide}>Cancel</Button>
+            <Button onClick={this.props.onCreateQuestion}>Create</Button>
           </Modal.Footer>
         </Modal>
       </div>
