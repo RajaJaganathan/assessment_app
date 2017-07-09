@@ -30,6 +30,37 @@
   }
 }
 
+.p5 {
+  padding: 5px;
+}
+
+.p10 {
+  padding: 10px;
+}
+
+.p15 {
+  padding: 15px;
+}
+
+.p20 {
+  margin: 20px;
+}
+
+.m5 {
+  margin: 5px;
+}
+.m10 {
+  margin: 10px;
+}
+
+.m15 {
+  margin: 15px;
+}
+
+.m20 {
+  margin: 20px;
+}
+
 .mR20 {
   margin-right: 20px;
 }

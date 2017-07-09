@@ -35,7 +35,7 @@ export const logoutActions = payload => {
 
 export function getUser() {
   return function(dispatch) {
-    return fetch("api/v1/user", {
+    return fetch("/api/v1/user", {
       credentials: "include"
     }).then(res => {
       return res.json().then(user => {
@@ -51,7 +51,7 @@ export function getUser() {
 
 export function login(params) {
   return function(dispatch) {
-    return fetch("api/v1/login", {
+    return fetch("/api/v1/login", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -75,7 +75,7 @@ export function login(params) {
 
 export function logout() {
   return function(dispatch) {
-    return fetch("api/v1/logout", {
+    return fetch("/api/v1/logout", {
       credentials: "include"
     }).then(res => {
       if (res.ok) {
