@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Modal, Button } from "react-bootstrap";
 
 import QuestionPaper from "../components/QuestionPaper";
 import { loadQuestions } from "../actions/questionActions";
@@ -8,8 +9,10 @@ class QuestionPaperContainer extends Component {
   constructor(props) {
     super(props);
     this.showResult = this.showResult.bind(this);
+    this.onCloseModal = this.onCloseModal.bind(this);
     this.state = {
-      isQuestionLoading: false
+      isQuestionLoading: false,
+      resultText: ""
     };
   }
 
@@ -33,8 +36,17 @@ class QuestionPaperContainer extends Component {
     });
 
     const rightAnswer = questions.filter(q => q.isRightAnswer);
-    const msg = `${rightAnswer.length}/${questions.length} is right`;
-    alert(msg);
+    const resultText = `${rightAnswer.length}/${questions.length} is right`;
+    this.setState({
+      showModal: true,
+      resultText
+    });
+  }
+
+  onCloseModal() {
+    this.setState({
+      showModal: false
+    });
     this.props.history.push("/dashboard");
   }
 
@@ -46,6 +58,19 @@ class QuestionPaperContainer extends Component {
           questions={this.props.questions}
           onSubmit={this.showResult}
         />
+        <Modal show={this.state.showModal} onHide={this.onCloseModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Results</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>
+              {this.state.resultText}
+            </h4>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.onCloseModal}>Close</Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }
