@@ -20,10 +20,8 @@ class Main extends Component {
         <Route path="/login" component={LoginContainer} />
          {/*TODO create AdminRoute components*/}
         <PrivateRoute path="/admin" component={AdminDashboardContainer} />
-        <Switch>
-          <PrivateRoute path="/questionbanks" component={QuestionBankListContainer} />
-          <PrivateRoute path="/questionpaper" component={QuestionPaperListContainer} />
-        </Switch>
+        <PrivateRoute path="/questionbanks" component={QuestionBankListContainer} />
+        <PrivateRoute path="/questionpaper" component={QuestionPaperListContainer} />
         <PrivateRoute path="/dashboard" component={DashboardContainer} />
         <PrivateRoute path="/assessment" component={AssessmentInfoContainer} />
         <PrivateRoute path="/questions" component={QuestionPaperContainer} />
