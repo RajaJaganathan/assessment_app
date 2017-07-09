@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Login from "../components/Login";
-import { login } from "../actions/loginActions";
+import { login } from "../actions/authActions";
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -31,8 +31,8 @@ class LoginContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    authSuccess: state.authSuccess,
-    authFailed: state.authFailed
+    authSuccess: state.auth.authSuccess,
+    authFailed: state.auth.authFailed
   };
 };
 

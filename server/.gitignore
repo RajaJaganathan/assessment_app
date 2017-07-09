@@ -5,3 +5,6 @@
 
 # production
 /build
+
+# environment variables
+variable.env

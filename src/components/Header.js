@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../logo.svg";
 
 import { connect } from "react-redux";
-import { logout } from "../actions/loginActions";
+import { logout } from "../actions/authActions";
 
 class Header extends Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class Header extends Component {
 
 const mapStateToProps = (state, props) => {
   return {
-    loggedIn: state.loggedIn
+    loggedIn: state.auth.loggedIn
   };
 };
 

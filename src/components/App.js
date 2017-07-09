@@ -4,7 +4,7 @@ import Main from "./Main";
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { getUser } from "../actions/loginActions";
+import { getUser } from "../actions/authActions";
 
 class App extends Component {
   componentDidMount() {

@@ -1,21 +1,21 @@
 export const loginActions = payload => {
   return {
     type: "DO_LOGIN",
-    payload: payload
+    payload
   };
 };
 
 export const loginSuccessActions = payload => {
   return {
     type: "LOGIN_SUCCESS",
-    payload: payload
+    payload
   };
 };
 
 export const loginFailedActions = payload => {
   return {
     type: "LOGIN_FAILED",
-    payload: payload
+    payload
   };
 };
 
