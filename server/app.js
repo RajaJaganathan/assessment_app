@@ -61,8 +61,6 @@ require("./models/User");
 
 mongoose.connection.on("connected", ref => {
   console.info(`connected ref`, ref);
-
-
   app.listen(process.env.PORT, function() {
     console.log(`Assessment Exam App listening on port ${process.env.PORT}`);
   });

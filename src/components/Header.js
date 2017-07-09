@@ -17,21 +17,29 @@ class Header extends Component {
   }
 
   render() {
-    const { loggedIn } = this.props;
+    const { loggedIn, user} = this.props;
+    let {username} = user;
+    if(username){
+      username = username.charAt(0).toUpperCase() + username.slice(1).toLowerCase();
+    }
     return (
       <div className="header row">
         <img src={logo} className="header__logo col-xs-1" alt="logo" />
-        <h2 className="header__text col-xs-10">Welcome to React</h2>
+        <h2 className="header__text col-xs-10">Assessment App</h2>
         <div className="header__info col-xs-1">
           <div className="header__information">
-            <div className="header__username">Raja J</div>
+            {username
+              ? <div className="header__username">
+                  {username}
+                </div>
+              : null}
           </div>
           <div className="header__actions">
             {!loggedIn ? <Link to="/login">Login</Link> : null}
             {loggedIn
-              ? <Link to="/api/v1/logout" onClick={this.onLogout}>
+              ? <a href="#" onClick={this.onLogout}>
                   Logout
-                </Link>
+                </a>
               : null}
           </div>
         </div>
@@ -40,9 +48,14 @@ class Header extends Component {
   }
 }
 
+Header.defaultProps = {
+  user: {}
+}
+
 const mapStateToProps = (state, props) => {
   return {
-    loggedIn: state.auth.loggedIn
+    loggedIn: state.auth.loggedIn,
+    user: state.auth.user
   };
 };
 

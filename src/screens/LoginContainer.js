@@ -12,7 +12,11 @@ class LoginContainer extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.authSuccess) {
-      this.props.history.push("/dashboard");
+      if(nextProps.user && nextProps.user.isAdmin){
+        this.props.history.push("/admin");
+      }else{
+        this.props.history.push("/dashboard");
+      }
     }
   }
 
@@ -32,6 +36,7 @@ class LoginContainer extends Component {
 const mapStateToProps = state => {
   return {
     authSuccess: state.auth.authSuccess,
+    user: state.auth.user,
     authFailed: state.auth.authFailed
   };
 };

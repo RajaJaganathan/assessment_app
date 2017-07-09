@@ -5,10 +5,10 @@ export const loginActions = payload => {
   };
 };
 
-export const loginSuccessActions = payload => {
+export const loginSuccessActions = user => {
   return {
     type: "LOGIN_SUCCESS",
-    payload
+    user
   };
 };
 
@@ -38,11 +38,13 @@ export function getUser() {
     return fetch("api/v1/user", {
       credentials: "include"
     }).then(res => {
-      if (res.ok) {
-        return dispatch(loginSuccessActions(res.json()));
-      } else {
-        return dispatch(loginFailedActions(res.json()));
-      }
+      return res.json().then(user => {
+        if (res.ok) {
+          dispatch(loginSuccessActions(user));
+        } else {
+          return dispatch(loginFailedActions(user));
+        }
+      });
     });
   };
 }
@@ -52,16 +54,16 @@ export function login(params) {
     return fetch("api/v1/login", {
       method: "POST",
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json"
       },
       credentials: "include",
       body: JSON.stringify(params)
     }).then(res => {
-      return res.json().then(user => {
+      res.json().then(response => {
         if (res.ok) {
           window.localStorage.setItem("isAuthenticated", true);
-          dispatch(loginSuccessActions(user));
+          dispatch(loginSuccessActions(response.user));
         } else {
           window.localStorage.removeItem("isAuthenticated");
           dispatch(loginFailedActions());
@@ -79,7 +81,7 @@ export function logout() {
       if (res.ok) {
         window.localStorage.removeItem("isAuthenticated");
         window.location.replace("/");
-        return dispatch(logoutActions(res.json()));
+        res.json().then(dispatch(logoutActions()));
       }
     });
   };

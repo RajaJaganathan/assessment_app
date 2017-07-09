@@ -24,12 +24,13 @@ export default (state = {}, action) => {
         ...state,
         loggedIn: true,
         authSuccess: true,
-        authFailed: false
+        authFailed: false,
+        user: action.user
       };
     case "CHECK_USER_ACCESS":
       return {
         ...state,
-        user: action.user
+        user: action.payload.user
       };
     default:
       return state;

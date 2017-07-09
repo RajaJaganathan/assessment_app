@@ -4,14 +4,16 @@ exports.login = (req, res, next) => {
   const { username, password } = req.body;
   const User = mongoose.model("User");
 
-  User.find({ username, password }).then(docs => {
-    if (docs.length) {
+  User.find({ username, password }).then(users => {
+    if (users.length) {
+      let user = users[0];
       req.session.authenticated = true;
-      req.session.user = { username: req.body.username };
+      req.session.user = user;
       res.status(200).json({
         code: 200,
         message: "Authentication successfully",
-        description: "Authentication successfully"
+        description: "Authentication successfully",
+        user
       });
     } else {
       res.status(401).json({
