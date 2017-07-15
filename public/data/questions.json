@@ -1,8 +1,21 @@
 [
   {
     "questionNo": 1,
-    "question": "What does HTML stand for?",
-    "tags": ["math", "general"],
+    "questionText": "What does HTML stand for?",
+    "tags": [
+      {
+        "type": "math",
+        "name": "Math"
+      },
+      {
+        "type": "general",
+        "name": "General"
+      },
+      {
+        "type": "computerscience",
+        "name": "Computer Science"
+      }
+    ],
     "options": [
       {
         "text": "Hyperlinks and Text Markup Language",
@@ -23,8 +36,17 @@
   },
   {
     "questionNo": 2,
-    "tags": ["math", "general"],
-    "question": "Who is making the Web standards?",
+    "tags": [
+      {
+        "type": "math",
+        "name": "Math"
+      },
+      {
+        "type": "general",
+        "name": "General"
+      }
+    ],
+    "questionText": "Who is making the Web standards?",
     "options": [
       {
         "text": "The World Wide Web Consortium",
@@ -47,10 +69,20 @@
         "userChecked": false
       }
     ]
-  },{
+  },
+  {
     "questionNo": 3,
-    "tags": ["math", "general"],
-    "question": "What does HTML stand for?",
+    "tags": [
+      {
+        "type": "math",
+        "name": "Math"
+      },
+      {
+        "type": "general",
+        "name": "General"
+      }
+    ],
+    "questionText": "What does HTML stand for?",
     "options": [
       {
         "text": "Hyperlinks and Text Markup Language",
@@ -71,26 +103,30 @@
   },
   {
     "questionNo": 4,
-    "question": "Who is making the Web standards?",
-    "tags": ["math", "general"],
+    "questionText": "Which sign does jQuery use as a shortcut for jQuery?",
+    "tags": [
+      {
+        "type": "currentaffairs",
+        "name": "Current Affairs"
+      },
+      {
+        "type": "general",
+        "name": "General"
+      }
+    ],
     "options": [
       {
-        "text": "The World Wide Web Consortium",
+        "text": "the $ sign",
         "answer": true,
         "userChecked": false
       },
       {
-        "text": "Google",
+        "text": "the % sign",
         "answer": false,
         "userChecked": false
       },
       {
-        "text": "Mozilla",
-        "answer": false,
-        "userChecked": false
-      },
-      {
-        "text": "Microsoft",
+        "text": "the ? Sign",
         "answer": false,
         "userChecked": false
       }
@@ -98,21 +134,25 @@
   },
   {
     "questionNo": 5,
-    "question": "What does HTML stand for?",
-    "tags": ["math", "general"],
+    "questionText": "Which of the following is correct?",
+    "tags": [
+      {
+        "type": "computerscience",
+        "name": "Computer Science"
+      },
+      {
+        "type": "general",
+        "name": "General"
+      }
+    ],
     "options": [
       {
-        "text": "Hyperlinks and Text Markup Language",
+        "text": "jQuery is a JSON Library",
         "answer": true,
         "userChecked": false
       },
       {
-        "text": "Home Tool Markup Language",
-        "answer": false,
-        "userChecked": false
-      },
-      {
-        "text": "Hyper Text Markup Language",
+        "text": "jQuery is a JavaScript Library",
         "answer": false,
         "userChecked": false
       }
@@ -120,26 +160,25 @@
   },
   {
     "questionNo": 6,
-    "question": "Who is making the Web standards?",
-    "tags": ["math", "science"],
+    "questionText": " jQuery uses CSS selectors to select elements?",
+    "tags": [
+      {
+        "type": "computerscience",
+        "name": "Computer Science"
+      },
+      {
+        "type": "general",
+        "name": "General"
+      }
+    ],
     "options": [
       {
-        "text": "The World Wide Web Consortium",
+        "text": "True",
         "answer": true,
         "userChecked": false
       },
       {
-        "text": "Google",
-        "answer": false,
-        "userChecked": false
-      },
-      {
-        "text": "Mozilla",
-        "answer": false,
-        "userChecked": false
-      },
-      {
-        "text": "Microsoft",
+        "text": "False",
         "answer": false,
         "userChecked": false
       }

@@ -12,16 +12,21 @@ import {
   ControlLabel
 } from "react-bootstrap";
 
-import {uniqueId} from "lodash";
+import { uniqueId } from "lodash";
 
 class CreateQuestionModal extends Component {
   static propTypes = {
+    questionText: PropTypes.string,
+    options:PropTypes.object,
+    tags:PropTypes.object,
+    isEditMode: PropTypes.bool.isRequired,
     show: PropTypes.bool.isRequired,
     onHide: PropTypes.func,
-    onCreateQuestion: PropTypes.func
+    onCreate: PropTypes.func
   };
 
   static defaultProps = {
+    isEditMode: false,
     defaultQuestionText: "Please enter your question here",
     defaultOptions: [
       {
@@ -29,7 +34,12 @@ class CreateQuestionModal extends Component {
         text: ""
       }
     ],
-    defaultTags: []
+    defaultTags: [
+      { name: "Math", type: "math" },
+      { name: "Science", type: "science" },
+      { name: "General", type: "general" },
+      { name: "History", type: "history" }
+    ]
   };
 
   constructor(props) {
@@ -46,6 +56,14 @@ class CreateQuestionModal extends Component {
       options: this.props.defaultOptions,
       tags: this.props.defaultTags
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      questionText: nextProps.questionText,
+      options: nextProps.options,
+      tags: nextProps.tags,
+    });
   }
 
   handleChange(field, event) {
@@ -79,7 +97,9 @@ class CreateQuestionModal extends Component {
   }
 
   onCheckboxChange(tag, event) {
-    tag.category = event.target.value;
+    const tags = [...this.state];
+    tag.checked = event.target.checked;
+    this.setState(tags);
   }
 
   onAddOption() {
@@ -98,11 +118,16 @@ class CreateQuestionModal extends Component {
   onCreateQuestion(event) {
     event.preventDefault();
     const { questionText, options, tags } = this.state;
-    this.props.onCreateQuestion({ questionText, options });
+    this.props.onCreate({
+      questionNo: uniqueId("question-"),
+      questionText,
+      options,
+      tags: tags.filter(item => item.checked)
+    });
   }
 
   render() {
-    const { tags, options } = this.state;
+    const { questionText, tags, options } = this.state;
 
     return (
       <div>
@@ -127,13 +152,14 @@ class CreateQuestionModal extends Component {
                 <Col sm={10}>
                   <FormControl
                     componentClass="textarea"
-                    placeholder="enter question"
+                    placeholder={questionText}
+                    value={questionText}
                     onChange={this.handleChange.bind(this, "questionText")}
                   />
                 </Col>
               </FormGroup>
               <FormGroup controlId="formHorizontalPassword">
-                {options.map((item, idx) => {
+                {options && options.map((item, idx) => {
                   return (
                     <Col sm={10} key={item.id}>
                       <Col componentClass={ControlLabel} sm={2}>
@@ -142,6 +168,7 @@ class CreateQuestionModal extends Component {
                       <Col sm={6}>
                         <input
                           className="col-sm-8 mR10"
+                          value={item.text}
                           onChange={this.handleOptionChange.bind(
                             this,
                             idx,
@@ -151,14 +178,14 @@ class CreateQuestionModal extends Component {
                         <Radio
                           name="rightChoice"
                           className="col-sm-3"
-                          value={true}
+                          checked={item.answer}
                           onChange={this.handleRadioOptionChange.bind(
                             this,
                             idx,
                             "answer"
                           )}
                         >
-                          {" "}Right
+                          answer
                         </Radio>
                       </Col>
                       <Col sm={4}>
@@ -179,13 +206,18 @@ class CreateQuestionModal extends Component {
                   Tags
                 </Col>
                 <Col sm={10}>
-                  {tags.map(item => {
-                    <Checkbox
-                      onChange={this.onCheckboxChange.bind(this, item)}
-                      className="pull-left mR10"
-                    >
-                      {item.name}
-                    </Checkbox>;
+                  {tags && tags.map(tag => {
+                    return (
+                      <Checkbox
+                        key={tag.type}
+                        checked={tag.checked}
+                        value={tag.type}
+                        onChange={this.onCheckboxChange.bind(this, tag)}
+                        className="pull-left mR10"
+                      >
+                        {tag.name}
+                      </Checkbox>
+                    );
                   })}
                 </Col>
               </FormGroup>
@@ -193,7 +225,9 @@ class CreateQuestionModal extends Component {
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.props.onHide}>Cancel</Button>
-            <Button onClick={this.onCreateQuestion}>Create</Button>
+            <Button onClick={this.onCreateQuestion}>
+              {this.props.isEditMode ? "Update" : "Create"}
+            </Button>
           </Modal.Footer>
         </Modal>
       </div>

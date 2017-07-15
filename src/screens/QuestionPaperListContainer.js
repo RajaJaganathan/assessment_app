@@ -8,12 +8,12 @@ class QuestionPaperListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: false
+      isLoading: true
     };
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: false });
   }
 
   render() {
