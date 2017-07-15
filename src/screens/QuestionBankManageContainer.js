@@ -1,22 +1,39 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import {Button } from "react-bootstrap";
 
-import { Modal, Button, ProgressBar } from "react-bootstrap";
-
-import DashboardCard from "../components/DashboardCard";
+import {loadQuestions} from "../actions/questionActions";
 import CreateQuestionModal from "../components/CreateQuestionModal";
 
 class QuestionBankManageContainer extends Component {
+  static defaultProps = {
+    isLoading: true,
+    questions:[]
+  };
+
+  static propTypes = {
+    questions: PropTypes.array.isRequired
+  };
+
   constructor(props) {
     super(props);
+
     this.onShowCreateQuestionModal = this.onShowCreateQuestionModal.bind(this);
     this.onHideQuestionModal = this.onHideQuestionModal.bind(this);
     this.onCreateQuestion = this.onCreateQuestion.bind(this);
+
     this.state = {
       isLoading: false,
-      showCreateQuestionModal: false
+      showCreateQuestionModal: false,
+      questions: this.props.questions // FIXME
     };
+  }
+
+  componentDidMount(){
+    this.setState({ isLoading: true });
+    this.props.loadQuestions();
   }
 
   onShowCreateQuestionModal() {
@@ -32,19 +49,40 @@ class QuestionBankManageContainer extends Component {
   }
 
   onCreateQuestion(form) {
-    form.reset();
+    // form.reset();
+    console.log('form', form)
   }
 
-  componentDidMount() {
-    this.setState({ isLoading: true });
+  renderRow(){
+    return this.props.questions.map((item)=>{
+      return (<tr key={item.questionNo}>
+          <td>{item.question}</td>
+          <td>
+            {
+              item.tags.map((tag)=>{
+                return <Button key={tag}>{tag}</Button>;
+              })
+            }
+          </td>
+          <td>
+            <Button>Edit</Button>
+          </td>
+        </tr>
+      );
+    });
   }
 
   render() {
     return (
       <div>
         <div className="row p20">
-          <Link to="/questionbanks" className="pull-left">Go Question Banks</Link>
-          <Button className="pull-right" onClick={this.onShowCreateQuestionModal}>
+          <Link to="/questionbanks" className="pull-left">
+            Go Question Banks
+          </Link>
+          <Button
+            className="pull-right"
+            onClick={this.onShowCreateQuestionModal}
+          >
             Create Question
           </Button>
         </div>
@@ -52,7 +90,7 @@ class QuestionBankManageContainer extends Component {
           <div className="container">
             <h2>Math Questions</h2>
             <p>All about mathematical questions </p>
-            <table className="table table-hover text-left">
+            {this.props.questions && <table className="table table-hover text-left">
               <thead>
                 <tr>
                   <th>Questions</th>
@@ -61,34 +99,12 @@ class QuestionBankManageContainer extends Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>What does HTML stand for?</td>
-                  <td>
-                    <Button>Math</Button> <Button>General</Button>
-                  </td>
-                  <td>
-                    <Button>Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>What does HTML stand for?</td>
-                  <td>math</td>
-                  <td>
-                    <Button>Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>What does HTML stand for?</td>
-                  <td>general</td>
-                  <td>
-                    <Button>Edit</Button>
-                  </td>
-                </tr>
+                {this.renderRow()}
               </tbody>
-            </table>
+            </table>}
           </div>
         </div>
-        <CreateQuestionModal show={this.state.showCreateQuestionModal} onHide={this.onHideQuestionModal} />
+        <CreateQuestionModal
           show={this.state.showCreateQuestionModal}
           onHide={this.onHideQuestionModal}
           onCreateQuestion={this.onCreateQuestion}
@@ -98,24 +114,18 @@ class QuestionBankManageContainer extends Component {
   }
 }
 
-QuestionBankManageContainer.defaultProps = {
-  isLoading: true
+const mapDispatchToProps = dispatch => {
+  return {
+    loadQuestions: () => dispatch(loadQuestions())
+  };
 };
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     loadQuestions: () => dispatch(loadQuestions())
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    questions: state.question.questions
+  };
+};
 
-// const mapStateToProps = state => {
-//   return {
-//     questions: state.question.questions
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(
-//   QuestionBuilderContainer
-// );
-
-export default QuestionBankManageContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(
+  QuestionBankManageContainer
+);

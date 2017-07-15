@@ -46,8 +46,4 @@ DashboardCard.defaultProps = {
   desc: "description text here",
 };
 
-DashboardCard.defaultProps
-
-
-
 export default DashboardCard;

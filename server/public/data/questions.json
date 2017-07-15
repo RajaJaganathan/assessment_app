@@ -2,6 +2,7 @@
   {
     "questionNo": 1,
     "question": "What does HTML stand for?",
+    "tags": ["math", "general"],
     "options": [
       {
         "text": "Hyperlinks and Text Markup Language",
@@ -22,6 +23,7 @@
   },
   {
     "questionNo": 2,
+    "tags": ["math", "general"],
     "question": "Who is making the Web standards?",
     "options": [
       {
@@ -47,6 +49,7 @@
     ]
   },{
     "questionNo": 3,
+    "tags": ["math", "general"],
     "question": "What does HTML stand for?",
     "options": [
       {
@@ -69,6 +72,7 @@
   {
     "questionNo": 4,
     "question": "Who is making the Web standards?",
+    "tags": ["math", "general"],
     "options": [
       {
         "text": "The World Wide Web Consortium",
@@ -95,6 +99,7 @@
   {
     "questionNo": 5,
     "question": "What does HTML stand for?",
+    "tags": ["math", "general"],
     "options": [
       {
         "text": "Hyperlinks and Text Markup Language",
@@ -116,6 +121,7 @@
   {
     "questionNo": 6,
     "question": "Who is making the Web standards?",
+    "tags": ["math", "science"],
     "options": [
       {
         "text": "The World Wide Web Consortium",

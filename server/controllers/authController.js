@@ -6,6 +6,6 @@ exports.authenticate = (req, res, next) => {
     next();
   } else {
     // Unauthorized user
-    res.redirect("/login");
+    res.status(401).json({message:'unauthorized'});
   }
 };

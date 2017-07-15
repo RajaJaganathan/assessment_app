@@ -133,3 +133,7 @@
 .question-paper__body{
   min-height: 300px;
 }
+
+.create-question-modal{
+  width: 70%;
+}
