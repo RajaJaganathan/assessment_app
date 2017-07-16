@@ -73,7 +73,7 @@ class QuestionBankManageContainer extends Component {
     } else {
       questions = [...this.state.questions, newQuestion];
     }
-    this.setState({ questions });
+    this.setState({ questions, showCreateQuestionModal: false });
   }
 
   onUpdateQuestion(newQuestion) {
