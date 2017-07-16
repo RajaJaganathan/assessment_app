@@ -53,12 +53,26 @@ class QuestionBankManageContainer extends Component {
   onHideQuestionModal() {
     this.setState({
       showCreateQuestionModal: false,
-      selectedQuestion:{}
+      selectedQuestion: {}
     });
   }
 
   onCreateQuestion(newQuestion) {
-    const questions = [...this.state.questions, newQuestion];
+    let questions;
+
+    if (newQuestion.isEditMode) {
+      questions = this.state.questions.map(item => {
+        if (this.state.selectedQuestion === item) {
+          return {
+            ...item,
+            ...newQuestion
+          };
+        }
+        return item;
+      });
+    } else {
+      questions = [...this.state.questions, newQuestion];
+    }
     this.setState({ questions });
   }
 
@@ -77,7 +91,12 @@ class QuestionBankManageContainer extends Component {
 
   render() {
     const { questions } = this.state;
-    const { questionText, options, tags } = this.state.selectedQuestion;
+    const {
+      questionNo,
+      questionText,
+      options,
+      tags
+    } = this.state.selectedQuestion;
     return (
       <div>
         <div className="row p20">
@@ -95,18 +114,16 @@ class QuestionBankManageContainer extends Component {
           <div className="container">
             <h2>Math Questions</h2>
             <p>All about mathematical questions </p>
-            <QuestionList
-              questions={questions}
-              onEdit={this.onEditQuestion}
-            />
+            <QuestionList questions={questions} onEdit={this.onEditQuestion} />
           </div>
         </div>
         <CreateQuestionModal
+          questionNo={questionNo}
           questionText={questionText}
           options={options}
           tags={tags}
           show={this.state.showCreateQuestionModal}
-          isEdit={this.state.isEditMode}
+          isEditMode={this.state.isEditMode}
           onHide={this.onHideQuestionModal}
           onCreate={this.onCreateQuestion}
           onUpdate={this.onUpdateQuestion}
