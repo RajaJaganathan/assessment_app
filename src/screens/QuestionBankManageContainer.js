@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-import { loadQuestions } from "../actions/questionActions";
+import { fetchQuestions } from "../actions/questionActions";
 import CreateQuestionModal from "../components/CreateQuestionModal";
 import QuestionList from "../components/QuestionsList";
 
@@ -36,7 +36,7 @@ class QuestionBankManageContainer extends Component {
 
   componentDidMount() {
     this.setState({ isLoading: true });
-    this.props.loadQuestions();
+    this.props.fetchQuestions();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -135,7 +135,7 @@ class QuestionBankManageContainer extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadQuestions: () => dispatch(loadQuestions())
+    fetchQuestions: () => dispatch(fetchQuestions())
   };
 };
 

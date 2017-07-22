@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Modal, Button, ProgressBar } from "react-bootstrap";
 
 import QuestionPaper from "../components/QuestionPaper";
-import { loadQuestions } from "../actions/questionActions";
+import { fetchQuestions } from "../actions/questionActions";
 
 class QuestionPaperContainer extends Component {
   constructor(props) {
@@ -99,7 +99,7 @@ QuestionPaperContainer.defaultProps = {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadQuestions: () => dispatch(loadQuestions())
+    fetchQuestions: () => dispatch(fetchQuestions())
   };
 };
 

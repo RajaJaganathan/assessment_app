@@ -6,11 +6,13 @@ import './index.css';
 
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
+import logger from 'redux-logger';
 import thunk from 'redux-thunk';
+import promiseMiddleware from 'redux-promise-middleware';
 
 import rootReducer from './reducers';
 
-const middleware = [thunk];
+const middleware = [logger, thunk, promiseMiddleware()];
 
 const store = createStore(rootReducer, {}, applyMiddleware(...middleware));
 
