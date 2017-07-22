@@ -9,6 +9,7 @@ export default (state = {}, action) => {
   switch (action.type) {
     case CHECK_USER_AUTH_FULFILLED:
     case LOGIN_FULFILLED:
+      window.localStorage.setItem("isAuthenticated", true);
       return {
         ...state,
         loggedIn: true,

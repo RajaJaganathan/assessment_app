@@ -1,9 +1,9 @@
 import React from "react";
 import {Route, Redirect } from "react-router-dom";
-// window.localStorage.getItem('isAuthenticated')
+
 export default ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
-     true ? (
+     window.localStorage.getItem('isAuthenticated') ? (
       <Component {...props}/>
     ) : (
       <Redirect to={{

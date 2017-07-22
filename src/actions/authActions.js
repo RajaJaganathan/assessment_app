@@ -1,31 +1,3 @@
-// export const loginActions = payload => {
-//   return {
-//     type: "LOGIN",
-//     payload
-//   };
-// };
-
-// export const loginSuccessActions = user => {
-//   return {
-//     type: "LOGIN_SUCCESS",
-//     user
-//   };
-// };
-
-// export const loginFailedActions = payload => {
-//   return {
-//     type: "LOGIN_FAILED",
-//     payload
-//   };
-// };
-
-export const getUserActions = user => {
-  return {
-    type: "CHECK_USER_AUTH",
-    user
-  };
-};
-
 export const logoutActions = payload => {
   return {
     type: "DO_LOGOUT",
