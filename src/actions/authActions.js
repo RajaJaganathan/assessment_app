@@ -1,27 +1,27 @@
-export const loginActions = payload => {
-  return {
-    type: "DO_LOGIN",
-    payload
-  };
-};
+// export const loginActions = payload => {
+//   return {
+//     type: "LOGIN",
+//     payload
+//   };
+// };
 
-export const loginSuccessActions = user => {
-  return {
-    type: "LOGIN_SUCCESS",
-    user
-  };
-};
+// export const loginSuccessActions = user => {
+//   return {
+//     type: "LOGIN_SUCCESS",
+//     user
+//   };
+// };
 
-export const loginFailedActions = payload => {
-  return {
-    type: "LOGIN_FAILED",
-    payload
-  };
-};
+// export const loginFailedActions = payload => {
+//   return {
+//     type: "LOGIN_FAILED",
+//     payload
+//   };
+// };
 
 export const getUserActions = user => {
   return {
-    type: "CHECK_USER_ACCESS",
+    type: "CHECK_USER_AUTH",
     user
   };
 };
@@ -34,24 +34,23 @@ export const logoutActions = payload => {
 };
 
 export function getUser() {
-  return function(dispatch) {
-    return fetch("/api/v1/user", {
+  return {
+    type: "CHECK_USER_AUTH",
+    payload: fetch("/api/v1/user", {
       credentials: "include"
-    }).then(res => {
-      return res.json().then(user => {
-        if (res.ok) {
-          dispatch(loginSuccessActions(user));
-        } else {
-          return dispatch(loginFailedActions(user));
-        }
-      });
-    });
+    })
+      .then(status)
+      .then(res => res.json())
+      .catch(error => {
+        return Promise.reject();
+      })
   };
 }
 
 export function login(params) {
-  return function(dispatch) {
-    return fetch("/api/v1/login", {
+  return {
+    type: "LOGIN",
+    payload: fetch("/api/v1/login", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -59,19 +58,61 @@ export function login(params) {
       },
       credentials: "include",
       body: JSON.stringify(params)
-    }).then(res => {
-      res.json().then(response => {
-        if (res.ok) {
-          window.localStorage.setItem("isAuthenticated", true);
-          dispatch(loginSuccessActions(response.user));
-        } else {
-          window.localStorage.removeItem("isAuthenticated");
-          dispatch(loginFailedActions());
-        }
-      });
-    });
+    })
+      .then(status)
+      .then(res => res.json())
+      .catch(error => {
+        return Promise.reject();
+      })
   };
 }
+
+function status(res) {
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+  return res;
+}
+
+// export function getUser() {
+//   return function(dispatch) {
+//     return fetch("/api/v1/user", {
+//       credentials: "include"
+//     }).then(res => {
+//       return res.json().then(user => {
+//         if (res.ok) {
+//           dispatch(loginSuccessActions(user));
+//         } else {
+//           return dispatch(loginFailedActions(user));
+//         }
+//       });
+//     });
+//   };
+// }
+
+// export function login(params) {
+//   return function(dispatch) {
+//     return fetch("/api/v1/login", {
+//       method: "POST",
+//       headers: {
+//         Accept: "application/json",
+//         "Content-Type": "application/json"
+//       },
+//       credentials: "include",
+//       body: JSON.stringify(params)
+//     }).then(res => {
+//       res.json().then(response => {
+//         if (res.ok) {
+//           window.localStorage.setItem("isAuthenticated", true);
+//           dispatch(loginSuccessActions(response.user));
+//         } else {
+//           window.localStorage.removeItem("isAuthenticated");
+//           dispatch(loginFailedActions());
+//         }
+//       });
+//     });
+//   };
+// }
 
 export function logout() {
   return function(dispatch) {

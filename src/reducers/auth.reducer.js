@@ -1,36 +1,29 @@
+import {
+  CHECK_USER_AUTH_FULFILLED,
+  CHECK_USER_AUTH_REJECTED,
+  LOGIN_FULFILLED,
+  LOGIN_REJECTED
+} from "../actions/actionTypes";
+
 export default (state = {}, action) => {
   switch (action.type) {
-    case "DO_LOGIN":
-      return {
-        ...state,
-        loggedIn: true
-      };
-    case "DO_LOGOUT":
-      return {
-        ...state,
-        loggedIn: false,
-        authSuccess: false,
-        authFailed: false
-      };
-    case "LOGIN_FAILED":
-      return {
-        ...state,
-        loggedIn: false,
-        authSuccess: false,
-        authFailed: true
-      };
-    case "LOGIN_SUCCESS":
+    case CHECK_USER_AUTH_FULFILLED:
+    case LOGIN_FULFILLED:
       return {
         ...state,
         loggedIn: true,
         authSuccess: true,
         authFailed: false,
-        user: action.user
+        user: action.payload.user || action.payload
       };
-    case "CHECK_USER_ACCESS":
+    case CHECK_USER_AUTH_REJECTED:
+    case LOGIN_REJECTED:
       return {
         ...state,
-        user: action.payload.user
+        loggedIn: false,
+        authSuccess: false,
+        authFailed: true,
+        user: null
       };
     default:
       return state;

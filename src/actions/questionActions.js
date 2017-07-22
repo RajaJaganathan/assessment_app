@@ -1,12 +1,3 @@
-import { FETCHED_QUESTIONS } from './actionTypes';
-
-export const fetchedQuestions = questions => {
-  return {
-    type: FETCHED_QUESTIONS,
-    questions
-  };
-};
-
 export function fetchQuestions() {
     return {
       type:'FETCH_QUESTIONS',
