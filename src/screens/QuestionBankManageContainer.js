@@ -1,23 +1,14 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
-import { fetchQuestions } from "../actions/questionActions";
-import CreateQuestionModal from "../components/CreateQuestionModal";
-import QuestionList from "../components/QuestionsList";
+import { fetchQuestions } from '../actions/questionActions';
+import CreateQuestionModal from '../components/CreateQuestionModal';
+import QuestionList from '../components/QuestionsList';
 
 class QuestionBankManageContainer extends Component {
-  static defaultProps = {
-    isLoading: true,
-    defaultQuestions: []
-  };
-
-  static propTypes = {
-    questions: PropTypes.array
-  };
-
   constructor(props) {
     super(props);
 
@@ -25,7 +16,7 @@ class QuestionBankManageContainer extends Component {
     this.onHideQuestionModal = this.onHideQuestionModal.bind(this);
     this.onCreateQuestion = this.onCreateQuestion.bind(this);
     this.onEditQuestion = this.onEditQuestion.bind(this);
-
+    this.onUpdateQuestion = this.onUpdateQuestion.bind(this);
     this.state = {
       isLoading: false,
       showCreateQuestionModal: false,
@@ -133,17 +124,23 @@ class QuestionBankManageContainer extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchQuestions: () => dispatch(fetchQuestions())
-  };
+QuestionBankManageContainer.defaultProps = {
+  isLoading: true,
+  questions: [],
+  defaultQuestions: []
 };
 
-const mapStateToProps = state => {
-  return {
-    questions: state.question.questions
-  };
+QuestionBankManageContainer.propTypes = {
+  questions: PropTypes.array
 };
+
+const mapDispatchToProps = dispatch => ({
+  fetchQuestions: () => dispatch(fetchQuestions())
+});
+
+const mapStateToProps = state => ({
+  questions: state.question.questions
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   QuestionBankManageContainer

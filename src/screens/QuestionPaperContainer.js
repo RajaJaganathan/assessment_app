@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Modal, Button, ProgressBar } from "react-bootstrap";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Modal, Button, ProgressBar } from 'react-bootstrap';
 
-import QuestionPaper from "../components/QuestionPaper";
-import { fetchQuestions } from "../actions/questionActions";
+import QuestionPaper from '../components/QuestionPaper';
+import { fetchQuestions } from '../actions/questionActions';
 
 class QuestionPaperContainer extends Component {
   constructor(props) {
@@ -13,9 +13,14 @@ class QuestionPaperContainer extends Component {
     this.onChoiceClick = this.onChoiceClick.bind(this);
     this.state = {
       isQuestionLoading: false,
-      resultText: "",
+      resultText: '',
       noOfAnswered: 0
     };
+  }
+
+  componentDidMount() {
+    this.props.loadQuestions();
+    this.setState({ isQuestionLoading: true });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,9 +29,22 @@ class QuestionPaperContainer extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState({ isQuestionLoading: true });
-    this.props.loadQuestions();
+  onChoiceClick() {
+    const noOfAnswered = this.props.questions.reduce((acc, currentItem) => {
+      return acc + (currentItem.isUserAnswered ? 1 : 0);
+    }, 0);
+    const totalQuestions = this.props.questions.length;
+    const ratioAnswered = (noOfAnswered / totalQuestions) * 100;
+    this.setState({
+      noOfAnswered: ratioAnswered
+    });
+  }
+
+  onCloseModal() {
+    this.setState({
+      showModal: false
+    });
+    this.props.history.push('/dashboard');
   }
 
   showResult() {
@@ -44,24 +62,6 @@ class QuestionPaperContainer extends Component {
       showModal: true,
       resultText
     });
-  }
-
-  onChoiceClick() {
-    const noOfAnswered = this.props.questions.reduce((acc, currentItem) => {
-      return acc + (currentItem.isUserAnswered ? 1 : 0);
-    }, 0);
-    const totalQuestions = this.props.questions.length;
-    const ratioAnswered = (noOfAnswered/totalQuestions) * 100;
-    this.setState({
-      noOfAnswered:ratioAnswered
-    });
-  }
-
-  onCloseModal() {
-    this.setState({
-      showModal: false
-    });
-    this.props.history.push("/dashboard");
   }
 
   render() {

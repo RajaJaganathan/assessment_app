@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Button,
   Checkbox,
@@ -10,41 +10,11 @@ import {
   FormControl,
   Col,
   ControlLabel
-} from "react-bootstrap";
+} from 'react-bootstrap';
 
-import { uniqueId, keyBy } from "lodash";
+import { uniqueId, keyBy } from 'lodash';
 
 class CreateQuestionModal extends Component {
-  static propTypes = {
-    questionNo:PropTypes.string,
-    questionText: PropTypes.string,
-    options: PropTypes.array,
-    tags: PropTypes.array,
-    isEditMode: PropTypes.bool,
-    show: PropTypes.bool.isRequired,
-    onHide: PropTypes.func,
-    onCreate: PropTypes.func
-  };
-
-  static defaultProps = {
-    defaultEditMode: false,
-    defaultQuestionText: "Please enter your question here",
-    defaultOptions: [
-      {
-        id: uniqueId("option"),
-        text: ""
-      }
-    ],
-    defaultTags: [
-      { name: "Math", type: "math" },
-      { name: "Science", type: "science" },
-      { name: "General", type: "general" },
-      { name: "History", type: "history" },
-      { name: "Computer Science", type: "computerscience" },
-      { name: "Current Affairs", type: "currentaffairs" }
-    ]
-  };
-
   constructor(props) {
     super(props);
     this.onAddOption = this.onAddOption.bind(this);
@@ -75,11 +45,11 @@ class CreateQuestionModal extends Component {
       this.setState({ options: nextProps.options });
     }
     if (nextProps.tags && this.props.tags !== nextProps.tags) {
-      const tagsMap = keyBy(nextProps.tags,'type');
+      const tagsMap = keyBy(nextProps.tags, 'type');
       this.state.allTags.forEach(item => {
-        if(tagsMap[item.type]){
+        if (tagsMap[item.type]) {
           item.checked = true;
-        }else{
+        } else {
           item.checked = false;
         }
       });
@@ -87,34 +57,20 @@ class CreateQuestionModal extends Component {
     }
   }
 
-  handleChange(field, event) {
-    this.setState({
-      [field]: event.target.value
-    });
-  }
-
-  handleOptionChange(index, fieldName, event) {
-    const options = [...this.state.options];
-    const newObject = {
-      ...options[index],
-      [fieldName]: event.target.value
+  onCreateQuestion(event) {
+    event.preventDefault();
+    const { questionText, options, allTags, isEditMode } = this.state;
+    const params = {
+      questionNo: this.props.questionNo,
+      questionText,
+      options,
+      isEditMode,
+      tags: allTags.filter(item => item.checked)
     };
-    options.splice(index, 1, newObject);
-    this.setState({
-      options
-    });
-  }
-
-  handleRadioOptionChange(index, fieldName, event) {
-    const options = [...this.state.options];
-    options.forEach(item => (item.answer = false));
-    options[index] = {
-      ...options[index],
-      [fieldName]: event.target.value === "true"
-    };
-    this.setState({
-      options
-    });
+    if (!isEditMode) {
+      params.questionNo = uniqueId('question-');
+    }
+    this.props.onCreate(params);
   }
 
   onCheckboxChange(tag, event) {
@@ -125,7 +81,7 @@ class CreateQuestionModal extends Component {
 
   onAddOption() {
     const newOption = {
-      id: uniqueId("option-")
+      id: uniqueId('option-')
     };
     const options = [...this.state.options, newOption];
     this.setState({ options });
@@ -136,20 +92,28 @@ class CreateQuestionModal extends Component {
     this.setState({ options });
   }
 
-  onCreateQuestion(event) {
-    event.preventDefault();
-    const { questionText, options, allTags, isEditMode } = this.state;
-    const params = {
-      questionNo:this.props.questionNo,
-      questionText,
-      options,
-      isEditMode,
-      tags: allTags.filter(item => item.checked)
+  handleChange(field, event) {
+    this.setState({ [field]: event.target.value });
+  }
+
+  handleOptionChange(index, fieldName, event) {
+    const options = [...this.state.options];
+    const newObject = {
+      ...options[index],
+      [fieldName]: event.target.value
     };
-    if(!isEditMode){
-      params.questionNo = uniqueId("question-")
-    }
-    this.props.onCreate(params);
+    options.splice(index, 1, newObject);
+    this.setState({ options });
+  }
+
+  handleRadioOptionChange(index, fieldName, event) {
+    const options = [...this.state.options];
+    options.forEach(item => (item.answer = false));
+    options[index] = {
+      ...options[index],
+      [fieldName]: event.target.value === 'true'
+    };
+    this.setState({ options });
   }
 
   render() {
@@ -180,7 +144,7 @@ class CreateQuestionModal extends Component {
                     componentClass="textarea"
                     placeholder={questionText}
                     value={questionText}
-                    onChange={this.handleChange.bind(this, "questionText")}
+                    onChange={this.handleChange.bind(this, 'questionText')}
                   />
                 </Col>
               </FormGroup>
@@ -190,7 +154,7 @@ class CreateQuestionModal extends Component {
                     return (
                       <Col sm={10} key={idx}>
                         <Col componentClass={ControlLabel} sm={2}>
-                          {idx === 0 && "Choice"}
+                          {idx === 0 && 'Choice'}
                         </Col>
                         <Col sm={6}>
                           <input
@@ -199,7 +163,7 @@ class CreateQuestionModal extends Component {
                             onChange={this.handleOptionChange.bind(
                               this,
                               idx,
-                              "text"
+                              'text'
                             )}
                           />
                           <Radio
@@ -209,7 +173,7 @@ class CreateQuestionModal extends Component {
                             onChange={this.handleRadioOptionChange.bind(
                               this,
                               idx,
-                              "answer"
+                              'answer'
                             )}
                           >
                             answer
@@ -253,7 +217,7 @@ class CreateQuestionModal extends Component {
           <Modal.Footer>
             <Button onClick={this.props.onHide}>Cancel</Button>
             <Button onClick={this.onCreateQuestion}>
-              {this.state.isEditMode ? "Update" : "Create"}
+              {this.state.isEditMode ? 'Update' : 'Create'}
             </Button>
           </Modal.Footer>
         </Modal>
@@ -261,5 +225,53 @@ class CreateQuestionModal extends Component {
     );
   }
 }
+
+CreateQuestionModal.propTypes = {
+  questionNo: PropTypes.string,
+  questionText: PropTypes.string,
+  options: PropTypes.array,
+  tags: PropTypes.array,
+  isEditMode: PropTypes.bool,
+  show: PropTypes.bool.isRequired,
+  onHide: PropTypes.func,
+  onCreate: PropTypes.func
+};
+
+CreateQuestionModal.defaultProps = {
+  defaultEditMode: false,
+  defaultQuestionText: 'Please enter your question here',
+  defaultOptions: [
+    {
+      id: uniqueId('option'),
+      text: ''
+    }
+  ],
+  defaultTags: [
+    {
+      name: 'Math',
+      type: 'math'
+    },
+    {
+      name: 'Science',
+      type: 'science'
+    },
+    {
+      name: 'General',
+      type: 'general'
+    },
+    {
+      name: 'History',
+      type: 'history'
+    },
+    {
+      name: 'Computer Science',
+      type: 'computerscience'
+    },
+    {
+      name: 'Current Affairs',
+      type: 'currentaffairs'
+    }
+  ]
+};
 
 export default CreateQuestionModal;

@@ -1,10 +1,12 @@
-import React, { Component } from "react";
-import Header from "./Header";
-import Main from "./Main";
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { logout, getUser } from "../actions/authActions";
+import Header from './Header';
+import Main from './Main';
+
+import { logout, getUser } from '../actions/authActions';
 
 class App extends Component {
   componentDidMount() {
@@ -14,24 +16,24 @@ class App extends Component {
     return (
       <div className="App">
         <Header {...this.props} />
-        <Main {...this.props}/>
+        <Main {...this.props} />
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getUser: () => dispatch(getUser()),
-    logout: () => dispatch(logout())
-  };
+App.propTypes = {
+  getUser: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state, props) => {
-  return {
-    loggedIn: state.auth.loggedIn,
-    user: state.auth.user
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  getUser: () => dispatch(getUser()),
+  logout: () => dispatch(logout())
+});
+
+const mapStateToProps = state => ({
+  loggedIn: state.auth.loggedIn,
+  user: state.auth.user
+});
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

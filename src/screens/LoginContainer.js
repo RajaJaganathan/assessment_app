@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import Login from "../components/Login";
-import { login } from "../actions/authActions";
+import Login from '../components/Login';
+import { login } from '../actions/authActions';
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -12,10 +13,10 @@ class LoginContainer extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.authSuccess) {
-      if(nextProps.user && nextProps.user.isAdmin){
-        this.props.history.push("/admin");
-      }else{
-        this.props.history.push("/dashboard");
+      if (nextProps.user && nextProps.user.isAdmin) {
+        this.props.history.push('/admin');
+      } else {
+        this.props.history.push('/dashboard');
       }
     }
   }
@@ -26,12 +27,24 @@ class LoginContainer extends Component {
   }
 
   render() {
-    const {authFailed} = this.props;
-    return (
-      <Login onSubmit={this.onLogin} authFailed={authFailed} />
-    );
+    const { authFailed } = this.props;
+    return <Login onSubmit={this.onLogin} authFailed={authFailed} />;
   }
 }
+
+LoginContainer.propTypes = {
+  user: PropTypes.any,
+  authFailed: PropTypes.bool,
+  authSuccess: PropTypes.bool,
+  history: PropTypes.any
+};
+
+LoginContainer.defaultProps = {
+  user: {},
+  authFailed: true,
+  authSuccess: false,
+  history: PropTypes.any
+};
 
 const mapStateToProps = state => {
   return {

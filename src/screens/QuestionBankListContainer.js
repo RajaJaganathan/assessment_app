@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { Modal, Button, ProgressBar } from "react-bootstrap";
+import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+// import { withRouter } from 'react-router-dom';
+// import { Modal, Button, ProgressBar } from 'react-bootstrap';
 
-import PrivateRoute from "../components/PrivateRoute";
-import DashboardCard from "../components/DashboardCard";
-import QuestionBankManageContainer from "./QuestionBankManageContainer";
+// import PrivateRoute from '../components/PrivateRoute';
+import DashboardCard from '../components/DashboardCard';
+// import QuestionBankManageContainer from './QuestionBankManageContainer';
 
 class QuestionBankListContainer extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class QuestionBankListContainer extends Component {
   }
 
   onQuestionBankClick() {
-    this.props.history.push("/questionbanks/manage");
+    this.props.history.push('/questionbanks/manage');
   }
 
   render() {

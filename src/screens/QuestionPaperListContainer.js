@@ -1,6 +1,4 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Modal, Button, ProgressBar } from "react-bootstrap";
+import React, { Component } from 'react';
 
 import DashboardCard from '../components/DashboardCard';
 

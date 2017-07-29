@@ -1,4 +1,4 @@
-import {FETCH_QUESTIONS_FULFILLED} from "../actions/actionTypes";
+import { FETCH_QUESTIONS_FULFILLED } from '../actions/actionTypes';
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -6,7 +6,7 @@ export default (state = {}, action) => {
       return {
         ...state,
         questions: action.payload
-      }
+      };
     default:
       return state;
   }

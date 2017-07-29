@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class AssessmentInfo extends Component {
   render() {
@@ -46,7 +46,7 @@ class AssessmentInfo extends Component {
                 </p>
               </div>
             </div>
-          </div>*/}
+          </div> */}
         </div>
       </div>
     );

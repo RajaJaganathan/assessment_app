@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import DashboardCard from "../components/DashboardCard";
+import DashboardCard from '../components/DashboardCard';
 
 class AdminDashboardContainer extends Component {
   constructor(props) {
@@ -11,11 +11,11 @@ class AdminDashboardContainer extends Component {
   }
 
   onQuestionBankClick() {
-    this.props.history.push("/questionbanks");
+    this.props.history.push('/questionbanks');
   }
 
   onQuestionPaperClick() {
-    this.props.history.push("/questionpaper");
+    this.props.history.push('/questionpaper');
   }
 
   render() {
@@ -50,9 +50,7 @@ AdminDashboardContainer.defaultProps = {
   questions: []
 };
 
-const mapDispatchToProps = dispatch => {
-  return {};
-};
+const mapDispatchToProps = null;
 
 const mapStateToProps = state => {
   return {

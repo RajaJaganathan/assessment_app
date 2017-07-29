@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import AssessmentInfo from "../components/AssessmentInfo";
+import AssessmentInfo from '../components/AssessmentInfo';
 
 class AssessmentInfoContainer extends Component {
   render() {

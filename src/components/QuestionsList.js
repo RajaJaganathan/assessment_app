@@ -1,23 +1,8 @@
-import React, { Component } from "react";
-import propTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { Modal, Button, ProgressBar } from "react-bootstrap";
-import { DashboardCard } from "./DashboardCard";
+import React, { Component } from 'react';
+import propTypes from 'prop-types';
+import { Button } from 'react-bootstrap';
 
 class QuestionsList extends Component {
-  static propsType = {
-    questions: propTypes.array,
-    onEdit:propTypes.func
-  };
-
-  static defaultProps = {
-    questions: []
-  };
-
-  constructor(props) {
-    super(props);
-  }
-
   renderRow() {
     const { questions } = this.props;
     return (
@@ -39,7 +24,7 @@ class QuestionsList extends Component {
                 })}
             </td>
             <td>
-              <Button onClick={()=>this.props.onEdit(item)}>Edit</Button>
+              <Button onClick={() => this.props.onEdit(item)}>Edit</Button>
             </td>
           </tr>
         );
@@ -48,7 +33,6 @@ class QuestionsList extends Component {
   }
 
   render() {
-    const { questions } = this.props;
     return (
       <table className="table table-hover text-left">
         <thead>
@@ -65,5 +49,14 @@ class QuestionsList extends Component {
     );
   }
 }
+
+QuestionsList.propsType = {
+  questions: propTypes.array,
+  onEdit: propTypes.func
+};
+
+QuestionsList.defaultProps = {
+  questions: []
+};
 
 export default QuestionsList;

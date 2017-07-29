@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+/* eslint-disable react/prefer-stateless-function */
 class Home extends Component {
   render() {
     return (
@@ -27,11 +28,13 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  return {
-    loggedIn: state.auth.loggedIn,
-    user: state.auth.user
-  };
+Home.propTypes = {
+  loggedIn: PropTypes.bool.isRequired
 };
+
+const mapStateToProps = state => ({
+  loggedIn: state.auth.loggedIn,
+  user: state.auth.user
+});
 
 export default connect(mapStateToProps, null)(Home);
