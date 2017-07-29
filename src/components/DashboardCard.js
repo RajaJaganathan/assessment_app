@@ -1,12 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import {Button} from "react-bootstrap";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 class DashboardCard extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div key={this.props.key} className="col-sm-6 col-md-4 dashboard__item">
@@ -42,8 +38,8 @@ class DashboardCard extends Component {
 }
 
 DashboardCard.defaultProps = {
-  title: "title",
-  desc: "description text here",
+  title: 'title',
+  desc: 'description text here'
 };
 
 export default DashboardCard;

@@ -1,20 +1,21 @@
-export function fetchQuestions() {
-    return {
-      type:'FETCH_QUESTIONS',
-      payload: fetch("/api/v1/questions", {credentials: "include"})
-          .then(status)
-          .then(res => res.json())
-          .catch(error => {
-              return Promise.reject()
-          })
-    };
-}
-
 function status(res) {
   if (!res.ok) {
-      throw new Error(res.statusText);
+    throw new Error(res.statusText);
   }
   return res;
+}
+
+/* eslint-disable import/prefer-default-export */
+export function fetchQuestions() {
+  return {
+    type: 'FETCH_QUESTIONS',
+    payload: fetch('/api/v1/questions', { credentials: 'include' })
+      .then(status)
+      .then(res => res.json())
+      .catch(error => {
+        return Promise.reject();
+      })
+  };
 }
 
 // Thunk way to handle Async actions

@@ -108,7 +108,9 @@ class CreateQuestionModal extends Component {
 
   handleRadioOptionChange(index, fieldName, event) {
     const options = [...this.state.options];
-    options.forEach(item => (item.answer = false));
+    options.forEach(item => {
+      item.answer = false;
+    });
     options[index] = {
       ...options[index],
       [fieldName]: event.target.value === 'true'
@@ -131,7 +133,9 @@ class CreateQuestionModal extends Component {
           </Modal.Header>
           <Modal.Body>
             <Form
-              ref={form => (this.createQuestionForm = form)}
+              ref={form => {
+                this.createQuestionForm = form;
+              }}
               name="createQuestionForm"
               horizontal
             >

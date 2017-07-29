@@ -22,7 +22,7 @@ class AssessmentInfo extends Component {
           </button>
         </Link>
         <div className="assessment__items">
-          {/*<div className="col-sm-6 col-md-4 assessment__item">
+          { /* <div className="col-sm-6 col-md-4 assessment__item">
             <div className="thumbnail">
               <div className="caption">
                 <h3>Math Assessment</h3>
