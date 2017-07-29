@@ -1,5 +1,5 @@
-import React, { Component} from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 // import assessmentIcon from "assets/images/assessment_icon";
 
@@ -23,10 +23,15 @@ class Dashboard extends Component {
           <div className="caption">
             <h3>Math Assessment</h3>
             <p>
-              Mathematical Knowledge test questions are designed to test your knowledge of general mathematical rules and principles
+              Mathematical Knowledge test questions are designed to test your
+              knowledge of general mathematical rules and principles
             </p>
             <p>
-              <Link to="/assessment" className="btn btn-primary mR20" role="button">
+              <Link
+                to="/assessment"
+                className="btn btn-primary mR20"
+                role="button"
+              >
                 Take Assessment
               </Link>
               <Link to="/assessment" className="btn btn-primary" role="button">

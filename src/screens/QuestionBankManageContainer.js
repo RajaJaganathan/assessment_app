@@ -16,7 +16,7 @@ class QuestionBankManageContainer extends Component {
     this.onHideQuestionModal = this.onHideQuestionModal.bind(this);
     this.onCreateQuestion = this.onCreateQuestion.bind(this);
     this.onEditQuestion = this.onEditQuestion.bind(this);
-    this.onUpdateQuestion = this.onUpdateQuestion.bind(this);
+    // this.onUpdateQuestion = this.onUpdateQuestion.bind(this);
     this.state = {
       isLoading: false,
       showCreateQuestionModal: false,
@@ -65,11 +65,6 @@ class QuestionBankManageContainer extends Component {
       questions = [...this.state.questions, newQuestion];
     }
     this.setState({ questions, showCreateQuestionModal: false });
-  }
-
-  onUpdateQuestion(newQuestion) {
-    // const questions = [...this.state.questions, newQuestion];
-    // this.setState({questions});
   }
 
   onEditQuestion(newQuestion) {

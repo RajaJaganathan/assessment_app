@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { PropTypes } from "prop-types";
-import { Alert } from "react-bootstrap";
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
+import { Alert } from 'react-bootstrap';
 
 class Login extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class Login extends Component {
       username: null,
       password: null
     };
-    this.onInputChange = this.onInputChange.bind(this);
+    // this.onInputChange = this.onInputChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -30,9 +30,11 @@ class Login extends Component {
   render() {
     return (
       <div className="login">
-        { this.props.authFailed ? <Alert bsStyle="danger">
-            Given user and password are wrong. Please try again.
-        </Alert> : null}
+        {this.props.authFailed
+          ? <Alert bsStyle="danger">
+              Given user and password are wrong. Please try again.
+            </Alert>
+          : null}
         <form className="form-horizontal">
           <div className="form-group">
             <label className="sr-only" htmlFor="">
@@ -60,14 +62,14 @@ class Login extends Component {
               onChange={this.onInputChange.bind(this, 'password')}
             />
           </div>
-           <div className="form-group">
-          <button
-            type="submit"
-            className="btn btn-primary btn-block"
-            onClick={this.onSubmit}
-          >
-            Login
-          </button>
+          <div className="form-group">
+            <button
+              type="submit"
+              className="btn btn-primary btn-block"
+              onClick={this.onSubmit}
+            >
+              Login
+            </button>
           </div>
         </form>
       </div>
