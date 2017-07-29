@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Panel } from 'react-bootstrap';
 
-import Pagination from "./Pagination";
-import { Panel } from "react-bootstrap";
+import Pagination from './Pagination';
 
 class QuestionPaper extends Component {
   constructor(props) {
@@ -27,11 +27,14 @@ class QuestionPaper extends Component {
     return question.options.map((item, key) =>
       <div key={key} className="question__options">
         <div className="question__option">
-          <label className="question__label">
+          <label
+            className="question__label"
+            htmlFor={`questionNo${question.questionNo}`}
+          >
             <input
               type="radio"
               name={question.questionNo}
-              id={"questionNo" + question.questionNo}
+              id={`questionNo${question.questionNo}`}
               value={true}
               onChange={e => this.onChoosingHandler(question.options, question)}
             />

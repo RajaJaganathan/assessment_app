@@ -52,11 +52,9 @@ AdminDashboardContainer.defaultProps = {
 
 const mapDispatchToProps = null;
 
-const mapStateToProps = state => {
-  return {
-    questions: state.question.questions
-  };
-};
+const mapStateToProps = state => ({
+  questions: state.question.questions
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   AdminDashboardContainer

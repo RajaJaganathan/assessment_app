@@ -9,7 +9,7 @@ class Login extends Component {
       username: null,
       password: null
     };
-    // this.onInputChange = this.onInputChange.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -20,11 +20,8 @@ class Login extends Component {
   }
 
   onSubmit(e) {
-    const payload = {
-      username: this.state.username,
-      password: this.state.password
-    };
-    this.props.onSubmit(e, payload);
+    const { username, password } = this.state;
+    this.props.onSubmit(e, { username, password });
   }
 
   render() {
@@ -37,7 +34,7 @@ class Login extends Component {
           : null}
         <form className="form-horizontal">
           <div className="form-group">
-            <label className="sr-only" htmlFor="">
+            <label className="sr-only" htmlFor="email">
               label
             </label>
             <input
@@ -46,11 +43,11 @@ class Login extends Component {
               className="form-control"
               id="email"
               placeholder="Email Id"
-              onChange={this.onInputChange.bind(this, 'username')}
+              onChange={e => this.onInputChange('username', e)}
             />
           </div>
           <div className="form-group">
-            <label className="sr-only" htmlFor="">
+            <label className="sr-only" htmlFor="password">
               label
             </label>
             <input
@@ -59,7 +56,7 @@ class Login extends Component {
               className="form-control"
               id="password"
               placeholder="Password"
-              onChange={this.onInputChange.bind(this, 'password')}
+              onChange={e => this.onInputChange('password', e)}
             />
           </div>
           <div className="form-group">
