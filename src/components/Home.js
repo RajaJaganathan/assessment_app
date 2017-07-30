@@ -32,6 +32,10 @@ Home.propTypes = {
   loggedIn: PropTypes.bool.isRequired
 };
 
+Home.defaultProps = {
+  loggedIn: false
+};
+
 const mapStateToProps = state => ({
   loggedIn: state.auth.loggedIn,
   user: state.auth.user

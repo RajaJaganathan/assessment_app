@@ -19,7 +19,7 @@ class QuestionPaperContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.loadQuestions();
+    this.props.fetchQuestions();
     this.setState({ isQuestionLoading: true });
   }
 

@@ -10,7 +10,7 @@ import AdminDashboardContainer from '../screens/AdminDashboardContainer';
 import QuestionBankListContainer from '../screens/QuestionBankListContainer';
 import QuestionPaperListContainer from '../screens/QuestionPaperListContainer';
 import QuestionBankManageContainer from '../screens/QuestionBankManageContainer';
-// import QuestionPaperManageContainer from '../screens/QuestionBankManageContainer';
+import QuestionPaperManageContainer from '../screens/QuestionBankManageContainer';
 
 import PrivateRoute from './PrivateRoute';
 /* eslint-disable react/prefer-stateless-function */
@@ -37,11 +37,11 @@ class Main extends Component {
           path="/questionbanks/manage"
           component={QuestionBankManageContainer}
         />
-        {/* <PrivateRoute
+        <PrivateRoute
           exact
           path="/questionpaper/manage"
           component={QuestionPaperManageContainer}
-        /> */}
+        />
 
         <PrivateRoute exact path="/dashboard" component={DashboardContainer} />
         <PrivateRoute
