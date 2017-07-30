@@ -30,13 +30,14 @@ class QuestionPaperContainer extends Component {
   }
 
   onChoiceClick() {
-    const noOfAnswered = this.props.questions.reduce((acc, currentItem) => {
+    const { questions } = this.props;
+    const noOfUserAnswered = questions.reduce((acc, currentItem) => {
       return acc + (currentItem.isUserAnswered ? 1 : 0);
     }, 0);
-    const totalQuestions = this.props.questions.length;
-    const ratioAnswered = (noOfAnswered / totalQuestions) * 100;
+    const totalQuestions = questions.length;
+    const noOfAnswered = (noOfUserAnswered / totalQuestions) * 100;
     this.setState({
-      noOfAnswered: ratioAnswered
+      noOfAnswered
     });
   }
 
@@ -97,17 +98,13 @@ QuestionPaperContainer.defaultProps = {
   questions: []
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchQuestions: () => dispatch(fetchQuestions())
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  fetchQuestions: () => dispatch(fetchQuestions())
+});
 
-const mapStateToProps = state => {
-  return {
-    questions: state.question.questions
-  };
-};
+const mapStateToProps = state => ({
+  questions: state.question.questions
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   QuestionPaperContainer
