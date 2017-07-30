@@ -16,10 +16,11 @@ class Header extends Component {
 
   render() {
     const { loggedIn, user } = this.props;
-    let { username } = user;
+    let { username } = user || { username: '' };
     if (username) {
-      username =
-        username.charAt(0).toUpperCase() + username.slice(1).toLowerCase();
+      username = `${username.charAt(0).toUpperCase()}${username
+        .slice(1)
+        .toLowerCase()}`;
     }
     return (
       <div className="row">
@@ -62,7 +63,9 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
-  user: {},
+  user: {
+    username: ''
+  },
   loggedIn: false
 };
 

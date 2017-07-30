@@ -54,7 +54,7 @@ class QuestionPaper extends Component {
           <span className="question__no">
             {item.questionNo}).
           </span>
-          {item.question}
+          {item.questionText}
         </div>
         <div className="question__body" />
         {this.renderQuestionOptions(item)}
