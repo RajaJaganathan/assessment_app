@@ -47,9 +47,11 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.28.0",
     "jest": "20.0.3",
+    "lint-staged": "^4.0.2",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.0.0",
     "postcss-loader": "2.0.5",
+    "pre-commit": "^1.2.2",
     "prettier": "^1.5.3",
     "promise": "7.1.1",
     "react-dev-utils": "^3.0.0",
@@ -68,8 +70,13 @@
     "express-server": "node server/app.js",
     "dev": "concurrently --kill-others \"npm start\" \"npm run express-server\"",
     "test": "node scripts/test.js --env=jsdom",
-    "eslint": "node_modules/eslint/bin/eslint.js src",
-    "eslint-fix": "node node_modules/eslint/bin/eslint.js src --fix"
+    "eslint": "node_modules/eslint/bin/eslint.js",
+    "eslint-fix": "node node_modules/eslint/bin/eslint.js src",
+    "lint-staged": "lint-staged"
+  },
+  "pre-commit": "lint-staged",
+  "lint-staged": {
+    "*.js": "eslint"
   },
   "jest": {
     "collectCoverageFrom": [

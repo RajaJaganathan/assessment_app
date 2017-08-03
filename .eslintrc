@@ -4,14 +4,8 @@
       "jsx": true
     }
   },
-  "extends": [
-    "airbnb",
-    "prettier"
-  ],
-  "plugins": [
-    "react",
-    "prettier"
-  ],
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["react", "prettier"],
   "env": {
     "browser": true
   },
@@ -22,7 +16,7 @@
   },
   "rules": {
     "comma-dangle": 0,
-    "class-methods-use-this": 1,
+    "class-methods-use-this": 0,
     "no-param-reassign": [
       "error",
       {
@@ -33,7 +27,7 @@
     "react/no-array-index-key": 0,
     "react/no-did-mount-set-state": 2,
     "jsx-a11y/href-no-hash": 2,
-    "react/no-unused-prop-types": 1,
+    "react/no-unused-prop-types": 0,
     "react/prefer-stateless-function": 2,
     "react/forbid-prop-types": 0,
     "react/require-default-props": 0,
@@ -43,10 +37,7 @@
     "react/jsx-filename-extension": [
       2,
       {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
+        "extensions": [".js", ".jsx"]
       }
     ]
   }
