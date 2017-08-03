@@ -1,11 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import AssessmentInfo from '../components/AssessmentInfo';
 
-class AssessmentInfoContainer extends Component {
-  render() {
-    return <AssessmentInfo />;
-  }
-}
+const AssessmentInfoContainer = () => <AssessmentInfo />;
 
 export default AssessmentInfoContainer;

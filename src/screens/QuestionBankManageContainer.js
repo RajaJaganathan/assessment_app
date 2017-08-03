@@ -26,7 +26,6 @@ class QuestionBankManageContainer extends Component {
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
     this.props.fetchQuestions();
   }
 
@@ -52,7 +51,7 @@ class QuestionBankManageContainer extends Component {
     let questions;
 
     if (newQuestion.isEditMode) {
-      questions = this.state.questions.map(item => {
+      questions = this.state.questions.map((item) => {
         if (this.state.selectedQuestion === item) {
           return {
             ...item,

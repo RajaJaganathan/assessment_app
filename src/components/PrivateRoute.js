@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 
 const privateRoute = ({ WrappedComponent, ...rest }) => {
-  const authentication = props => {
+  const authentication = (props) => {
     const toObject = {
       pathname: '/login',
       state: { from: props.location }

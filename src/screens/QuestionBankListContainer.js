@@ -12,12 +12,12 @@ class QuestionBankListContainer extends Component {
     super(props);
     this.onQuestionBankClick = this.onQuestionBankClick.bind(this);
     this.state = {
-      isLoading: false
+      isLoading: true
     };
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
+
   }
 
   onQuestionBankClick() {

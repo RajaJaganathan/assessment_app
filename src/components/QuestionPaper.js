@@ -16,7 +16,7 @@ class QuestionPaper extends Component {
   }
 
   onChoosingHandler(options, question) {
-    options.forEach(item => {
+    options.forEach((item) => {
       item.userChecked = false;
     });
     question.isUserAnswered = true;

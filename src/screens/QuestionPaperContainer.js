@@ -20,7 +20,7 @@ class QuestionPaperContainer extends Component {
 
   componentDidMount() {
     this.props.fetchQuestions();
-    this.setState({ isQuestionLoading: true });
+    // this.setState({ isQuestionLoading: true });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -48,7 +48,7 @@ class QuestionPaperContainer extends Component {
 
   showResult() {
     const { questions = [] } = this.props;
-    questions.forEach(q => {
+    questions.forEach((q) => {
       q.isRightAnswer = q.options.some(opt => opt.userChecked && opt.answer);
     });
 

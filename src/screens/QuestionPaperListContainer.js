@@ -11,7 +11,7 @@ class QuestionPaperListContainer extends Component {
   }
 
   componentDidMount() {
-    this.setState({ isLoading: false });
+
   }
 
   render() {

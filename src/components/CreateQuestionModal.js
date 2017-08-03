@@ -148,14 +148,14 @@ class CreateQuestionModal extends Component {
                     componentClass="textarea"
                     placeholder={questionText}
                     value={questionText}
-                    onChange={this.handleChange.bind(this, 'questionText')}
+                    onChange={(e)=> this.handleChange('questionText', e)}
                   />
                 </Col>
               </FormGroup>
               <FormGroup controlId="formHorizontalPassword">
                 {options &&
-                  options.map((item, idx) => (
-                    <Col sm={10} key={idx}>
+                  options.map((item, idx) =>
+                    (<Col sm={10} key={idx}>
                       <Col componentClass={ControlLabel} sm={2}>
                         {idx === 0 && 'Choice'}
                       </Col>
@@ -163,35 +163,27 @@ class CreateQuestionModal extends Component {
                         <input
                           className="col-sm-8 mR10"
                           value={item.text}
-                          onChange={this.handleOptionChange.bind(
-                              this,
-                              idx,
-                              'text'
-                            )}
+                          onChange={(e) => this.handleOptionChange(idx, 'text', e)}
                         />
                         <Radio
                           name="rightChoice"
                           className="col-sm-3"
                           checked={item.answer}
-                          onChange={this.handleRadioOptionChange.bind(
-                              this,
-                              idx,
-                              'answer'
-                            )}
+                          onChange={(e)=> this.handleRadioOptionChange(idx, 'answer', e)}
                         >
-                            answer
-                          </Radio>
+                          answer
+                        </Radio>
                       </Col>
                       <Col sm={4}>
                         <Button className="mR10" onClick={this.onAddOption}>
-                            Add
-                          </Button>
+                          Add
+                        </Button>
                         <Button onClick={() => this.onDeleteOption(idx)}>
-                            Delete
-                          </Button>
+                          Delete
+                        </Button>
                       </Col>
-                    </Col>
-                    ))}
+                    </Col>)
+                  )}
               </FormGroup>
 
               <FormGroup controlId="formHorizontalPassword">
@@ -200,16 +192,16 @@ class CreateQuestionModal extends Component {
                 </Col>
                 <Col sm={10}>
                   {allTags &&
-                    allTags.map(tag => (
-                      <Checkbox
+                    allTags.map(tag =>
+                      (<Checkbox
                         key={tag.type}
                         checked={tag.checked}
-                        onChange={this.onCheckboxChange.bind(this, tag)}
+                        onChange={() => this.onCheckboxChange(tag)}
                         className="pull-left mR10"
                       >
                         {tag.name}
-                      </Checkbox>
-                      ))}
+                      </Checkbox>)
+                    )}
                 </Col>
               </FormGroup>
             </Form>
