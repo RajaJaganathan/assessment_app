@@ -36,7 +36,7 @@ class QuestionPaper extends Component {
               name={question.questionNo}
               id={`questionNo${question.questionNo}`}
               value
-              onChange={e => this.onChoosingHandler(question.options, question)}
+              onChange={() => this.onChoosingHandler(question.options, question)}
             />
             <span className="question__title">
               {item.text}
