@@ -88,7 +88,7 @@ class CreateQuestionModal extends Component {
   }
 
   onDeleteOption(deleteIdx) {
-    const options = this.state.options.filter((item, idx) => idx !== deleteIdx);
+    const options = this.state.options.filter((item, idx) => idx === deleteIdx);
     this.setState({ options });
   }
 
