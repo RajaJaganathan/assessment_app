@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-import { DashboardCard } from "./DashboardCard";
+import { DashboardCard } from './DashboardCard';
 
 class QuestionBankDashboard extends Component {
   constructor(props) {

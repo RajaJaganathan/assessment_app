@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Pagination extends Component {
   constructor(props) {
@@ -33,8 +33,8 @@ class Pagination extends Component {
             onClick={this.onPrev}
             className={
               this.props.currentPage === 1
-                ? "btn btn-primary pull-left"
-                : "btn btn-primary pull-left disabled"
+                ? 'btn btn-primary pull-left'
+                : 'btn btn-primary pull-left disabled'
             }
           >
             Prev
