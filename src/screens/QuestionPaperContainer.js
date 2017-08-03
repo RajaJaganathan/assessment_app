@@ -31,9 +31,7 @@ class QuestionPaperContainer extends Component {
 
   onChoiceClick() {
     const { questions } = this.props;
-    const noOfUserAnswered = questions.reduce((acc, currentItem) => {
-      return acc + (currentItem.isUserAnswered ? 1 : 0);
-    }, 0);
+    const noOfUserAnswered = questions.reduce((acc, currentItem) => acc + (currentItem.isUserAnswered ? 1 : 0), 0);
     const totalQuestions = questions.length;
     const noOfAnswered = (noOfUserAnswered / totalQuestions) * 100;
     this.setState({
@@ -51,9 +49,7 @@ class QuestionPaperContainer extends Component {
   showResult() {
     const { questions = [] } = this.props;
     questions.forEach(q => {
-      q.isRightAnswer = q.options.some(opt => {
-        return opt.userChecked && opt.answer;
-      });
+      q.isRightAnswer = q.options.some(opt => opt.userChecked && opt.answer);
     });
 
     const rightAnswer = questions.filter(q => q.isRightAnswer);

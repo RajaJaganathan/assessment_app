@@ -154,46 +154,44 @@ class CreateQuestionModal extends Component {
               </FormGroup>
               <FormGroup controlId="formHorizontalPassword">
                 {options &&
-                  options.map((item, idx) => {
-                    return (
-                      <Col sm={10} key={idx}>
-                        <Col componentClass={ControlLabel} sm={2}>
-                          {idx === 0 && 'Choice'}
-                        </Col>
-                        <Col sm={6}>
-                          <input
-                            className="col-sm-8 mR10"
-                            value={item.text}
-                            onChange={this.handleOptionChange.bind(
+                  options.map((item, idx) => (
+                    <Col sm={10} key={idx}>
+                      <Col componentClass={ControlLabel} sm={2}>
+                        {idx === 0 && 'Choice'}
+                      </Col>
+                      <Col sm={6}>
+                        <input
+                          className="col-sm-8 mR10"
+                          value={item.text}
+                          onChange={this.handleOptionChange.bind(
                               this,
                               idx,
                               'text'
                             )}
-                          />
-                          <Radio
-                            name="rightChoice"
-                            className="col-sm-3"
-                            checked={item.answer}
-                            onChange={this.handleRadioOptionChange.bind(
+                        />
+                        <Radio
+                          name="rightChoice"
+                          className="col-sm-3"
+                          checked={item.answer}
+                          onChange={this.handleRadioOptionChange.bind(
                               this,
                               idx,
                               'answer'
                             )}
-                          >
+                        >
                             answer
                           </Radio>
-                        </Col>
-                        <Col sm={4}>
-                          <Button className="mR10" onClick={this.onAddOption}>
+                      </Col>
+                      <Col sm={4}>
+                        <Button className="mR10" onClick={this.onAddOption}>
                             Add
                           </Button>
-                          <Button onClick={() => this.onDeleteOption(idx)}>
+                        <Button onClick={() => this.onDeleteOption(idx)}>
                             Delete
                           </Button>
-                        </Col>
                       </Col>
-                    );
-                  })}
+                    </Col>
+                    ))}
               </FormGroup>
 
               <FormGroup controlId="formHorizontalPassword">
@@ -202,18 +200,16 @@ class CreateQuestionModal extends Component {
                 </Col>
                 <Col sm={10}>
                   {allTags &&
-                    allTags.map(tag => {
-                      return (
-                        <Checkbox
-                          key={tag.type}
-                          checked={tag.checked}
-                          onChange={this.onCheckboxChange.bind(this, tag)}
-                          className="pull-left mR10"
-                        >
-                          {tag.name}
-                        </Checkbox>
-                      );
-                    })}
+                    allTags.map(tag => (
+                      <Checkbox
+                        key={tag.type}
+                        checked={tag.checked}
+                        onChange={this.onCheckboxChange.bind(this, tag)}
+                        className="pull-left mR10"
+                      >
+                        {tag.name}
+                      </Checkbox>
+                      ))}
                 </Col>
               </FormGroup>
             </Form>

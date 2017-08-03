@@ -35,8 +35,8 @@ class Header extends Component {
             <div className="header__information">
               {username
                 ? <div className="header__username">
-                    {username}
-                  </div>
+                  {username}
+                </div>
                 : null}
             </div>
             <div className="header__actions">

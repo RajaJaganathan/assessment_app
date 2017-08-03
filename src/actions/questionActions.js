@@ -12,9 +12,7 @@ export function fetchQuestions() {
     payload: fetch('/api/v1/questions', { credentials: 'include' })
       .then(status)
       .then(res => res.json())
-      .catch(error => {
-        return Promise.reject();
-      })
+      .catch(error => Promise.reject())
   };
 }
 

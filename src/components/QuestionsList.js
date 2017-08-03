@@ -7,28 +7,24 @@ class QuestionsList extends Component {
     const { questions } = this.props;
     return (
       questions &&
-      questions.map(item => {
-        return (
-          <tr key={item.questionNo}>
-            <td>
-              {item.questionText}
-            </td>
-            <td>
-              {item.tags &&
-                item.tags.map(tag => {
-                  return (
-                    <Button key={tag.type} className="mR10">
-                      {tag.name}
-                    </Button>
-                  );
-                })}
-            </td>
-            <td>
-              <Button onClick={() => this.props.onEdit(item)}>Edit</Button>
-            </td>
-          </tr>
-        );
-      })
+      questions.map(item => (
+        <tr key={item.questionNo}>
+          <td>
+            {item.questionText}
+          </td>
+          <td>
+            {item.tags &&
+                item.tags.map(tag => (
+                  <Button key={tag.type} className="mR10">
+                    {tag.name}
+                  </Button>
+                  ))}
+          </td>
+          <td>
+            <Button onClick={() => this.props.onEdit(item)}>Edit</Button>
+          </td>
+        </tr>
+        ))
     );
   }
 

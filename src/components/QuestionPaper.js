@@ -25,7 +25,7 @@ class QuestionPaper extends Component {
 
   renderQuestionOptions(question) {
     return question.options.map((item, key) =>
-      <div key={key} className="question__options">
+      (<div key={key} className="question__options">
         <div className="question__option">
           <label
             className="question__label"
@@ -35,7 +35,7 @@ class QuestionPaper extends Component {
               type="radio"
               name={question.questionNo}
               id={`questionNo${question.questionNo}`}
-              value={true}
+              value
               onChange={e => this.onChoosingHandler(question.options, question)}
             />
             <span className="question__title">
@@ -43,13 +43,13 @@ class QuestionPaper extends Component {
             </span>
           </label>
         </div>
-      </div>
+      </div>)
     );
   }
 
   renderQuestions(questions) {
     return questions.map((item, index) =>
-      <div key={index} className="question">
+      (<div key={index} className="question">
         <div className="question__text">
           <span className="question__no">
             {item.questionNo}).
@@ -58,7 +58,7 @@ class QuestionPaper extends Component {
         </div>
         <div className="question__body" />
         {this.renderQuestionOptions(item)}
-      </div>
+      </div>)
     );
   }
 

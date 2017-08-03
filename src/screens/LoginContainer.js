@@ -46,18 +46,14 @@ LoginContainer.defaultProps = {
   history: PropTypes.any
 };
 
-const mapStateToProps = state => {
-  return {
+const mapStateToProps = state => ({
     authSuccess: state.auth.authSuccess,
     user: state.auth.user,
     authFailed: state.auth.authFailed
-  };
-};
+  });
 
-const mapDispatchToProps = dispatch => {
-  return {
+const mapDispatchToProps = dispatch => ({
     login: payload => dispatch(login(payload))
-  };
-};
+  });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
