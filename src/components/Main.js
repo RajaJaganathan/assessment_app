@@ -22,19 +22,14 @@ class Main extends Component {
         <PrivateRoute path="/admin" component={AdminDashboardContainer} />
 
         <PrivateRoute
-          exact
           path="/questionbanks"
           component={QuestionBankListContainer}
         />
+
         <PrivateRoute
           exact
           path="/questionpaper"
           component={QuestionPaperListContainer}
-        />
-        <PrivateRoute
-          exact
-          path="/questionbanks/manage"
-          component={QuestionBankManageContainer}
         />
         <PrivateRoute
           exact

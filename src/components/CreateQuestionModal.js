@@ -196,7 +196,7 @@ class CreateQuestionModal extends Component {
                       (<Checkbox
                         key={tag.type}
                         checked={tag.checked}
-                        onChange={() => this.onCheckboxChange(tag)}
+                        onChange={(e) => this.onCheckboxChange(tag, e)}
                         className="pull-left mR10"
                       >
                         {tag.name}

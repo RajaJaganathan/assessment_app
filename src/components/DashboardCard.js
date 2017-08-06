@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const DashboardCard = () =>
-  (<div key={this.props.key} className="col-sm-6 col-md-4 dashboard__item">
+const DashboardCard = (props) =>
+  (<div key={props.key} className="col-sm-6 col-md-4 dashboard__item">
     <div className="thumbnail">
       <img
         src="images/assessment_icon.png"
@@ -11,20 +11,20 @@ const DashboardCard = () =>
       />
       <div className="caption">
         <h3>
-          {this.props.title}
+          {props.title}
         </h3>
         <p>
-          {this.props.desc}
+          {props.desc}
         </p>
         <p>
           <Button
             className="btn btn-primary mR20"
-            onClick={this.props.onActionClick}
+            onClick={props.onActionClick}
           >
-            {this.props.actionText}
+            {props.actionText}
           </Button>
           <Button className="btn btn-primary" role="button">
-            {this.props.helpText}
+            {props.helpText}
           </Button>
         </p>
       </div>
