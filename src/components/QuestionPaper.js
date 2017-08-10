@@ -7,15 +7,15 @@ import Pagination from './Pagination';
 class QuestionPaper extends Component {
   constructor(props) {
     super(props);
-    this.onSubmitHandler = this.onSubmitHandler.bind(this);
-    this.onChoosingHandler = this.onChoosingHandler.bind(this);
+    this.handleSubmitHandler = this.handleSubmitHandler.bind(this);
+    this.handleChoosingHandler = this.handleChoosingHandler.bind(this);
   }
 
-  onSubmitHandler() {
+  handleSubmitHandler() {
     this.props.onSubmit();
   }
 
-  onChoosingHandler(options, question) {
+  handleChoosingHandler(options, question) {
     options.forEach((item) => {
       item.userChecked = false;
     });
@@ -36,7 +36,7 @@ class QuestionPaper extends Component {
               name={question.questionNo}
               id={`questionNo${question.questionNo}`}
               value
-              onChange={() => this.onChoosingHandler(question.options, question)}
+              onChange={() => this.handleChoosingHandler(question.options, question)}
             />
             <span className="question__title">
               {item.text}
@@ -95,7 +95,7 @@ class QuestionPaper extends Component {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={this.onSubmitHandler}
+                  onClick={this.handleSubmitHandler}
                 >
                   Submit
                 </button>

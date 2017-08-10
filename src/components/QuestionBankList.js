@@ -8,9 +8,10 @@ class QuestionBankList extends Component {
     this.state = {
       list: [{}, {}, {}, {}, {}]
     };
-    this.onQuestionBankClick = this.onQuestionBankClick.bind(this);
+    this.handleQuestionBankClick = this.handleQuestionBankClick.bind(this);
   }
-  onQuestionBankClick() {
+
+  handleQuestionBankClick() {
     this.props.history.push('/questionbanks/manage');
   }
 
@@ -22,14 +23,14 @@ class QuestionBankList extends Component {
           title="Math Question Bank"
           desc="Contains all math and puzzle questions"
           actionText="Manage"
-          onActionClick={this.onQuestionBankClick}
+          onActionClick={this.handleQuestionBankClick}
           helpText="Help"
         />
         <DashboardCard
           title="General Question Bank"
           desc="Contains all general questions paper here"
           actionText="Manage"
-          onActionClick={this.onQuestionBankClick}
+          onActionClick={this.handleQuestionBankClick}
           helpText="Help"
         />
       </div>

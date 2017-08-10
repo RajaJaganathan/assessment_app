@@ -15,10 +15,11 @@ class QuestionBankDashboard extends Component {
   }
 
   render() {
+    const { list } = this.state
     return (
       <div className="dashboard">
         <div className="row">
-          {this.state.list.map((item, index) =>
+          {list.map((item, index) =>
             this.renderDashboardCard(item, index)
           )}
         </div>

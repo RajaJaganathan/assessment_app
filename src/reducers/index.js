@@ -5,7 +5,8 @@ import questionReducer from './question.reducer';
 
 const rootReducers = combineReducers({
   auth: authReducer,
-  question: questionReducer
+  question: questionReducer,
+
 });
 
 export default rootReducers;
