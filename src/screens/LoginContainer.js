@@ -1,10 +1,54 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Login from '../components/Login';
+import DataGrid, {
+  Columns,
+  GridColumn
+} from '../components/FlexDataGrid/DataGrid';
+
 import { login } from '../actions/authActions';
 
+import data from '../components/FlexDataGrid/sample-data';
+
+class NameRenderer extends Component {
+  render() {
+    const { row, dataField } = this.props;
+    return (
+      <td>
+        <a href={`/${row[dataField]}`}>
+          {row[dataField]}
+        </a>
+      </td>
+    );
+  }
+}
+
+class NameHeaderRenderer extends Component {
+  render() {
+    const { headerText, column } = this.props;
+    return (
+      <th>
+        Header - {headerText}
+      </th>
+    );
+  }
+}
+
+class PriceFormatter extends Component {
+  render() {
+    const { input } = this.props;
+    const result =
+      input === null || input === undefined ? null : input.toFixed(2);
+    return (
+      <span>
+        {result}
+      </span>
+    );
+  }
+}
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +72,34 @@ class LoginContainer extends Component {
 
   render() {
     const { authFailed } = this.props;
-    return <Login onSubmit={this.onLogin} authFailed={authFailed} />;
+    return (
+      <div>
+        <Login onSubmit={this.onLogin} authFailed={authFailed} />
+        <DataGrid dataProvider={data}>
+          <Columns>
+            <GridColumn
+              dataField="firstName"
+              headerText="First Name"
+              itemRenderer={NameRenderer}
+              headerRenderer={NameHeaderRenderer}
+            />
+            <GridColumn
+              dataField="lastName"
+              headerText="Last Name"
+              itemRenderer={NameRenderer}
+              headerRenderer={NameHeaderRenderer}
+            />
+            <GridColumn
+              dataField="age"
+              headerText="Age"
+              formatter={PriceFormatter}
+            />
+            <GridColumn dataField="address.city" headerText="City" />
+            <GridColumn dataField="phoneNumber[0].number" headerText="Phone" />
+          </Columns>
+        </DataGrid>
+      </div>
+    );
   }
 }
 
@@ -47,13 +118,13 @@ LoginContainer.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-    authSuccess: state.auth.authSuccess,
-    user: state.auth.user,
-    authFailed: state.auth.authFailed
-  });
+  authSuccess: state.auth.authSuccess,
+  user: state.auth.user,
+  authFailed: state.auth.authFailed
+});
 
 const mapDispatchToProps = dispatch => ({
-    login: payload => dispatch(login(payload))
-  });
+  login: payload => dispatch(login(payload))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
