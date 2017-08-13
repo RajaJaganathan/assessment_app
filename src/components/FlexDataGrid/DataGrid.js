@@ -10,7 +10,7 @@ export class Columns extends Component {
     const columns = children.map(column => column.props);
 
     return (
-      <table className="table table-bordered table-hover">
+      <table className="datagrid">
         <GridHeader children={children} />
         <GridBody dataProvider={dataProvider} columns={columns} />
       </table>
@@ -26,8 +26,8 @@ export class GridHeader extends Component {
       return <HeaderRenderer key={idx} data={'data'} {...child.props} />;
     });
     return (
-      <thead>
-        <tr>
+      <thead className="datagrid__header">
+        <tr className="datagrid__header-row">
           {columns}
         </tr>
       </thead>
@@ -39,7 +39,7 @@ export class GridColumn extends Component {
   render() {
     const { headerText } = this.props;
     return (
-      <th>
+      <th className="datagrid__header-cell">
         {headerText}
       </th>
     );
@@ -55,12 +55,24 @@ export class GridCell extends Component {
   render() {
     const { row, dataField, column } = this.props;
     const Formatter = column.formatter;
+    const value = Formatter
+      ? <Formatter input={get(row, dataField)} />
+      : get(row, dataField);
     return (
-      <td>
-        {Formatter
-          ? <Formatter input={get(row, dataField)} />
-          : get(row, dataField)}
-      </td>
+      <span>
+        {value}
+      </span>
+    );
+  }
+}
+
+export class CustomGridCell extends Component {
+  render() {
+    const { children } = this.props;
+    return (
+      <div className="datagrid__body-custom-cell">
+        {children}
+      </div>
     );
   }
 }
@@ -69,19 +81,28 @@ export class GridRow extends Component {
   render() {
     const { row, children, columns } = this.props;
     const cells = columns.map((column, idx) => {
-      const ItemRenderer = column.itemRenderer ? column.itemRenderer : GridCell;
+      const CellRenderer = column.itemRenderer
+        ? column.itemRenderer
+        : GridCell;
       return (
         <ItemRenderer
           key={idx}
           row={row}
           dataField={column.dataField}
           column={column}
-        />
+        >
+          <CellRenderer
+            key={idx}
+            row={row}
+            dataField={column.dataField}
+            column={column}
+          />
+        </ItemRenderer>
       );
     });
 
     return (
-      <tr>
+      <tr className="datagrid__body-row">
         {cells}
       </tr>
     );
@@ -95,7 +116,7 @@ export class GridBody extends Component {
       <GridRow key={idx} row={row} columns={columns} />
     );
     return (
-      <tbody>
+      <tbody className="datagrid__body">
         {rows}
       </tbody>
     );
@@ -105,7 +126,7 @@ export class GridBody extends Component {
 export class ItemRenderer extends Component {
   render() {
     return (
-      <td>
+      <td className="datagrid__body-cell">
         {this.props.children}
       </td>
     );

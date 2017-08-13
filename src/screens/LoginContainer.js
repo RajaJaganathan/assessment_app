@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import Login from '../components/Login';
 import DataGrid, {
   Columns,
-  GridColumn
+  GridColumn,
+  CustomGridCell
 } from '../components/FlexDataGrid/DataGrid';
 
 import { login } from '../actions/authActions';
@@ -17,7 +18,7 @@ class NameRenderer extends Component {
   render() {
     const { row, dataField } = this.props;
     return (
-      <td>
+      <td className="datagrid__cell">
         <a href={`/${row[dataField]}`}>
           {row[dataField]}
         </a>
@@ -30,8 +31,8 @@ class NameHeaderRenderer extends Component {
   render() {
     const { headerText, column } = this.props;
     return (
-      <th>
-        Header - {headerText}
+      <th className="datagrid__header-cell">
+        {headerText}
       </th>
     );
   }
@@ -74,7 +75,6 @@ class LoginContainer extends Component {
     const { authFailed } = this.props;
     return (
       <div>
-        <Login onSubmit={this.onLogin} authFailed={authFailed} />
         <DataGrid dataProvider={data}>
           <Columns>
             <GridColumn
@@ -83,12 +83,7 @@ class LoginContainer extends Component {
               itemRenderer={NameRenderer}
               headerRenderer={NameHeaderRenderer}
             />
-            <GridColumn
-              dataField="lastName"
-              headerText="Last Name"
-              itemRenderer={NameRenderer}
-              headerRenderer={NameHeaderRenderer}
-            />
+            <GridColumn dataField="lastName" headerText="Last Name" />
             <GridColumn
               dataField="age"
               headerText="Age"
@@ -98,6 +93,7 @@ class LoginContainer extends Component {
             <GridColumn dataField="phoneNumber[0].number" headerText="Phone" />
           </Columns>
         </DataGrid>
+        <Login onSubmit={this.onLogin} authFailed={authFailed} />
       </div>
     );
   }
