@@ -1,11 +1,11 @@
 exports.authenticate = (req, res, next) => {
-  const isLogin = req.url.indexOf("login") > -1;
+  const isLogin = req.url.indexOf('login') > -1;
   if (isLogin) {
     next();
   } else if (req.session && req.session.authenticated) {
     next();
   } else {
     // Unauthorized user
-    res.status(401).json({message:'unauthorized'});
+    res.status(401).json({ message: 'unauthorized' });
   }
 };
