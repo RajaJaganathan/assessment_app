@@ -75,7 +75,8 @@ class LoginContainer extends Component {
     const { authFailed } = this.props;
     return (
       <div>
-        <DataGrid dataProvider={data}>
+          <Login onSubmit={this.onLogin} authFailed={authFailed} />
+        {/* <DataGrid dataProvider={data}>
           <Columns>
             <GridColumn
               dataField="firstName"
@@ -92,8 +93,7 @@ class LoginContainer extends Component {
             <GridColumn dataField="address.city" headerText="City" />
             <GridColumn dataField="phoneNumber[0].number" headerText="Phone" />
           </Columns>
-        </DataGrid>
-        <Login onSubmit={this.onLogin} authFailed={authFailed} />
+        </DataGrid> */}
       </div>
     );
   }

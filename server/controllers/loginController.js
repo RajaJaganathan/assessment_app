@@ -1,28 +1,26 @@
 const mongoose = require('mongoose');
 
-exports.login = (req, res, next) => {
+exports.login = async (req, res, next) => {
   const { username, password } = req.body;
-  const User = mongoose.model('User');
+  const UserModel = mongoose.model('User');
 
-  User.find({ username, password }).then(users => {
-    if (users.length) {
-      let user = users[0];
-      req.session.authenticated = true;
-      req.session.user = user;
-      res.status(200).json({
-        code: 200,
-        message: 'Authentication successfully',
-        description: 'Authentication successfully',
-        user
-      });
-    } else {
-      res.status(401).json({
-        code: 200,
-        message: 'Authentication failed',
-        description: 'Authentication failed'
-      });
-    }
-  });
+  const user = await UserModel.findOne({ username, password });
+  if (user) {
+    req.session.authenticated = true;
+    req.session.user = user;
+    res.status(200).json({
+      code: 200,
+      message: 'Authentication successfully',
+      description: 'Authentication successfully',
+      user
+    });
+  } else {
+    res.status(401).json({
+      code: 200,
+      message: 'Authentication failed',
+      description: 'Authentication failed'
+    });
+  }
 };
 
 exports.logout = (req, res, next) => {
