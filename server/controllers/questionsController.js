@@ -1,4 +1,5 @@
 const fs = require('fs');
+
 exports.getQuestions = function(req, res, next) {
   const fileContent = fs
     .readFileSync('../public/data/questions.json')

@@ -32,7 +32,3 @@ exports.logout = (req, res, next) => {
     res.status(200).send({ message: 'Logout successfully.' });
   });
 };
-
-exports.user = (req, res) => {
-  res.status(200).json(req.session.user);
-};
