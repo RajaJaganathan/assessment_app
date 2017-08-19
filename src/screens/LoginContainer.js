@@ -3,16 +3,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Login from 'components/Login';
+import Login from '../components/Login';
 import DataGrid, {
   Columns,
   GridColumn,
   CustomGridCell
-} from 'components/FlexDataGrid/DataGrid';
+} from '../components/FlexDataGrid/DataGrid';
 
 import { login } from '../actions/authActions';
 
-import data from 'components/FlexDataGrid/sample-data';
+import data from '../components/FlexDataGrid/sample-data';
 
 class NameRenderer extends Component {
   render() {
