@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
 
-import { logout, getUser } from '../actions/authActions';
+import { logout, getUser } from '../login/actions';
 
 class App extends Component {
   componentDidMount() {

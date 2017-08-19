@@ -1,14 +1,15 @@
 import {
-  CHECK_USER_AUTH_FULFILLED,
-  CHECK_USER_AUTH_REJECTED,
-  LOGIN_FULFILLED,
-  LOGIN_REJECTED
-} from '../actions/actionTypes';
+  USER_AUTH_SUCCESS,
+  USER_AUTH_FAILED,
+  LOGIN_SUCCESS,
+  LOGIN_FAILED,
+  LOGOUT_SUCCESS
+} from './constants';
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case CHECK_USER_AUTH_FULFILLED:
-    case LOGIN_FULFILLED:
+    case USER_AUTH_SUCCESS:
+    case LOGIN_SUCCESS:
       window.localStorage.setItem('isAuthenticated', true);
       return {
         ...state,
@@ -17,8 +18,9 @@ export default (state = {}, action) => {
         authFailed: false,
         user: action.payload.user || action.payload
       };
-    case CHECK_USER_AUTH_REJECTED:
-    case LOGIN_REJECTED:
+    case USER_AUTH_FAILED:
+    case LOGIN_FAILED:
+    case LOGOUT_SUCCESS:
       return {
         ...state,
         loggedIn: false,

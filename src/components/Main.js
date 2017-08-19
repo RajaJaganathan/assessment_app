@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Home from './Home';
-import LoginContainer from '../screens/LoginContainer';
+
+import LoginContainer from '../login/LoginContainer';
+
 import DashboardContainer from '../screens/DashboardContainer';
 import AssessmentInfoContainer from '../screens/AssessmentInfoContainer';
 import QuestionPaperContainer from '../screens/QuestionPaperContainer';
