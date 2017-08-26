@@ -1,4 +1,4 @@
-import { USER_AUTH, LOGIN, LOGOUT } from './constants';
+import { USER_AUTH, LOGIN, LOGOUT, LOGOUT_TEST } from './constants';
 
 export const getUser = () => ({
   type: USER_AUTH,
@@ -24,4 +24,15 @@ export const logout = () => ({
     window.localStorage.removeItem('isAuthenticated');
     window.location.replace('/');
   },
+});
+
+// TODO: Write new/edit apiMiddleware for this requirement.
+export const logoutTest = () => ({
+  type: LOGOUT_TEST,
+  payload: null,
+  urls: [{ url: '/api/v1/logout' }, { url: '/api/v1/logout' }],
+  onFulFilled: () => {
+    window.localStorage.removeItem('isAuthenticated');
+    window.location.replace('/');
+  }
 });

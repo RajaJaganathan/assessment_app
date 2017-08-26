@@ -9,3 +9,5 @@ export const LOGIN_REJECTED = 'LOGIN_REJECTED';
 export const LOGOUT = 'LOGOUT';
 export const LOGOUT_FULFILLED = 'LOGOUT_FULFILLED';
 export const LOGOUT_REJECTED = 'LOGOUT_REJECTED';
+
+export const LOGOUT_TEST = 'LOGOUT_TEST';
