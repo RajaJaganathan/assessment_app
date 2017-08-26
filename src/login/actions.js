@@ -1,53 +1,27 @@
-import {
-  USER_AUTH_SUCCESS,
-  USER_AUTH_FAILED,
-  LOGIN_SUCCESS,
-  LOGIN_FAILED,
-  LOGOUT_SUCCESS
-} from './constants';
+import { USER_AUTH, LOGIN, LOGOUT } from './constants';
 
-export const getUser = () => async dispatch => {
-  const res = await fetch('/api/v1/user', { credentials: 'include' });
-  if (!res.ok) {
-    return dispatch({ type: USER_AUTH_FAILED, error: res });
-  }
-  const payload = res.json();
-  return dispatch({ type: USER_AUTH_SUCCESS, payload });
-};
+export const getUser = () => ({
+  type: USER_AUTH,
+  url: '/api/v1/user',
+  payload: null,
+});
 
-export function login(params) {
-  return async dispatch => {
-    const res = await fetch('/api/v1/login', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      credentials: 'include',
-      body: JSON.stringify(params)
-    });
+export const login = params => ({
+  type: LOGIN,
+  url: '/api/v1/login',
+  params: {
+    method: 'POST',
+    body: JSON.stringify(params),
+  },
+  payload: null,
+});
 
-    if (!res.ok) {
-      dispatch({
-        type: LOGIN_FAILED,
-        error: 'not authenticated'
-      });
-    }
-    const payload = await res.json();
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload
-    });
-  };
-}
-
-export function logout() {
-  return async dispatch => {
-    const res = await fetch('/api/v1/logout', { credentials: 'include' });
-    if (res.ok) {
-      window.localStorage.removeItem('isAuthenticated');
-      window.location.replace('/');
-      dispatch({ type: LOGOUT_SUCCESS, payload: res.json() });
-    }
-  };
-}
+export const logout = () => ({
+  type: LOGOUT,
+  payload: null,
+  url: '/api/v1/logout',
+  onFulFilled: () => {
+    window.localStorage.removeItem('isAuthenticated');
+    window.location.replace('/');
+  },
+});

@@ -9,28 +9,80 @@ import {
   FormGroup,
   FormControl,
   Col,
-  ControlLabel
+  ControlLabel,
 } from 'react-bootstrap';
 
 import { uniqueId, keyBy } from 'lodash';
 
+const Tags = ({ tags, onCheckboxChange }) =>
+  <div>
+    {tags.map(tag =>
+      <Checkbox
+        key={tag.type}
+        defaultChecked={tag.checked}
+        onChange={e => onCheckboxChange(tag, e)}
+        className="pull-left mR10"
+      >
+        {tag.name}
+      </Checkbox>,
+    )}
+  </div>;
+
+const QuestionOptions = ({
+  options,
+  handleOptionChange,
+  handleRadioOptionChange,
+  onAddOption,
+  onDeleteOption,
+}) =>
+  <div>
+    {options &&
+      options.map((item, idx) =>
+        <Col sm={10} key={item.id || idx}>
+          <Col componentClass={ControlLabel} sm={2}>
+            {idx === 0 && 'Choice'}
+          </Col>
+          <Col sm={6}>
+            <input
+              className="col-sm-8 mR10"
+              defaultValue={item.text}
+              onChange={e => handleOptionChange(idx, 'text', e)}
+            />
+            <Radio
+              name="rightChoice"
+              className="col-sm-3"
+              defaultChecked={item.answer}
+              onChange={e => handleRadioOptionChange(idx, 'answer', e)}
+            >
+              answer
+            </Radio>
+          </Col>
+          <Col sm={4}>
+            <Button className="mR10" onClick={onAddOption}>
+              Add
+            </Button>
+            <Button onClick={() => onDeleteOption(idx)}>Delete</Button>
+          </Col>
+        </Col>,
+      )}
+  </div>;
+
 class CreateQuestionModal extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isEditMode: this.props.defaultEditMode,
+      questionText: this.props.defaultQuestionText,
+      options: this.props.defaultOptions,
+      tags: this.props.defaultTags,
+      allTags: this.props.defaultTags,
+    };
     this.onAddOption = this.onAddOption.bind(this);
     this.onDeleteOption = this.onDeleteOption.bind(this);
     this.onCreateQuestion = this.onCreateQuestion.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleOptionChange = this.handleOptionChange.bind(this);
     this.onCheckboxChange = this.onCheckboxChange.bind(this);
-
-    this.state = {
-      isEditMode: this.props.defaultEditMode,
-      questionText: this.props.defaultQuestionText,
-      options: this.props.defaultOptions,
-      tags: this.props.defaultTags,
-      allTags: this.props.defaultTags
-    };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -42,16 +94,14 @@ class CreateQuestionModal extends Component {
     }
 
     if (this.props.options !== nextProps.options) {
-      this.setState({ options: nextProps.options });
+      const options = nextProps.options || this.props.defaultOptions;
+      this.setState({ options });
     }
     if (nextProps.tags && this.props.tags !== nextProps.tags) {
-      const tagsMap = keyBy(nextProps.tags, 'type');
+      const tags = nextProps.tags || this.props.defaultTags;
+      const tagsMap = keyBy(tags, 'type');
       this.state.allTags.forEach(item => {
-        if (tagsMap[item.type]) {
-          item.checked = true;
-        } else {
-          item.checked = false;
-        }
+        item.checked = tagsMap[item.type];
       });
       this.setState({ tags: nextProps.tags });
     }
@@ -65,7 +115,7 @@ class CreateQuestionModal extends Component {
       questionText,
       options,
       isEditMode,
-      tags: allTags.filter(item => item.checked)
+      tags: allTags.filter(item => item.checked),
     };
     if (!isEditMode) {
       params.questionNo = uniqueId('question-');
@@ -81,14 +131,14 @@ class CreateQuestionModal extends Component {
 
   onAddOption() {
     const newOption = {
-      id: uniqueId('option-')
+      id: uniqueId('option-'),
     };
     const options = [...this.state.options, newOption];
     this.setState({ options });
   }
 
   onDeleteOption(deleteIdx) {
-    const options = this.state.options.filter((item, idx) => idx === deleteIdx);
+    const options = this.state.options.filter((item, idx) => idx !== deleteIdx);
     this.setState({ options });
   }
 
@@ -100,7 +150,7 @@ class CreateQuestionModal extends Component {
     const options = [...this.state.options];
     const newObject = {
       ...options[index],
-      [fieldName]: event.target.value
+      [fieldName]: event.target.value,
     };
     options.splice(index, 1, newObject);
     this.setState({ options });
@@ -113,14 +163,13 @@ class CreateQuestionModal extends Component {
     });
     options[index] = {
       ...options[index],
-      [fieldName]: event.target.value === 'true'
+      [fieldName]: event.target.value === 'true',
     };
     this.setState({ options });
   }
 
   render() {
     const { questionText, options, allTags } = this.state;
-
     return (
       <div>
         <Modal
@@ -148,42 +197,18 @@ class CreateQuestionModal extends Component {
                     componentClass="textarea"
                     placeholder={questionText}
                     value={questionText}
-                    onChange={(e)=> this.handleChange('questionText', e)}
+                    onChange={e => this.handleChange('questionText', e)}
                   />
                 </Col>
               </FormGroup>
               <FormGroup controlId="formHorizontalPassword">
-                {options &&
-                  options.map((item, idx) =>
-                    (<Col sm={10} key={idx}>
-                      <Col componentClass={ControlLabel} sm={2}>
-                        {idx === 0 && 'Choice'}
-                      </Col>
-                      <Col sm={6}>
-                        <input
-                          className="col-sm-8 mR10"
-                          value={item.text}
-                          onChange={(e) => this.handleOptionChange(idx, 'text', e)}
-                        />
-                        <Radio
-                          name="rightChoice"
-                          className="col-sm-3"
-                          checked={item.answer}
-                          onChange={(e)=> this.handleRadioOptionChange(idx, 'answer', e)}
-                        >
-                          answer
-                        </Radio>
-                      </Col>
-                      <Col sm={4}>
-                        <Button className="mR10" onClick={this.onAddOption}>
-                          Add
-                        </Button>
-                        <Button onClick={() => this.onDeleteOption(idx)}>
-                          Delete
-                        </Button>
-                      </Col>
-                    </Col>)
-                  )}
+                <QuestionOptions
+                  options={options}
+                  handleOptionChange={this.handleOptionChange}
+                  handleRadioOptionChange={this.handleRadioOptionChange}
+                  onAddOption={this.onAddOption}
+                  onDeleteOption={this.onDeleteOption}
+                />
               </FormGroup>
 
               <FormGroup controlId="formHorizontalPassword">
@@ -191,17 +216,10 @@ class CreateQuestionModal extends Component {
                   Tags
                 </Col>
                 <Col sm={10}>
-                  {allTags &&
-                    allTags.map(tag =>
-                      (<Checkbox
-                        key={tag.type}
-                        checked={tag.checked}
-                        onChange={(e) => this.onCheckboxChange(tag, e)}
-                        className="pull-left mR10"
-                      >
-                        {tag.name}
-                      </Checkbox>)
-                    )}
+                  <Tags
+                    tags={allTags}
+                    onCheckboxChange={this.onCheckboxChange}
+                  />
                 </Col>
               </FormGroup>
             </Form>
@@ -226,7 +244,7 @@ CreateQuestionModal.propTypes = {
   isEditMode: PropTypes.bool,
   show: PropTypes.bool.isRequired,
   onHide: PropTypes.func,
-  onCreate: PropTypes.func
+  onCreate: PropTypes.func,
 };
 
 CreateQuestionModal.defaultProps = {
@@ -235,35 +253,36 @@ CreateQuestionModal.defaultProps = {
   defaultOptions: [
     {
       id: uniqueId('option'),
-      text: ''
-    }
+      text: '',
+      answer: false,
+    },
   ],
   defaultTags: [
     {
       name: 'Math',
-      type: 'math'
+      type: 'math',
     },
     {
       name: 'Science',
-      type: 'science'
+      type: 'science',
     },
     {
       name: 'General',
-      type: 'general'
+      type: 'general',
     },
     {
       name: 'History',
-      type: 'history'
+      type: 'history',
     },
     {
       name: 'Computer Science',
-      type: 'computerscience'
+      type: 'computerscience',
     },
     {
       name: 'Current Affairs',
-      type: 'currentaffairs'
-    }
-  ]
+      type: 'currentaffairs',
+    },
+  ],
 };
 
 export default CreateQuestionModal;

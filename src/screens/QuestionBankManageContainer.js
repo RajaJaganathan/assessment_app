@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
-import { fetchQuestions } from '../actions/questionActions';
+import { fetchQuestions, addQuestions } from '../reducers/question.reducer';
 import CreateQuestionModal from '../components/CreateQuestionModal';
 import QuestionList from '../components/QuestionsList';
 
@@ -23,6 +23,7 @@ class QuestionBankManageContainer extends Component {
       questions: this.props.defaultQuestions,
       selectedQuestion: {}
     };
+    this.defaultOptions = [{ text: '', answer: false }];
   }
 
   componentDidMount() {
@@ -36,7 +37,9 @@ class QuestionBankManageContainer extends Component {
   onShowCreateQuestionModal() {
     this.setState({
       isEditMode: false,
-      showCreateQuestionModal: true
+      showCreateQuestionModal: true,
+      options: null,
+      tags: null
     });
   }
 
@@ -51,7 +54,7 @@ class QuestionBankManageContainer extends Component {
     let questions;
 
     if (newQuestion.isEditMode) {
-      questions = this.state.questions.map((item) => {
+      questions = this.state.questions.map(item => {
         if (this.state.selectedQuestion === item) {
           return {
             ...item,
@@ -120,7 +123,7 @@ class QuestionBankManageContainer extends Component {
 
 QuestionBankManageContainer.defaultProps = {
   isLoading: true,
-  questions: [],
+  questions: [{ options: [{ text: '', answer: false }] }],
   defaultQuestions: []
 };
 
@@ -128,9 +131,10 @@ QuestionBankManageContainer.propTypes = {
   questions: PropTypes.array
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchQuestions: () => dispatch(fetchQuestions())
-});
+const mapDispatchToProps = {
+  fetchQuestions,
+  addQuestions,
+};
 
 const mapStateToProps = state => ({
   questions: state.question.questions
