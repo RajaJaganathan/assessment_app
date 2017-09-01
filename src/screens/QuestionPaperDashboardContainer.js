@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
+import {Button} from 'react-bootstrap';
 import DashboardCard from '../components/DashboardCard';
 
-class QuestionPaperListContainer extends Component {
+class QuestionPaperDashboardContainer extends Component {
   constructor(props) {
     super(props);
+    this.handleCreateQuestionPaper = this.handleCreateQuestionPaper.bind(this);
     this.state = {
-      isLoading: true
+        isLoading: true
     };
   }
 
@@ -14,10 +16,14 @@ class QuestionPaperListContainer extends Component {
 
   }
 
+  handleCreateQuestionPaper(){}
+
   render() {
     return (
-      <div>
+        <div>
+        <Button onClick={this.handleCreateQuestionPaper}>Create Question Paper</Button>
         {this.state.isLoading ? <h3> Loading ... </h3> : null}
+      <div className="dashboard">
         <DashboardCard
           title="Math Question Paper - Feb, 2017"
           desc="Contains all questions"
@@ -37,11 +43,12 @@ class QuestionPaperListContainer extends Component {
           helpText="Help"
         />
       </div>
+      </div>
     );
   }
 }
 
-QuestionPaperListContainer.defaultProps = {
+QuestionPaperDashboardContainer.defaultProps = {
   isLoading: true
 };
 
@@ -61,4 +68,4 @@ QuestionPaperListContainer.defaultProps = {
 //   QuestionBuilderContainer
 // );
 
-export default QuestionPaperListContainer;
+export default QuestionPaperDashboardContainer;

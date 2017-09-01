@@ -12,6 +12,9 @@ const defaultParams = {
   credentials: 'include',
 };
 
+// TODO: Where/How do normalize JSON
+// TODO: Promise.all[p1,p2,p3] use case
+
 export default function apiMiddleware({ dispatch }) {
   return next => action => {
     const { type, url, params = {} } = action;

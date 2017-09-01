@@ -3,19 +3,19 @@ import { connect } from 'react-redux';
 import { Modal, Button, ProgressBar } from 'react-bootstrap';
 
 import QuestionPaper from '../components/QuestionPaper';
-import { fetchQuestions } from '../actions/questionActions';
+import { fetchQuestions } from '../reducers/question.reducer';
 
 class QuestionPaperContainer extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+        isQuestionLoading: false,
+        resultText: '',
+        noOfAnswered: 0
+    };
     this.showResult = this.showResult.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
     this.onChoiceClick = this.onChoiceClick.bind(this);
-    this.state = {
-      isQuestionLoading: false,
-      resultText: '',
-      noOfAnswered: 0
-    };
   }
 
   componentDidMount() {
@@ -43,7 +43,7 @@ class QuestionPaperContainer extends Component {
     this.setState({
       showModal: false
     });
-    this.props.history.push('/dashboard');
+    this.props.history.push('/assessments');
   }
 
   showResult() {

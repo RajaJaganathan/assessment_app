@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import { Button } from 'react-bootstrap';
 /* eslint-disable react/prefer-stateless-function */
 class Home extends Component {
   render() {
@@ -23,22 +25,46 @@ class Home extends Component {
         </p>
 
         {!this.props.loggedIn ? <Link to="/login">Login</Link> : null}
+
+        {this.props.loggedIn
+          ? <div>
+            {this.props.isAdmin
+                ? <Link to="/admin">
+                  <Button type="button" class="btn btn-large">
+                      Admin
+                    </Button>
+                </Link>
+                : null}
+            <Link to="/assessments">
+              <Button type="button" class="btn btn-large">
+                  Dashboard
+                </Button>
+            </Link>
+
+            <Link to="/assessment">
+              <Button type="button" class="btn btn-large">
+                  Assessment
+                </Button>
+            </Link>
+          </div>
+          : null}
       </div>
     );
   }
 }
 
 Home.propTypes = {
-  loggedIn: PropTypes.bool.isRequired
+  loggedIn: PropTypes.bool.isRequired,
 };
 
 Home.defaultProps = {
-  loggedIn: false
+  loggedIn: false,
 };
 
 const mapStateToProps = state => ({
   loggedIn: state.auth.loggedIn,
-  user: state.auth.user
+  user: state.auth.user,
+  isAdmin: state.auth.user.isAdmin,
 });
 
 export default connect(mapStateToProps, null)(Home);

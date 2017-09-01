@@ -1,4 +1,4 @@
-import { USER_AUTH, LOGIN, LOGOUT, LOGOUT_TEST } from './constants';
+import { USER_AUTH, LOGIN, LOGOUT, LOGOUT_TEST } from './actionTypes';
 
 export const getUser = () => ({
   type: USER_AUTH,
