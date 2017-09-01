@@ -4,7 +4,6 @@ import ActionTypes from './action-types';
 import QuestionPapersApi from './api';
 
 function* fetchAll() {
-  console.log('inside *fetchAll');
   try {
     const payload = yield call(QuestionPapersApi.fetchAll);
     yield put({

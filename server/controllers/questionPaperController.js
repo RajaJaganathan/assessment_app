@@ -8,7 +8,7 @@ exports.getQuestionsPaper = function(req, res) {
   res.status(200).send(JSON.parse(fileContent));
 };
 
-exports.CreateQuestionsPaper = function(req, res) {
+exports.createQuestionPaper = function(req, res) {
   res.setHeader('Content-Type', 'application/json');
-  res.status(200).send({ data: [] });
+  res.status(200).send({ title: req.body.title, desc: req.body.desc });
 };

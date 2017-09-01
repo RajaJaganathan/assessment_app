@@ -27,20 +27,20 @@ export default function questionPaper(state = INITIAL_STATE, action) {
         isFetching: false,
         error: action.error,
       };
-    case ActionTypes.CREATE_QUESTION_PAPERS_REQUEST:
+    case ActionTypes.CREATE_QUESTION_PAPER_REQUEST:
       return {
         ...state,
         isFetching: true,
         error: null,
       };
-    case ActionTypes.CREATE_QUESTION_PAPERS_SUCCESS:
+    case ActionTypes.CREATE_QUESTION_PAPER_SUCCESS:
       return {
         ...state,
         questionPapers: [...state.questionPapers, action.payload],
         isFetching: false,
         error: null,
       };
-    case ActionTypes.CREATE_QUESTION_PAPERS_FAILED:
+    case ActionTypes.CREATE_QUESTION_PAPER_FAILED:
       return {
         ...state,
         isFetching: false,

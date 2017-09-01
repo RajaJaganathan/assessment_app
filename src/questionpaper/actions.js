@@ -6,10 +6,10 @@ export function fetchAllQuestionPapers() {
   };
 }
 
-export function createQuestionPaper() {
+export function createQuestionPaper({ title, desc }) {
   return {
     type: 'CREATE_QUESTION_PAPER_REQUEST',
-    title: 'payload.title',
-    desc: 'payload.desc',
+    title,
+    desc,
   };
 }

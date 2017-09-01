@@ -14,6 +14,7 @@ const QuestionPapersApi = {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
+      method:'POST',
       credentials: 'include',
       body: JSON.stringify(payload),
     }).then(res => res.json());
