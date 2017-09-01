@@ -1,0 +1,13 @@
+import { zipObject } from 'lodash';
+
+const actions = [
+  'FETCH_ALL_QUESTION_PAPERS_REQUEST',
+  'FETCH_ALL_QUESTION_PAPERS_SUCCESS',
+  'FETCH_ALL_QUESTION_PAPERS_FAILURE',
+
+  'CREATE_QUESTION_PAPER_REQUEST',
+  'CREATE_QUESTION_PAPER_SUCCESS',
+  'CREATE_QUESTION_PAPER_FAILURE',
+];
+
+export default zipObject(actions, actions);

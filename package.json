@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "immutable-light": "^0.1.2",
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
     "normalizr": "^3.2.3",
@@ -17,6 +18,7 @@
     "redux": "^3.7.1",
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^4.3.0",
+    "redux-saga": "^0.15.6",
     "redux-thunk": "^2.2.0",
     "whatwg-fetch": "^2.0.3"
   },
@@ -48,6 +50,7 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.28.0",
     "jest": "20.0.3",
+    "json-server": "^0.12.0",
     "lint-staged": "^4.0.2",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.0.0",
@@ -74,6 +77,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "mock": "json-server --watch mock/db.json",
     "express-server": "node server/app.js",
     "dev": "concurrently --kill-others \"npm start\" \"npm run express-server\"",
     "test": "node scripts/test.js --env=jsdom",

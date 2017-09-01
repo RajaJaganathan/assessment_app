@@ -1,71 +1,113 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
 
-import {Button} from 'react-bootstrap';
 import DashboardCard from '../components/DashboardCard';
+import CreateQuestionPaper from '../questionpaper/CreateQuestionPaper';
+import * as actions from '../questionpaper/actions';
 
 class QuestionPaperDashboardContainer extends Component {
   constructor(props) {
     super(props);
+    this.handleClickCreateQuestionPaper = this.handleClickCreateQuestionPaper.bind(
+      this,
+    );
     this.handleCreateQuestionPaper = this.handleCreateQuestionPaper.bind(this);
+    this.handleHideQuestionPaper = this.handleHideQuestionPaper.bind(this);
     this.state = {
-        isLoading: true
+      isLoading: true,
+      showQuestionPaperModal: false,
     };
   }
 
   componentDidMount() {
-
+    this.props.fetchAllQuestionPapers();
   }
 
-  handleCreateQuestionPaper(){}
+  handleClickCreateQuestionPaper() {
+    this.setState({
+      showQuestionPaperModal: true,
+    });
+  }
+
+  handleHideQuestionPaper() {
+    this.setState({
+      showQuestionPaperModal: false,
+    });
+  }
+
+  handleCreateQuestionPaper(data) {
+    this.props.createQuestionPaper(data);
+    this.handleHideQuestionPaper();
+  }
+
+  renderQuestionPaper(questionPapers) {
+    return (
+      questionPapers &&
+      questionPapers.map(q => {
+        const { id, title, desc } = q;
+        return (
+          <DashboardCard
+            key={id}
+            title={title}
+            desc={desc}
+            actionText="Manage"
+            helpText="Help"
+          />
+        );
+      })
+    );
+  }
 
   render() {
+    const { showQuestionPaperModal } = this.state;
+    const { questionPapers } = this.props;
     return (
-        <div>
-        <Button onClick={this.handleCreateQuestionPaper}>Create Question Paper</Button>
-        {this.state.isLoading ? <h3> Loading ... </h3> : null}
-      <div className="dashboard">
-        <DashboardCard
-          title="Math Question Paper - Feb, 2017"
-          desc="Contains all questions"
-          actionText="Manage"
-          helpText="Help"
+      <div>
+        <div className="m20">
+          <Button
+            onClick={this.handleClickCreateQuestionPaper}
+            className="pull-right"
+          >
+            Create Question Paper
+          </Button>
+          {this.props.isFetching ? <h3> Loading ... </h3> : null}
+        </div>
+        <div className="dashboard">
+          {this.renderQuestionPaper(questionPapers)}
+        </div>
+        <CreateQuestionPaper
+          show={showQuestionPaperModal}
+          isEditable={false}
+          onCreateQuestionPaper={this.handleCreateQuestionPaper}
+          onHide={this.handleHideQuestionPaper}
         />
-        <DashboardCard
-          title="General Question Paper - Jul, 2017"
-          desc="Contains all questions paper here"
-          actionText="Manage"
-          helpText="Help"
-        />
-        <DashboardCard
-          title="Computer Question Paper - Oct, 2015"
-          desc="Contains all questions paper here"
-          actionText="Manage"
-          helpText="Help"
-        />
-      </div>
       </div>
     );
   }
 }
 
 QuestionPaperDashboardContainer.defaultProps = {
-  isLoading: true
+  isLoading: false,
 };
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     loadQuestions: () => dispatch(loadQuestions())
-//   };
-// };
+const mapDispatchToProps = dispatch => ({
+  fetchAllQuestionPapers: bindActionCreators(
+    actions.fetchAllQuestionPapers,
+    dispatch,
+  ),
+  createQuestionPaper: bindActionCreators(
+    actions.createQuestionPaper,
+    dispatch,
+  ),
+});
 
-// const mapStateToProps = state => {
-//   return {
-//     questions: state.question.questions
-//   };
-// };
+const mapStateToProps = ({ questionPapers }) => ({
+  isFetching: questionPapers.isFetching,
+  questionPapers: questionPapers.questionPapers,
+});
 
-// export default connect(mapStateToProps, mapDispatchToProps)(
-//   QuestionBuilderContainer
-// );
-
-export default QuestionPaperDashboardContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(
+  QuestionPaperDashboardContainer,
+);

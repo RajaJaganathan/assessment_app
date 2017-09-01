@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { Button } from 'react-bootstrap';
+
+import isAdmin from '../login/selectors';
+
 /* eslint-disable react/prefer-stateless-function */
 class Home extends Component {
   render() {
@@ -64,7 +67,7 @@ Home.defaultProps = {
 const mapStateToProps = state => ({
   loggedIn: state.auth.loggedIn,
   user: state.auth.user,
-  isAdmin: state.auth.user.isAdmin,
+  isAdmin: isAdmin(state),
 });
 
 export default connect(mapStateToProps, null)(Home);

@@ -15,14 +15,17 @@
     "window": true
   },
   "rules": {
+    "no-debugger": 0,
+    "no-console": 0,
     "comma-dangle": 0,
+    "no-unused-vars": 0,
     "class-methods-use-this": 0,
     "no-param-reassign": [
       "error",
       {
         "props": false
       }
-    ],   
+    ],
     "react/prop-types": 0,
     "react/no-array-index-key": 0,
     "react/no-did-mount-set-state": 2,

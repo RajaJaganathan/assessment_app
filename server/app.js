@@ -12,8 +12,9 @@ const requireLogin = require('./middleware/requireLogin');
 const notFound = require('./middleware/notFound');
 const errorHandler = require('./middleware/errorHandler');
 
-//Routes
+// Routes
 const questionsRoutes = require('./routes/questions');
+const questionPapersRoutes = require('./routes/question-paper');
 const loginRoutes = require('./routes/login');
 const userRoutes = require('./routes/user');
 
@@ -21,7 +22,7 @@ const app = express();
 
 // Populate environment variables from variable.env files
 require('dotenv').config({
-  path: 'variable.env'
+  path: 'variable.env',
 });
 
 // view engine setup
@@ -45,8 +46,8 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: false,
-      maxAge: 30 * 24 * 60 * 60 * 1000
-    }
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+    },
   })
 );
 // morgan to log the activity
@@ -59,11 +60,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 mongoose.connect(process.env.DATABASE);
 mongoose.Promise = global.Promise;
 
-//Registering all models here
+// Registering all models here
 require('./models/User');
 
 mongoose.connection.on('connected', ref => {
-  app.listen(process.env.PORT, function() {
+  app.listen(process.env.PORT, () => {
     console.log(`Assessment listening on port ${process.env.PORT}`);
   });
 });
@@ -76,8 +77,9 @@ mongoose.connection.on('error', err => {
 app.use('/api/v1', loginRoutes);
 app.use('/api/v1', requireLogin, userRoutes);
 app.use('/api/v1', requireLogin, questionsRoutes);
+app.use('/api/v1', requireLogin, questionPapersRoutes);
 
-//Setup other middleware
+// Setup other middleware
 // catch 404 and forward to error handler
 app.use(notFound);
 // error handler

@@ -1,0 +1,213 @@
+{
+  "questions": [
+    {
+      "id": "1",
+      "questionNo": "1",
+      "questionText": "What does HTML stand for?",
+      "tags": [
+        {
+          "type": "math",
+          "name": "Math"
+        },
+        {
+          "type": "general",
+          "name": "General"
+        },
+        {
+          "type": "computerscience",
+          "name": "Computer Science"
+        }
+      ],
+      "options": [
+        {
+          "text": "Hyperlinks and Text Markup Language",
+          "answer": false,
+          "userChecked": false
+        },
+        {
+          "text": "Home Tool Markup Language",
+          "answer": false,
+          "userChecked": false
+        },
+        {
+          "text": "Hyper Text Markup Language",
+          "answer": true,
+          "userChecked": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "questionNo": "2",
+      "tags": [
+        {
+          "type": "math",
+          "name": "Math"
+        },
+        {
+          "type": "general",
+          "name": "General"
+        }
+      ],
+      "questionText": "Who is making the Web standards?",
+      "options": [
+        {
+          "text": "The World Wide Web Consortium",
+          "answer": true,
+          "userChecked": false
+        },
+        {
+          "text": "Google",
+          "answer": false,
+          "userChecked": false
+        },
+        {
+          "text": "Mozilla",
+          "answer": false,
+          "userChecked": false
+        },
+        {
+          "text": "Microsoft",
+          "answer": false,
+          "userChecked": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "questionNo": "3",
+      "tags": [
+        {
+          "type": "math",
+          "name": "Math"
+        },
+        {
+          "type": "general",
+          "name": "General"
+        }
+      ],
+      "questionText": "What does HTML stand for?",
+      "options": [
+        {
+          "text": "Hyperlinks and Text Markup Language",
+          "answer": true,
+          "userChecked": false
+        },
+        {
+          "text": "Home Tool Markup Language",
+          "answer": false,
+          "userChecked": false
+        },
+        {
+          "text": "Hyper Text Markup Language",
+          "answer": false,
+          "userChecked": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "questionNo": "4",
+      "questionText": "Which sign does jQuery use as a shortcut for jQuery?",
+      "tags": [
+        {
+          "type": "currentaffairs",
+          "name": "Current Affairs"
+        },
+        {
+          "type": "general",
+          "name": "General"
+        }
+      ],
+      "options": [
+        {
+          "text": "the $ sign",
+          "answer": true,
+          "userChecked": false
+        },
+        {
+          "text": "the % sign",
+          "answer": false,
+          "userChecked": false
+        },
+        {
+          "text": "the ? Sign",
+          "answer": false,
+          "userChecked": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "questionNo": "5",
+      "questionText": "Which of the following is correct?",
+      "tags": [
+        {
+          "type": "computerscience",
+          "name": "Computer Science"
+        },
+        {
+          "type": "general",
+          "name": "General"
+        }
+      ],
+      "options": [
+        {
+          "text": "jQuery is a JSON Library",
+          "answer": true,
+          "userChecked": false
+        },
+        {
+          "text": "jQuery is a JavaScript Library",
+          "answer": false,
+          "userChecked": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "questionNo": "6",
+      "questionText": " jQuery uses CSS selectors to select elements?",
+      "tags": [
+        {
+          "type": "computerscience",
+          "name": "Computer Science"
+        },
+        {
+          "type": "general",
+          "name": "General"
+        }
+      ],
+      "options": [
+        {
+          "text": "True",
+          "answer": true,
+          "userChecked": false
+        },
+        {
+          "text": "False",
+          "answer": false,
+          "userChecked": false
+        }
+      ]
+    }
+  ],
+  "questionPapers": [
+    {
+      "id": 1,
+      "title": "Math Question Paper - Feb, 2017",
+      "desc": "Contains all questions"
+    },
+    {
+      "id": 2,
+      "title": "General Question Paper - Jul, 2017",
+      "desc": "Contains all questions"
+    },
+    {
+      "id": 3,
+      "title": "Computer Question Paper - Oct, 2015",
+      "desc": "Contains all questions"
+    }
+  ],
+  "profile": { "name": "typicode" }
+}
