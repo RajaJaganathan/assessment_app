@@ -12,6 +12,8 @@ const actions = [
   'FETCH_QUESTION_BY_QB_REQUEST',
   'FETCH_QUESTION_BY_QB_SUCCESS',
   'FETCH_QUESTION_BY_QB_FAILURE',
+
+  'ADD_QUESTION_TAG_CHANGE',
 ];
 
 export default zipObject(actions, actions);

@@ -3,6 +3,7 @@ import ActionTypes from './action-types';
 const INITIAL_STATE = {
   questionPapers: [],
   questions: [],
+  selectedTag: 'all',
   isFetching: false,
   error: null,
 };
@@ -66,6 +67,12 @@ export default function questionPaper(state = INITIAL_STATE, action) {
         isFetching: false,
         error: action.error,
       };
+    case ActionTypes.ADD_QUESTION_TAG_CHANGE:
+      return {
+        ...state,
+        selectedTag: action.selectedTag,
+      };
+
     default:
       return state;
   }

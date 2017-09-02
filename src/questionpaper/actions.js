@@ -17,6 +17,13 @@ export function createQuestionPaper({ title, desc }) {
 export function fetchQuestionsByQuestionBank(questionBankId) {
   return {
     type: ActionTypes.FETCH_QUESTION_BY_QB_REQUEST,
-    questionBankId
+    questionBankId,
+  };
+}
+
+export function addQuestionTagChange(selectedTag) {
+  return {
+    type: ActionTypes.ADD_QUESTION_TAG_CHANGE,
+    selectedTag
   };
 }

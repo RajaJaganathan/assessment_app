@@ -15,6 +15,37 @@ export const EDIT_QUESTIONS = 'EDIT_QUESTIONS';
 export const FETCH_QUESTIONS_FULFILLED = 'FETCH_QUESTIONS_FULFILLED';
 export const FETCH_QUESTIONS_REJECTED = 'FETCH_QUESTIONS_REJECTED';
 
+const defaultTags = [
+  {
+    name: 'All',
+    type: 'all',
+  },
+  {
+    name: 'Math',
+    type: 'math',
+  },
+  {
+    name: 'Science',
+    type: 'science',
+  },
+  {
+    name: 'General',
+    type: 'general',
+  },
+  {
+    name: 'History',
+    type: 'history',
+  },
+  {
+    name: 'Computer Science',
+    type: 'computerscience',
+  },
+  {
+    name: 'Current Affairs',
+    type: 'currentaffairs',
+  },
+];
+
 /* eslint-disable import/prefer-default-export */
 export const fetchQuestions = () => ({
   type: FETCH_QUESTIONS,
@@ -32,7 +63,12 @@ export const editQuestions = payload => ({
   payload,
 });
 
-export default (state = {}, action) => {
+const INITIAL_STATE = {
+  questions: [],
+  tags: defaultTags,
+};
+
+export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_QUESTIONS_FULFILLED:
       return {
