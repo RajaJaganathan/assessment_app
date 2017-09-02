@@ -5,6 +5,7 @@ import Home from './Home';
 
 import LoginContainer from '../login/LoginContainer';
 
+import QuestionPaperManageContainer from '../questionpaper/QuestionPaperManageContainer';
 import AssessmentDashboardContainer from '../screens/AssessmentDashboardContainer';
 import AssessmentInfoContainer from '../screens/AssessmentInfoContainer';
 import QuestionPaperContainer from '../screens/QuestionPaperContainer';
@@ -36,10 +37,19 @@ class Main extends Component {
         <PrivateRoute
           exact
           path="/questionpaper/manage"
+          component={QuestionPaperManageContainer}
+        />
+        <PrivateRoute
+          exact
+          path="/questionbank/manage"
           component={QuestionBankManageContainer}
         />
 
-        <PrivateRoute exact path="/assessments" component={AssessmentDashboardContainer} />
+        <PrivateRoute
+          exact
+          path="/assessments"
+          component={AssessmentDashboardContainer}
+        />
         <PrivateRoute
           exact
           path="/assessment"

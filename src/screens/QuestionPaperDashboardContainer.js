@@ -15,6 +15,7 @@ class QuestionPaperDashboardContainer extends Component {
     );
     this.handleCreateQuestionPaper = this.handleCreateQuestionPaper.bind(this);
     this.handleHideQuestionPaper = this.handleHideQuestionPaper.bind(this);
+    this.handleActionClick = this.handleActionClick.bind(this);
     this.state = {
       isLoading: true,
       showQuestionPaperModal: false,
@@ -37,6 +38,10 @@ class QuestionPaperDashboardContainer extends Component {
     });
   }
 
+  handleActionClick() {
+      this.props.history.push('/questionpaper/manage');
+  }
+
   handleCreateQuestionPaper(data) {
     this.props.createQuestionPaper(data);
     this.handleHideQuestionPaper();
@@ -54,6 +59,7 @@ class QuestionPaperDashboardContainer extends Component {
             desc={desc}
             actionText="Manage"
             helpText="Help"
+            onActionClick={this.handleActionClick}
           />
         );
       })

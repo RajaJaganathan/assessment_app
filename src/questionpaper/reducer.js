@@ -2,6 +2,7 @@ import ActionTypes from './action-types';
 
 const INITIAL_STATE = {
   questionPapers: [],
+  questions: [],
   isFetching: false,
   error: null,
 };
@@ -41,6 +42,25 @@ export default function questionPaper(state = INITIAL_STATE, action) {
         error: null,
       };
     case ActionTypes.CREATE_QUESTION_PAPER_FAILED:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.error,
+      };
+    case ActionTypes.FETCH_QUESTION_BY_QB_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+        error: null,
+      };
+    case ActionTypes.FETCH_QUESTION_BY_QB_SUCCESS:
+      return {
+        ...state,
+        questions: action.payload.questions,
+        isFetching: false,
+        error: null,
+      };
+    case ActionTypes.FETCH_QUESTION_BY_QB_FAILURE:
       return {
         ...state,
         isFetching: false,

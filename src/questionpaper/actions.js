@@ -8,8 +8,15 @@ export function fetchAllQuestionPapers() {
 
 export function createQuestionPaper({ title, desc }) {
   return {
-    type: 'CREATE_QUESTION_PAPER_REQUEST',
+    type: ActionTypes.CREATE_QUESTION_PAPER_REQUEST,
     title,
     desc,
+  };
+}
+
+export function fetchQuestionsByQuestionBank(questionBankId) {
+  return {
+    type: ActionTypes.FETCH_QUESTION_BY_QB_REQUEST,
+    questionBankId
   };
 }
