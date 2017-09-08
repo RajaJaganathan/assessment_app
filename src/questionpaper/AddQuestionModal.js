@@ -137,9 +137,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchQuestionsByQuestionBank: id => {
-    dispatch(fetchQuestionsByQuestionBank(id));
-  },
+  fetchQuestionsByQuestionBank: bindActionCreators(fetchQuestionsByQuestionBank, dispatch),
   addQuestionTagChange: bindActionCreators(addQuestionTagChange, dispatch),
 });
 

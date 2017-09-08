@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -23,17 +24,14 @@ class App extends Component {
 }
 
 App.propTypes = {
-  getUser: PropTypes.func.isRequired
+  getUser: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  getUser: () => dispatch(getUser()),
-  logout: () => dispatch(logout())
-});
+const mapDispatchToProps = ({getUser, logout});
 
-const mapStateToProps = state => ({
-  loggedIn: state.auth.loggedIn,
-  user: state.auth.user
+const mapStateToProps = ({auth}) => ({
+  loggedIn: auth.loggedIn,
+  user: auth.user,
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
