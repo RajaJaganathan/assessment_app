@@ -8,15 +8,21 @@ class QuestionBankListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true
+      isLoading: true,
     };
   }
+
   render() {
+    console.log('this.props.questionBanks', this.props.questionBanks);
     return (
       <div>
-        <PrivateRoute exact path="/questionbanks" component={QuestionBankList} />
         <PrivateRoute
-          path="/questionbanks/manage"
+          exact
+          path="/questionbanks"
+          component={QuestionBankList}
+        />
+        <PrivateRoute
+          path="/questionbanks/:questionBankId/questions"
           component={QuestionBankManageContainer}
         />
       </div>
@@ -25,21 +31,7 @@ class QuestionBankListContainer extends Component {
 }
 
 QuestionBankListContainer.defaultProps = {
-  isLoading: true
+  isLoading: true,
 };
-
-// const mapDispatchToProps = dispatch => {
-//   return {};
-// };
-
-// const mapStateToProps = state => {
-//   return {
-//     questions: []
-//   };
-// };
-
-// export default withRouter(
-//   connect(mapDispatchToProps, mapStateToProps)(QuestionBankListContainer)
-// );
 
 export default QuestionBankListContainer;

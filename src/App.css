@@ -63,6 +63,26 @@
     margin: 20px;
 }
 
+.mB5 {
+    margin-bottom: 5px;
+}
+
+.mB10 {
+    margin-bottom: 10px;
+}
+
+.mB15 {
+    margin-bottom: 15px;
+}
+
+.mB20 {
+    margin-bottom: 20px;
+}
+
+.mR5 {
+    margin-right: 5px;
+}
+
 .mR10 {
     margin-right: 10px;
 }
@@ -144,6 +164,12 @@
 
 .create-question-modal {
     width: 70%;
+}
+
+/* add-question-modal */
+
+.add-question-modal {
+    min-width: 900px;
 }
 
 

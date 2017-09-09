@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { Button } from 'react-bootstrap';
 import QuestionList from '../components/QuestionsList';
+
 import AddQuestionModal from './AddQuestionModal';
 
 import { fetchQuestions, addQuestions } from '../reducers/question.reducer';
@@ -11,6 +12,7 @@ class QuestionPaperManageContainer extends Component {
   constructor(props) {
     super(props);
     this.onEditQuestion = this.onEditQuestion.bind(this);
+    this.handleAddQuestionClick = this.handleAddQuestionClick.bind(this);
     this.handleAddQuestion = this.handleAddQuestion.bind(this);
     this.handleHideAddQuestion = this.handleHideAddQuestion.bind(this);
     this.state = {
@@ -26,7 +28,7 @@ class QuestionPaperManageContainer extends Component {
     console.log('onEditQuestion');
   }
 
-  handleAddQuestion() {
+  handleAddQuestionClick() {
     this.setState({
       showAddQuestionModal: true,
     });
@@ -38,6 +40,11 @@ class QuestionPaperManageContainer extends Component {
     });
   }
 
+  handleAddQuestion(questions) {
+    this.props.addQuestions(questions);
+    this.handleHideAddQuestion();
+  }
+
   render() {
     const { showAddQuestionModal } = this.state;
     return (
@@ -45,17 +52,19 @@ class QuestionPaperManageContainer extends Component {
         <div className="container">
           <h2>Manage Question Paper</h2>
           <p>All about manage questions paper</p>
-          <Button onClick={this.handleAddQuestion}>
+          <Button className="btn-success" onClick={this.handleAddQuestionClick}>
             Add Questions From Question Bank
           </Button>
           <QuestionList
             questions={this.props.questions}
             onEdit={this.onEditQuestion}
+            isEditMode
           />
           {showAddQuestionModal
             ? <AddQuestionModal
               show={showAddQuestionModal}
               onHide={this.handleHideAddQuestion}
+              onAddQuestion={this.handleAddQuestion}
             />
             : null}
         </div>

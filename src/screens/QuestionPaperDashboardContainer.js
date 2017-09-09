@@ -58,7 +58,7 @@ class QuestionPaperDashboardContainer extends Component {
             title={title}
             desc={desc}
             actionText="Manage"
-            helpText="Help"
+            helpText="Publish"
             onActionClick={this.handleActionClick}
           />
         );
@@ -74,7 +74,7 @@ class QuestionPaperDashboardContainer extends Component {
         <div className="m20">
           <Button
             onClick={this.handleClickCreateQuestionPaper}
-            className="pull-right"
+            className="pull-right mB10"
           >
             Create Question Paper
           </Button>

@@ -39,11 +39,11 @@ class Main extends Component {
           path="/questionpaper/manage"
           component={QuestionPaperManageContainer}
         />
-        <PrivateRoute
+        {/* <PrivateRoute
           exact
           path="/questionbank/manage"
           component={QuestionBankManageContainer}
-        />
+        /> */}
 
         <PrivateRoute
           exact

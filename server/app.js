@@ -14,6 +14,7 @@ const errorHandler = require('./middleware/errorHandler');
 
 // Routes
 const questionsRoutes = require('./routes/questions');
+const questionBankRoutes = require('./routes/questionbank');
 const questionPapersRoutes = require('./routes/question-paper');
 const loginRoutes = require('./routes/login');
 const userRoutes = require('./routes/user');
@@ -78,6 +79,7 @@ app.use('/api/v1', loginRoutes);
 app.use('/api/v1', requireLogin, userRoutes);
 app.use('/api/v1', requireLogin, questionsRoutes);
 app.use('/api/v1', requireLogin, questionPapersRoutes);
+app.use('/api/v1', questionBankRoutes);
 
 // Setup other middleware
 // catch 404 and forward to error handler

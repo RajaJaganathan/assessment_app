@@ -17,16 +17,18 @@ import rootReducer from './reducers';
 
 import apiMiddleware from './middlewares/apiMiddleware';
 import questionPaperSaga from './questionpaper/sagas';
+import questionBankSaga from './questionbank/sagas';
 
 import './index.css';
 
 const sagaMiddleware = createSagaMiddleware();
-
+//
 const middleware = [logger, apiMiddleware, sagaMiddleware];
 
 const store = createStore(rootReducer, {}, applyMiddleware(...middleware));
 
 sagaMiddleware.run(questionPaperSaga);
+sagaMiddleware.run(questionBankSaga);
 
 ReactDOM.render(
   <Provider store={store}>

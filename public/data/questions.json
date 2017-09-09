@@ -1,44 +1,7 @@
 {
   "questions": [
     {
-      "id": "1",
-      "questionNo": "1",
-      "questionText": "What does HTML stand for?",
-      "tags": [
-        {
-          "type": "math",
-          "name": "Math"
-        },
-        {
-          "type": "general",
-          "name": "General"
-        },
-        {
-          "type": "computerscience",
-          "name": "Computer Science"
-        }
-      ],
-      "options": [
-        {
-          "text": "Hyperlinks and Text Markup Language",
-          "answer": false,
-          "userChecked": false
-        },
-        {
-          "text": "Home Tool Markup Language",
-          "answer": false,
-          "userChecked": false
-        },
-        {
-          "text": "Hyper Text Markup Language",
-          "answer": true,
-          "userChecked": false
-        }
-      ]
-    },
-    {
-      "id": "2",
-      "questionNo": "2",
+      "text": "Who is making the Web standards?",
       "tags": [
         {
           "type": "math",
@@ -49,33 +12,27 @@
           "name": "General"
         }
       ],
-      "questionText": "Who is making the Web standards?",
       "options": [
         {
           "text": "The World Wide Web Consortium",
-          "answer": true,
-          "userChecked": false
+          "answer": true
         },
         {
           "text": "Google",
-          "answer": false,
-          "userChecked": false
+          "answer": false
         },
         {
           "text": "Mozilla",
-          "answer": false,
-          "userChecked": false
+          "answer": false
         },
         {
           "text": "Microsoft",
-          "answer": false,
-          "userChecked": false
+          "answer": false
         }
       ]
     },
     {
-      "id": "3",
-      "questionNo": "3",
+
       "tags": [
         {
           "type": "math",
@@ -86,29 +43,26 @@
           "name": "General"
         }
       ],
-      "questionText": "What does HTML stand for?",
+      "text": "What does HTML stand for?",
       "options": [
         {
           "text": "Hyperlinks and Text Markup Language",
-          "answer": true,
-          "userChecked": false
+          "answer": true
         },
         {
           "text": "Home Tool Markup Language",
-          "answer": false,
-          "userChecked": false
+          "answer": false
+
         },
         {
           "text": "Hyper Text Markup Language",
-          "answer": false,
-          "userChecked": false
+          "answer": false
         }
       ]
     },
     {
-      "id": "4",
-      "questionNo": "4",
-      "questionText": "Which sign does jQuery use as a shortcut for jQuery?",
+
+      "text": "Which sign does jQuery use as a shortcut for jQuery?",
       "tags": [
         {
           "type": "currentaffairs",
@@ -122,25 +76,23 @@
       "options": [
         {
           "text": "the $ sign",
-          "answer": true,
-          "userChecked": false
+          "answer": true
         },
         {
           "text": "the % sign",
-          "answer": false,
-          "userChecked": false
+          "answer": false
+
         },
         {
           "text": "the ? Sign",
-          "answer": false,
-          "userChecked": false
+          "answer": false
+
         }
       ]
     },
     {
-      "id": "5",
-      "questionNo": "5",
-      "questionText": "Which of the following is correct?",
+
+      "text": "Which of the following is correct?",
       "tags": [
         {
           "type": "computerscience",
@@ -154,20 +106,17 @@
       "options": [
         {
           "text": "jQuery is a JSON Library",
-          "answer": true,
-          "userChecked": false
+          "answer": true
         },
         {
           "text": "jQuery is a JavaScript Library",
-          "answer": false,
-          "userChecked": false
+          "answer": false
         }
       ]
     },
     {
-      "id": "6",
-      "questionNo": "6",
-      "questionText": " jQuery uses CSS selectors to select elements?",
+
+      "text": " jQuery uses CSS selectors to select elements?",
       "tags": [
         {
           "type": "computerscience",
@@ -181,13 +130,11 @@
       "options": [
         {
           "text": "True",
-          "answer": true,
-          "userChecked": false
+          "answer": true
         },
         {
           "text": "False",
-          "answer": false,
-          "userChecked": false
+          "answer": false
         }
       ]
     }

@@ -33,19 +33,13 @@ class Home extends Component {
           ? <div>
             {this.props.isAdmin
                 ? <Link to="/admin">
-                  <Button type="button" class="btn btn-large">
+                  <Button type="button" className="btn btn-primary mR10">
                       Admin
                     </Button>
                 </Link>
                 : null}
             <Link to="/assessments">
-              <Button type="button" class="btn btn-large">
-                  Dashboard
-                </Button>
-            </Link>
-
-            <Link to="/assessment">
-              <Button type="button" class="btn btn-large">
+              <Button type="button" className="btn btn-primary">
                   Assessment
                 </Button>
             </Link>

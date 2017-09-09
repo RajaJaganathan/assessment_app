@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import {find} from 'lodash/find'
+import { find } from 'lodash/find';
 
 import {
   Button,
@@ -35,7 +35,8 @@ class AddQuestion extends Component {
   }
 
   handleAddQuestion() {
-    this.props.onAddQuestion(this.state);
+    const questions = this.props.questions.filter(item => item.selected)
+    this.props.onAddQuestion(questions);
   }
 
   handleChange(e) {
@@ -47,7 +48,7 @@ class AddQuestion extends Component {
   }
 
   render() {
-    const { questions, tags } = this.props;
+    const { questions, tags, isEditMode } = this.props;
 
     console.log('tags', tags);
 
@@ -93,6 +94,7 @@ class AddQuestion extends Component {
                 <div className="m15">
                   <QuestionList
                     questions={questions}
+                    isEditMode={false}
                     onEdit={this.onEditQuestion}
                   />
                 </div>
@@ -100,8 +102,8 @@ class AddQuestion extends Component {
             </FormGroup>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.props.onHide}>Cancel</Button>
-            <Button onClick={this.handleAddQuestion}>Add</Button>
+            <Button className="btn-default" onClick={this.props.onHide}>Cancel</Button>
+            <Button className="btn-primary" onClick={this.handleAddQuestion}>Add</Button>
           </Modal.Footer>
         </Modal>
       </div>
@@ -114,6 +116,7 @@ AddQuestion.propTypes = {
   isEditMode: PropTypes.bool.isRequired,
   onHide: PropTypes.func,
   onAddQuestion: PropTypes.func,
+  onEditQuestion: PropTypes.func,
 };
 
 AddQuestion.defaultProps = {
@@ -137,7 +140,10 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchQuestionsByQuestionBank: bindActionCreators(fetchQuestionsByQuestionBank, dispatch),
+  fetchQuestionsByQuestionBank: bindActionCreators(
+    fetchQuestionsByQuestionBank,
+    dispatch,
+  ),
   addQuestionTagChange: bindActionCreators(addQuestionTagChange, dispatch),
 });
 

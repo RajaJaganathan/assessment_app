@@ -38,32 +38,36 @@ const QuestionOptions = ({
   <div>
     {options &&
       options.map((item, idx) =>
-        <Col sm={10} key={item.id || idx}>
+        <div>
           <Col componentClass={ControlLabel} sm={2}>
-            {idx === 0 && 'Choice'}
+            {idx === 0 ? 'Choice' : ''}
           </Col>
-          <Col sm={6}>
-            <input
-              className="col-sm-8 mR10"
-              defaultValue={item.text}
-              onChange={e => handleOptionChange(idx, 'text', e)}
-            />
-            <Radio
-              name="rightChoice"
-              className="col-sm-3"
-              defaultChecked={item.answer}
-              onChange={e => handleRadioOptionChange(idx, 'answer', e)}
-            >
-              answer
-            </Radio>
+          <Col className="mB10" sm={10} key={item.id || idx}>
+            <div className="row">
+              <Col sm={6}>
+                <input
+                  className="col-sm-8 mR10"
+                  defaultValue={item.text}
+                  onChange={e => handleOptionChange(idx, 'text', e)}
+                />
+                <Radio
+                  name="rightChoice"
+                  className="col-sm-3"
+                  defaultChecked={item.answer}
+                  onChange={e => handleRadioOptionChange(idx, 'answer', e)}
+                >
+                  answer
+                </Radio>
+              </Col>
+              <Col sm={4}>
+                <Button className="mR10" onClick={onAddOption}>
+                  Add
+                </Button>
+                <Button onClick={() => onDeleteOption(idx)}>Delete</Button>
+              </Col>
+            </div>
           </Col>
-          <Col sm={4}>
-            <Button className="mR10" onClick={onAddOption}>
-              Add
-            </Button>
-            <Button onClick={() => onDeleteOption(idx)}>Delete</Button>
-          </Col>
-        </Col>,
+        </div>,
       )}
   </div>;
 
@@ -72,7 +76,7 @@ class CreateQuestionModal extends Component {
     super(props);
     this.state = {
       isEditMode: this.props.defaultEditMode,
-      questionText: this.props.defaultQuestionText,
+      text: this.props.defaultQuestionText,
       options: this.props.defaultOptions,
       tags: this.props.defaultTags,
       allTags: this.props.defaultTags,
@@ -82,12 +86,13 @@ class CreateQuestionModal extends Component {
     this.onCreateQuestion = this.onCreateQuestion.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleOptionChange = this.handleOptionChange.bind(this);
+    this.handleRadioOptionChange = this.handleRadioOptionChange.bind(this);
     this.onCheckboxChange = this.onCheckboxChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.questionText !== nextProps.questionText) {
-      this.setState({ questionText: nextProps.questionText });
+    if (this.props.text !== nextProps.text) {
+      this.setState({ text: nextProps.text });
     }
     if (this.state.isEditMode !== nextProps.isEditMode) {
       this.setState({ isEditMode: nextProps.isEditMode });
@@ -109,10 +114,10 @@ class CreateQuestionModal extends Component {
 
   onCreateQuestion(event) {
     event.preventDefault();
-    const { questionText, options, allTags, isEditMode } = this.state;
+    const { text, options, allTags, isEditMode } = this.state;
     const params = {
       questionNo: this.props.questionNo,
-      questionText,
+      text,
       options,
       isEditMode,
       tags: allTags.filter(item => item.checked),
@@ -169,7 +174,7 @@ class CreateQuestionModal extends Component {
   }
 
   render() {
-    const { questionText, options, allTags } = this.state;
+    const { text, options, allTags } = this.state;
     return (
       <div>
         <Modal
@@ -195,9 +200,9 @@ class CreateQuestionModal extends Component {
                 <Col sm={10}>
                   <FormControl
                     componentClass="textarea"
-                    placeholder={questionText}
-                    value={questionText}
-                    onChange={e => this.handleChange('questionText', e)}
+                    placeholder={text}
+                    value={text}
+                    onChange={e => this.handleChange('text', e)}
                   />
                 </Col>
               </FormGroup>
@@ -238,7 +243,7 @@ class CreateQuestionModal extends Component {
 
 CreateQuestionModal.propTypes = {
   questionNo: PropTypes.string,
-  questionText: PropTypes.string,
+  text: PropTypes.string,
   options: PropTypes.array,
   tags: PropTypes.array,
   isEditMode: PropTypes.bool,

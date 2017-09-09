@@ -76,7 +76,10 @@ export default (state = INITIAL_STATE, action) => {
         questions: action.payload.questions,
       };
     case ADD_QUESTIONS:
-      return [...state, action.payload];
+      return {
+        ...state,
+        questions: [...state.questions, ...action.payload],
+      };
     case EDIT_QUESTIONS: {
       const { selectedQuestion, newQuestion } = action.payload;
 

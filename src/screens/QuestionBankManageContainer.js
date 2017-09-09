@@ -5,6 +5,11 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
 import { fetchQuestions, addQuestions } from '../reducers/question.reducer';
+import {
+  fetchQuestionsById,
+  createQuestionsById,
+} from '../questionbank/actions';
+
 import CreateQuestionModal from '../components/CreateQuestionModal';
 import QuestionList from '../components/QuestionsList';
 
@@ -21,13 +26,14 @@ class QuestionBankManageContainer extends Component {
       isLoading: false,
       showCreateQuestionModal: false,
       questions: this.props.defaultQuestions,
-      selectedQuestion: {}
+      selectedQuestion: {},
     };
     this.defaultOptions = [{ text: '', answer: false }];
   }
 
   componentDidMount() {
-    this.props.fetchQuestions();
+    const { questionBankId } = this.props.match.params;
+    this.props.fetchQuestionsById(questionBankId);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -39,14 +45,14 @@ class QuestionBankManageContainer extends Component {
       isEditMode: false,
       showCreateQuestionModal: true,
       options: null,
-      tags: null
+      tags: null,
     });
   }
 
   onHideQuestionModal() {
     this.setState({
       showCreateQuestionModal: false,
-      selectedQuestion: {}
+      selectedQuestion: {},
     });
   }
 
@@ -58,33 +64,30 @@ class QuestionBankManageContainer extends Component {
         if (this.state.selectedQuestion === item) {
           return {
             ...item,
-            ...newQuestion
+            ...newQuestion,
           };
         }
         return item;
       });
     } else {
-      questions = [...this.state.questions, newQuestion];
+      const { questionBankId } = this.props.match.params;
+      newQuestion.questionBankId = questionBankId;
+      this.props.createQuestionsById(newQuestion);
     }
-    this.setState({ questions, showCreateQuestionModal: false });
+    this.setState({ showCreateQuestionModal: false });
   }
 
   onEditQuestion(newQuestion) {
     this.setState({
       isEditMode: true,
       selectedQuestion: newQuestion,
-      showCreateQuestionModal: true
+      showCreateQuestionModal: true,
     });
   }
 
   render() {
     const { questions } = this.state;
-    const {
-      questionNo,
-      questionText,
-      options,
-      tags
-    } = this.state.selectedQuestion;
+    const { questionNo, text, options, tags } = this.state.selectedQuestion;
     return (
       <div>
         <div className="row p20">
@@ -102,12 +105,16 @@ class QuestionBankManageContainer extends Component {
           <div className="container">
             <h2>Math Questions</h2>
             <p>All about mathematical questions </p>
-            <QuestionList questions={questions} onEdit={this.onEditQuestion} />
+            <QuestionList
+              isEditMode="true"
+              questions={questions}
+              onEdit={this.onEditQuestion}
+            />
           </div>
         </div>
         <CreateQuestionModal
           questionNo={questionNo}
-          questionText={questionText}
+          text={text}
           options={options}
           tags={tags}
           show={this.state.showCreateQuestionModal}
@@ -124,22 +131,24 @@ class QuestionBankManageContainer extends Component {
 QuestionBankManageContainer.defaultProps = {
   isLoading: true,
   questions: [{ options: [{ text: '', answer: false }] }],
-  defaultQuestions: []
+  defaultQuestions: [],
 };
 
 QuestionBankManageContainer.propTypes = {
-  questions: PropTypes.array
+  questions: PropTypes.array,
 };
 
 const mapDispatchToProps = {
   fetchQuestions,
   addQuestions,
+  fetchQuestionsById,
+  createQuestionsById,
 };
 
 const mapStateToProps = state => ({
-  questions: state.question.questions
+  questions: state.questionBanks.questions,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  QuestionBankManageContainer
+  QuestionBankManageContainer,
 );
