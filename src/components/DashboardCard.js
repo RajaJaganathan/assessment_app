@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 
 const DashboardCard = props =>
-  <div key={props.key} className="col-sm-6 col-md-4 dashboard__item">
+  <div className="col-sm-6 col-md-4 dashboard__item">
     <div className="thumbnail">
       <img
         src="images/assessment_icon.png"

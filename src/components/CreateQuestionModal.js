@@ -38,7 +38,7 @@ const QuestionOptions = ({
   <div>
     {options &&
       options.map((item, idx) =>
-        <div>
+        <div key={idx}>
           <Col componentClass={ControlLabel} sm={2}>
             {idx === 0 ? 'Choice' : ''}
           </Col>

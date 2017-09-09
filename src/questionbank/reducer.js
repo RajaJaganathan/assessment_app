@@ -19,7 +19,6 @@ export default function questionBank(state = INITIAL_STATE, action) {
       return {
         ...state,
         questionBanks: [
-          ...state.questionBanks,
           ...action.payload.questionBanks,
         ],
         isFetching: false,
