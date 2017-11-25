@@ -6,14 +6,14 @@ const shuffle = require('lodash/shuffle');
 const QuestionBankModal = require('../models/QuestionBank');
 const QuestionModal = require('../models/Questions');
 
-exports.fetchAllQuestionBanks = async function(req, res) {
+exports.fetchAllQuestionBanks = async function fetchAllQuestionBanks(req, res) {
   const questionBanks = await QuestionBankModal.find({});
   res.status(200).json({
     questionBanks,
   });
 };
 
-exports.fetchQuestionsById = async function(req, res) {
+exports.fetchQuestionsById = async function fetchAllQuestionBanks(req, res) {
   const questionBank = await QuestionBankModal.findOne({
     _id: req.params.questionBankId,
   });
@@ -27,14 +27,14 @@ exports.fetchQuestionsById = async function(req, res) {
   });
 };
 
-exports.createQuestionInQuestionBank = async function(req, res) {
+exports.createQuestionInQuestionBank = async function createQuestionInQuestionBank(req, res) {
   console.log('req.body ', req.body);
   const questionModal = new QuestionModal(req.body);
   const question = await questionModal.save();
   console.log('questions created successfully ', question);
   const questionBankId = req.params;
   const questionBank = await QuestionBankModal.findOneAndUpdate(
-    {_id: req.params.questionBankId},
+    { _id: req.params.questionBankId },
     { $push: { questionIds: question._id } },
     { safe: true, upsert: true });
   const response = await questionBank.save();

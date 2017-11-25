@@ -43,8 +43,8 @@ class Header extends Component {
               {!loggedIn ? <Link to="/login">Login</Link> : null}
               {loggedIn
                 ? <button className="btn btn-link" onClick={this.onLogout}>
-                    Logout
-                  </button>
+                  Logout
+                </button>
                 : null}
             </div>
           </div>

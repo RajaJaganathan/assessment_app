@@ -32,16 +32,16 @@ class Home extends Component {
         {this.props.loggedIn
           ? <div>
             {this.props.isAdmin
-                ? <Link to="/admin">
-                  <Button type="button" className="btn btn-primary mR10">
-                      Admin
-                    </Button>
-                </Link>
-                : null}
+              ? <Link to="/admin">
+                <Button type="button" className="btn btn-primary mR10">
+                  Admin
+                </Button>
+              </Link>
+              : null}
             <Link to="/assessments">
               <Button type="button" className="btn btn-primary">
-                  Assessment
-                </Button>
+                Assessment
+              </Button>
             </Link>
           </div>
           : null}
