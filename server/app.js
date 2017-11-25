@@ -62,8 +62,6 @@ const mongoosePromise = mongoose.connect(process.env.DATABASE || 'mongodb://loca
   useMongoClient: true,
 });
 mongoosePromise.then(db => {
-  // Registering all models here
-  require('./models/User');
   app.listen(process.env.APP_PORT, () => {
     console.log(`Assessment server listening on port ${process.env.APP_PORT}`);
   });
@@ -71,13 +69,8 @@ mongoosePromise.then(db => {
   console.error(`mongoose error ${error}`);
 });
 
-// mongoose.connection.on('connected', ref => {
-
-// });
-
-// mongoose.connection.on('error', err => {
-
-// });
+// Registering all models here
+require('./models/User');
 
 // Application wide routes
 app.use('/api/v1', loginRoutes);
