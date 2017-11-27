@@ -13,7 +13,6 @@ class QuestionBankListContainer extends Component {
   }
 
   render() {
-    console.log('this.props.questionBanks', this.props.questionBanks);
     return (
       <div>
         <h3> Question Banks </h3>

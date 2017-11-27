@@ -27,7 +27,7 @@ class QuestionBankList extends Component {
     this.props.fetchAllQuestionBank();
   }
 
-  handleCreateQuestionBank(payload) {    
+  handleCreateQuestionBank(payload) {
     this.props.createQuestionsBank(payload);
     this.setState({
       showQuestionBankModal: false
@@ -57,17 +57,25 @@ class QuestionBankList extends Component {
     return (
       <div className="mB20">
         {isFetching ? <h3> Loading ... </h3> : null}
-        <Button onClick={this.handleClickCreateQuestionBank}>Create Question Bank</Button>
-        {questionBanks.map((item, idx) =>
-          <DashboardCard
-            key={item._id}
-            title={item.title}
-            desc={item.desc}
-            actionText="Manage"
-            onActionClick={() => this.handleQuestionBankClick(item)}
-            helpText="Help"
-          />,
-        )}
+        <div className="row">
+          <div className="col-xs-12 mB20 mR20">
+            <Button className="pull-right " onClick={this.handleClickCreateQuestionBank}>Create Question Bank</Button>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12">
+            {questionBanks.map((item, idx) =>
+              <DashboardCard
+                key={item._id}
+                title={item.title}
+                desc={item.desc}
+                actionText="Manage"
+                onActionClick={() => this.handleQuestionBankClick(item)}
+                helpText="Help"
+              />,
+            )}
+          </div>
+        </div>
         <CreateQuestionBank
           show={showQuestionBankModal}
           isEditable={false}

@@ -9,6 +9,11 @@ class QuestionsList extends Component {
 
   renderRow() {
     const { questions, isEditMode } = this.props;
+
+    if (!questions || !questions.length) {
+      return <tr><td colSpan="4"> No data available</td></tr>;
+    }
+
     return (
       questions &&
       questions.map((item, idx) =>
