@@ -1,36 +1,3 @@
-.App {
-    text-align: center;
-}
-
-.header__logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
-    float: left;
-}
-
-.header {
-    background-color: #222;
-    color: white;
-}
-
-.header__username {
-    font-size: 18px;
-}
-
-.App-intro {
-    font-size: large;
-}
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 .p5 {
     padding: 5px;
 }
@@ -95,9 +62,58 @@
     margin-right: 20px;
 }
 
-.app__description {
-    width: 80%;
+body {
+    height: 100vh;
+}
+
+.App {
+    text-align: center;
+}
+
+.header__logo {
+    animation: App-logo-spin infinite 40s linear;
+    height: 60px;
+    float: left;
+}
+
+.header {
+    background-color: #222;
+    color: white;
+    box-shadow: 3px 3px 3px #999;
+    position: fixed;
+    width: 100%;
+    height: 64px;
+    z-index: 9999;
+}
+
+.header__username {
+    font-size: 18px;
+}
+
+.App-intro {
+    font-size: large;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.body-wrapper {
+    width: 90%;
     margin: 0 auto;
+    padding-top: 80px;
+}
+
+.app__description {
+    /* height: 100%;
+    background: url('/images/campus.jpg') no-repeat;
+    background-size: cover; */
 }
 
 .login {

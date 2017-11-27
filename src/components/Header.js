@@ -23,29 +23,31 @@ class Header extends Component {
         .toLowerCase()}`;
     }
     return (
-      <div className="row">
-        <div className="col-xs-12 header">
-          <div className="header__inner">
-            <Link to="/">
-              <img src={logo} className="header__logo col-xs-1" alt="logo" />
-            </Link>
-          </div>
-          <h2 className="header__text col-xs-10">Assessment App</h2>
-          <div className="header__info col-xs-1">
-            <div className="header__information">
-              {username
-                ? <div className="header__username">
-                  {username}
-                </div>
-                : null}
+      <div className="header">
+        <div className="row">
+          <div className="col-xs-12">
+            <div className="header__inner">
+              <Link to="/">
+                <img src="images/fuse.svg" className="header__logo col-xs-1" alt="logo" />
+              </Link>
             </div>
-            <div className="header__actions">
-              {!loggedIn ? <Link to="/login">Login</Link> : null}
-              {loggedIn
-                ? <button className="btn btn-link" onClick={this.onLogout}>
-                  Logout
+            <h2 className="header__text col-xs-10">LMS</h2>
+            <div className="header__info col-xs-1">
+              <div className="header__information">
+                {username
+                  ? <div className="header__username">
+                    {username}
+                  </div>
+                  : null}
+              </div>
+              <div className="header__actions">
+                {!loggedIn ? <Link to="/login">Login</Link> : null}
+                {loggedIn
+                  ? <button className="btn btn-link" onClick={this.onLogout}>
+                    Logout
                 </button>
-                : null}
+                  : null}
+              </div>
             </div>
           </div>
         </div>

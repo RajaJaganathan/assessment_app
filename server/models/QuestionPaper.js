@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const questionPaperSchema = new mongoose.Schema({
-  text: {
+  title: {
     type: String,
     required: true,
   },

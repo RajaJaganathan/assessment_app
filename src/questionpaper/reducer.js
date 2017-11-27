@@ -19,7 +19,7 @@ export default function questionPaper(state = INITIAL_STATE, action) {
     case ActionTypes.FETCH_ALL_QUESTION_PAPERS_SUCCESS:
       return {
         ...state,
-        questionPapers: action.payload.questionPapers,
+        questionPapers: [...action.payload.questionPapers],
         isFetching: false,
         error: null,
       };

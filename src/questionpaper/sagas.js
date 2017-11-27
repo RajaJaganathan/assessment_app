@@ -36,7 +36,7 @@ function* createQuestionPaper({ title, desc }) {
   }
 }
 
-function* fetchQuestionPaperByQuestionBank({questionBankId}) {
+function* fetchQuestionPaperByQuestionBank({ questionBankId }) {
   try {
     const payload = yield call(QuestionPapersApi.fetchQuestionPaperByQuestionBank, questionBankId);
     yield put({ type: ActionTypes.FETCH_QUESTION_BY_QB_SUCCESS, payload });
@@ -48,16 +48,8 @@ function* fetchQuestionPaperByQuestionBank({questionBankId}) {
 function* questionPaperSaga() {
   yield all([
     fork(takeEvery, ActionTypes.FETCH_ALL_QUESTION_PAPERS_REQUEST, fetchAll),
-    fork(
-      takeEvery,
-      ActionTypes.CREATE_QUESTION_PAPER_REQUEST,
-      createQuestionPaper,
-    ),
-    fork(
-      takeEvery,
-      ActionTypes.FETCH_QUESTION_BY_QB_REQUEST,
-      fetchQuestionPaperByQuestionBank,
-    ),
+    fork(takeEvery, ActionTypes.CREATE_QUESTION_PAPER_REQUEST, createQuestionPaper),
+    fork(takeEvery, ActionTypes.FETCH_QUESTION_BY_QB_REQUEST, fetchQuestionPaperByQuestionBank)
   ]);
 }
 

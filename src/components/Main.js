@@ -19,48 +19,50 @@ import PrivateRoute from './PrivateRoute';
 class Main extends Component {
   render() {
     return (
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/login" component={LoginContainer} />
-        <PrivateRoute path="/admin" component={AdminDashboardContainer} />
+      <div className="body-wrapper">
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={LoginContainer} />
+          <PrivateRoute path="/admin" component={AdminDashboardContainer} />
 
-        <PrivateRoute
-          path="/questionbanks"
-          component={QuestionBankListContainer}
-        />
+          <PrivateRoute
+            path="/questionbanks"
+            component={QuestionBankListContainer}
+          />
 
-        <PrivateRoute
-          exact
-          path="/questionpaper"
-          component={QuestionPaperDashboardContainer}
-        />
-        <PrivateRoute
-          exact
-          path="/questionpaper/manage"
-          component={QuestionPaperManageContainer}
-        />
-        {/* <PrivateRoute
+          <PrivateRoute
+            exact
+            path="/questionpaper"
+            component={QuestionPaperDashboardContainer}
+          />
+          <PrivateRoute
+            exact
+            path="/questionpaper/manage"
+            component={QuestionPaperManageContainer}
+          />
+          {/* <PrivateRoute
           exact
           path="/questionbank/manage"
           component={QuestionBankManageContainer}
         /> */}
 
-        <PrivateRoute
-          exact
-          path="/assessments"
-          component={AssessmentDashboardContainer}
-        />
-        <PrivateRoute
-          exact
-          path="/assessment"
-          component={AssessmentInfoContainer}
-        />
-        <PrivateRoute
-          exact
-          path="/questions"
-          component={QuestionPaperContainer}
-        />
-      </Switch>
+          <PrivateRoute
+            exact
+            path="/assessments"
+            component={AssessmentDashboardContainer}
+          />
+          <PrivateRoute
+            exact
+            path="/assessment"
+            component={AssessmentInfoContainer}
+          />
+          <PrivateRoute
+            exact
+            path="/questions"
+            component={QuestionPaperContainer}
+          />
+        </Switch>
+      </div>
     );
   }
 }
