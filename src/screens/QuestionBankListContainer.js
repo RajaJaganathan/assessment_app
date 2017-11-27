@@ -16,6 +16,7 @@ class QuestionBankListContainer extends Component {
     console.log('this.props.questionBanks', this.props.questionBanks);
     return (
       <div>
+        <h3> Question Banks </h3>
         <PrivateRoute
           exact
           path="/questionbanks"

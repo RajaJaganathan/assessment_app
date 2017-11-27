@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const questionBankSchema = new mongoose.Schema({
-  text: {
+  title: {
     type: String,
     required: true,
   },

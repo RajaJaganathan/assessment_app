@@ -2,21 +2,48 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
-import DashboardCard from './DashboardCard';
+import { Button } from 'react-bootstrap';
 
-import { fetchAllQuestionBank } from '../questionbank/actions';
+import DashboardCard from './DashboardCard';
+import CreateQuestionBank from '../components/CreateQuestionBank';
+
+import { fetchAllQuestionBank, createQuestionsBank } from '../questionbank/actions';
 
 class QuestionBankList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       list: [{}, {}, {}, {}, {}],
+      showQuestionBankModal: false
     };
     this.handleQuestionBankClick = this.handleQuestionBankClick.bind(this);
+
+    this.handleClickCreateQuestionBank = this.handleClickCreateQuestionBank.bind(this);
+    this.handleHideQuestionBank = this.handleHideQuestionBank.bind(this);
+    this.handleCreateQuestionBank = this.handleCreateQuestionBank.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchAllQuestionBank();
+  }
+
+  handleCreateQuestionBank(payload) {    
+    this.props.createQuestionsBank(payload);
+    this.setState({
+      showQuestionBankModal: false
+    });
+  }
+
+  handleClickCreateQuestionBank() {
+    this.setState({
+      showQuestionBankModal: true
+    });
+  }
+
+  handleHideQuestionBank() {
+    this.setState({
+      showQuestionBankModal: false
+    });
   }
 
   handleQuestionBankClick(item) {
@@ -26,30 +53,39 @@ class QuestionBankList extends Component {
 
   render() {
     const { isFetching, questionBanks } = this.props;
+    const { showQuestionBankModal } = this.state;
     return (
       <div className="mB20">
         {isFetching ? <h3> Loading ... </h3> : null}
+        <Button onClick={this.handleClickCreateQuestionBank}>Create Question Bank</Button>
         {questionBanks.map((item, idx) =>
           <DashboardCard
             key={item._id}
-            title={item.text}
+            title={item.title}
             desc={item.desc}
             actionText="Manage"
             onActionClick={() => this.handleQuestionBankClick(item)}
             helpText="Help"
           />,
         )}
+        <CreateQuestionBank
+          show={showQuestionBankModal}
+          isEditable={false}
+          onCreateQuestionBank={this.handleCreateQuestionBank}
+          onHide={this.handleHideQuestionBank}
+        />
       </div>
     );
   }
 }
 
-const mapDispatchToProps = { fetchAllQuestionBank };
+const mapDispatchToProps = {
+  fetchAllQuestionBank,
+  createQuestionsBank
+};
 
 const mapStateToProps = state => ({
   questionBanks: state.questionBanks.questionBanks,
 });
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(QuestionBankList),
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(QuestionBankList));

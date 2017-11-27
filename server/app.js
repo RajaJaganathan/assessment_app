@@ -71,6 +71,9 @@ mongoosePromise.then(db => {
 
 // Registering all models here
 require('./models/User');
+require('./models/QuestionBank');
+require('./models/QuestionPaper');
+require('./models/Questions');
 
 // Application wide routes
 app.use('/api/v1', loginRoutes);

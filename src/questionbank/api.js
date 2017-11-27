@@ -27,6 +27,28 @@ const QuestionBankApi = {
       params,
     ).then(res => res.json());
   },
+  createQuestionBank(payload) {
+    const params = {
+      ...options,
+      method: 'POST',
+      body: JSON.stringify(payload),
+    };
+    return fetch(
+      `/api/v1/questionbanks/create`,
+      params,
+    ).then(res => res.json());
+  },
+  deleteQuestionFromQB(payload) {
+    const params = {
+      ...options,
+      method: 'POST',
+      body: JSON.stringify(payload),
+    };
+    return fetch(
+      `/api/v1/questionbanks/${payload.questionBankId}/delete`,
+      params,
+    ).then(res => res.json());
+  },
 };
 
 export default QuestionBankApi;

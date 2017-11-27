@@ -1,0 +1,142 @@
+{
+  "questions": [
+    {
+      "text": "Who is making the Web standards?",
+      "tags": [
+        {
+          "type": "math",
+          "name": "Math"
+        },
+        {
+          "type": "general",
+          "name": "General"
+        }
+      ],
+      "options": [
+        {
+          "text": "The World Wide Web Consortium",
+          "answer": true
+        },
+        {
+          "text": "Google",
+          "answer": false
+        },
+        {
+          "text": "Mozilla",
+          "answer": false
+        },
+        {
+          "text": "Microsoft",
+          "answer": false
+        }
+      ]
+    },
+    {
+
+      "tags": [
+        {
+          "type": "math",
+          "name": "Math"
+        },
+        {
+          "type": "general",
+          "name": "General"
+        }
+      ],
+      "text": "What does HTML stand for?",
+      "options": [
+        {
+          "text": "Hyperlinks and Text Markup Language",
+          "answer": true
+        },
+        {
+          "text": "Home Tool Markup Language",
+          "answer": false
+
+        },
+        {
+          "text": "Hyper Text Markup Language",
+          "answer": false
+        }
+      ]
+    },
+    {
+
+      "text": "Which sign does jQuery use as a shortcut for jQuery?",
+      "tags": [
+        {
+          "type": "currentaffairs",
+          "name": "Current Affairs"
+        },
+        {
+          "type": "general",
+          "name": "General"
+        }
+      ],
+      "options": [
+        {
+          "text": "the $ sign",
+          "answer": true
+        },
+        {
+          "text": "the % sign",
+          "answer": false
+
+        },
+        {
+          "text": "the ? Sign",
+          "answer": false
+
+        }
+      ]
+    },
+    {
+
+      "text": "Which of the following is correct?",
+      "tags": [
+        {
+          "type": "computerscience",
+          "name": "Computer Science"
+        },
+        {
+          "type": "general",
+          "name": "General"
+        }
+      ],
+      "options": [
+        {
+          "text": "jQuery is a JSON Library",
+          "answer": true
+        },
+        {
+          "text": "jQuery is a JavaScript Library",
+          "answer": false
+        }
+      ]
+    },
+    {
+
+      "text": " jQuery uses CSS selectors to select elements?",
+      "tags": [
+        {
+          "type": "computerscience",
+          "name": "Computer Science"
+        },
+        {
+          "type": "general",
+          "name": "General"
+        }
+      ],
+      "options": [
+        {
+          "text": "True",
+          "answer": true
+        },
+        {
+          "text": "False",
+          "answer": false
+        }
+      ]
+    }
+  ]
+}

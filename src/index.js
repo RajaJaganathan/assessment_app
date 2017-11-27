@@ -25,7 +25,11 @@ const sagaMiddleware = createSagaMiddleware();
 //
 const middleware = [logger, apiMiddleware, sagaMiddleware];
 
-const store = createStore(rootReducer, {}, applyMiddleware(...middleware));
+const store = createStore(
+  rootReducer,  /* preloadedState, */
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(...middleware)
+);
 
 sagaMiddleware.run(questionPaperSaga);
 sagaMiddleware.run(questionBankSaga);

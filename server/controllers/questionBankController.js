@@ -42,3 +42,27 @@ exports.createQuestionInQuestionBank = async function createQuestionInQuestionBa
     question,
   });
 };
+
+exports.createQuestionBank = async function createQuestionBank(req, res) {
+  console.log('req.body ', req.body);
+  const questionBankModal = new QuestionBankModal(req.body);
+  const qbModal = await questionBankModal.save();
+  console.log('question bank created successfully ', qbModal);
+
+  res.status(200).json({
+    questionBank: qbModal
+  });
+};
+
+exports.deleteQuestionFromQB = async function deleteQuestionFromQB(req, res) {
+  const { questionBankId, question } = req.body;
+  const questionBank = await QuestionBankModal.findOneAndUpdate(
+    { _id: questionBankId },
+    { $pull: { questionIds: question._id } },
+    { safe: true, upsert: true });
+
+  res.status(200).json({
+    questionBank
+  });
+};
+

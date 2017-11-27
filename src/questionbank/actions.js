@@ -21,3 +21,16 @@ export function createQuestionsById(payload) {
   };
 }
 
+export function createQuestionsBank(payload) {
+  return {
+    type: ActionTypes.CREATE_QUESTION_BANK_REQUEST,
+    payload
+  };
+}
+
+export function deleteQuestionsFromQB(payload) {
+  return {
+    type: ActionTypes.DELETE_QUESTION_FROM_QB_REQUEST,
+    payload
+  };
+}

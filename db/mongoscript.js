@@ -15,4 +15,4 @@ while (users.hasNext()) {
     printjson(users.next());
 };
 
-print('***** user created !!! *******');
+print('***** collections created !!! *******');

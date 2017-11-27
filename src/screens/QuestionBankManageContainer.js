@@ -8,6 +8,7 @@ import { fetchQuestions, addQuestions } from '../reducers/question.reducer';
 import {
   fetchQuestionsById,
   createQuestionsById,
+  deleteQuestionsFromQB
 } from '../questionbank/actions';
 
 import CreateQuestionModal from '../components/CreateQuestionModal';
@@ -21,6 +22,7 @@ class QuestionBankManageContainer extends Component {
     this.onHideQuestionModal = this.onHideQuestionModal.bind(this);
     this.onCreateQuestion = this.onCreateQuestion.bind(this);
     this.onEditQuestion = this.onEditQuestion.bind(this);
+    this.onDeleteQuestion = this.onDeleteQuestion.bind(this);
     // this.onUpdateQuestion = this.onUpdateQuestion.bind(this);
     this.state = {
       isLoading: false,
@@ -84,6 +86,13 @@ class QuestionBankManageContainer extends Component {
       showCreateQuestionModal: true,
     });
   }
+  onDeleteQuestion(question) {
+    const { questionBankId } = this.props.match.params;    
+    this.props.deleteQuestionsFromQB({question, questionBankId});
+    this.setState({
+      showCreateQuestionModal: false,
+    });
+  }
 
   render() {
     const { questions } = this.state;
@@ -109,6 +118,7 @@ class QuestionBankManageContainer extends Component {
               isEditMode="true"
               questions={questions}
               onEdit={this.onEditQuestion}
+              onDelete={this.onDeleteQuestion}
             />
           </div>
         </div>
@@ -143,6 +153,7 @@ const mapDispatchToProps = {
   addQuestions,
   fetchQuestionsById,
   createQuestionsById,
+  deleteQuestionsFromQB,
 };
 
 const mapStateToProps = state => ({
