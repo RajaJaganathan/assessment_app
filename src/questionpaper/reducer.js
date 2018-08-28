@@ -4,6 +4,8 @@ const INITIAL_STATE = {
   questionPapers: [],
   questions: [],
   selectedTag: 'all',
+  modalQuestions: [],
+  modalQuestionBanks: [],
   isFetching: false,
   error: null,
 };
@@ -38,7 +40,7 @@ export default function questionPaper(state = INITIAL_STATE, action) {
     case ActionTypes.CREATE_QUESTION_PAPER_SUCCESS:
       return {
         ...state,
-        questionPapers: [...state.questionPapers, action.payload],
+        questionPapers: [...state.questionPapers, action.payload.questionPaper],
         isFetching: false,
         error: null,
       };
@@ -67,10 +69,44 @@ export default function questionPaper(state = INITIAL_STATE, action) {
         isFetching: false,
         error: action.error,
       };
+      
+      case ActionTypes.FETCH_QUESTION_BY_QP_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case ActionTypes.FETCH_QUESTION_BY_QP_SUCCESS:
+      return {
+        ...state,
+        questions: [...action.payload.questions],
+        isFetching: false
+      };
+    case ActionTypes.FETCH_QUESTION_BY_QP_FAILURE:
+      return {
+        ...state,
+        isFetching: false
+      };
+       
     case ActionTypes.ADD_QUESTION_TAG_CHANGE:
       return {
         ...state,
         selectedTag: action.selectedTag,
+      };
+    case ActionTypes.FETCH_ALL_QUESTION_BANK_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case ActionTypes.FETCH_ALL_QUESTION_BANK_SUCCESS:
+      return {
+        ...state,
+        modalQuestionBanks: [...action.payload.questionBanks],
+        isFetching: false
+      };
+    case ActionTypes.FETCH_ALL_QUESTION_BANK_FAILURE:
+      return {
+        ...state,
+        isFetching: false
       };
 
     default:

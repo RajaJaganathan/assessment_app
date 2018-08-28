@@ -10,6 +10,7 @@ const questionPaperSchema = new mongoose.Schema({
   },
   questionIds: [String],
   published: Date,
+  version: Number,
   created: {
     type: Date,
     default: Date.now,

@@ -6,7 +6,7 @@ import QuestionList from '../components/QuestionsList';
 
 import AddQuestionModal from './AddQuestionModal';
 
-import { fetchQuestions, addQuestions } from '../reducers/question.reducer';
+import { fetchAllQuestionBanks, fetchQuestionByQP, addQuestions } from './actions';
 
 class QuestionPaperManageContainer extends Component {
   constructor(props) {
@@ -21,7 +21,8 @@ class QuestionPaperManageContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchQuestions();
+    const questionPaperId = this.props.match.params.questionPaperId;
+    this.props.fetchQuestionByQP({ questionPaperId });
   }
 
   onEditQuestion() {
@@ -76,14 +77,13 @@ class QuestionPaperManageContainer extends Component {
 QuestionPaperManageContainer.propTypes = {};
 
 const mapDispatchToProps = {
-  fetchQuestions,
+  fetchAllQuestionBanks,
+  fetchQuestionByQP,
   addQuestions,
 };
 
 const mapStateToProps = state => ({
-  questions: state.question.questions,
+  questions: [] // state.questionPaper.questions
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  QuestionPaperManageContainer,
-);
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionPaperManageContainer);

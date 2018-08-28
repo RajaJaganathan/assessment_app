@@ -27,3 +27,19 @@ export function addQuestionTagChange(selectedTag) {
     selectedTag
   };
 }
+
+export function fetchAllQuestionBanks() {
+  return {
+    type: ActionTypes.FETCH_ALL_QUESTION_BANK_REQUEST
+  };
+}
+
+export const addQuestions = payload => ({
+  type: ActionTypes.ADD_QUESTIONS_TO_QP_REQUEST,
+  payload
+});
+
+export const fetchQuestionByQP = (payload) => ({
+  type: ActionTypes.FETCH_QUESTION_BY_QP_REQUEST,
+  payload
+});

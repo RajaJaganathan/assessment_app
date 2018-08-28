@@ -71,7 +71,7 @@ body {
 }
 
 .header__logo {
-    animation: App-logo-spin infinite 40s linear;
+    /* animation: App-logo-spin infinite 40s linear; */
     height: 60px;
     float: left;
 }

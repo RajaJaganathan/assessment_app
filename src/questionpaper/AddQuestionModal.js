@@ -16,7 +16,11 @@ import {
 
 import QuestionList from '../components/QuestionsList';
 
-import { fetchQuestionsByQuestionBank, addQuestionTagChange } from './actions';
+import {
+  fetchQuestionsByQuestionBank,
+  addQuestionTagChange,
+  fetchAllQuestionBanks
+} from './actions';
 
 class AddQuestion extends Component {
   constructor(props) {
@@ -31,6 +35,7 @@ class AddQuestion extends Component {
   }
 
   componentDidMount() {
+    this.props.fetchAllQuestionBanks();
     this.props.fetchQuestionsByQuestionBank(this.state.questionBankId);
   }
 
@@ -48,10 +53,10 @@ class AddQuestion extends Component {
   }
 
   render() {
-    const { questions, tags, isEditMode } = this.props;
+    const { questionBanks, questions, tags, isEditMode } = this.props;
 
     console.log('tags', tags);
-
+    const options = questionBanks.map(q => <option value={q._id}>{q.title}</option>);
     return (
       <div className="col-xs-6">
         <Modal
@@ -68,10 +73,8 @@ class AddQuestion extends Component {
                 Question Bank
               </Col>
               <Col sm={8}>
-                <select value={100} onChange={this.handleChange}>
-                  <option value="100">Math</option>
-                  <option value="101">Science</option>
-                  <option value="102">General</option>
+                <select defaultValue={100} onChange={this.handleChange}>
+                  {options}
                 </select>
               </Col>
             </FormGroup>
@@ -137,14 +140,16 @@ const mapStateToProps = (state, ownProps) => ({
     state.questionPapers.selectedTag,
   ),
   tags: state.question.tags,
+  questionBanks: state.questionPapers.modalQuestionBanks
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchQuestionsByQuestionBank: bindActionCreators(
     fetchQuestionsByQuestionBank,
-    dispatch,
+    dispatch
   ),
   addQuestionTagChange: bindActionCreators(addQuestionTagChange, dispatch),
+  fetchAllQuestionBanks: bindActionCreators(fetchAllQuestionBanks, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddQuestion);

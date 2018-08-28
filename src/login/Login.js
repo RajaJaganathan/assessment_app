@@ -27,7 +27,7 @@ class Login extends Component {
   render() {
     return (
       <div className="login">
-        {this.props.authFailed
+        {this.props.authFailed === false
           ? <Alert bsStyle="danger">
               Given user and password are wrong. Please try again.
             </Alert>

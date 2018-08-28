@@ -38,8 +38,8 @@ class QuestionPaperDashboardContainer extends Component {
     });
   }
 
-  handleActionClick() {
-      this.props.history.push('/questionpaper/manage');
+  handleActionClick(item) {
+    this.props.history.push(`/questionpaper/${item._id}/questions`);
   }
 
   handleCreateQuestionPaper(data) {
@@ -59,7 +59,7 @@ class QuestionPaperDashboardContainer extends Component {
             desc={desc}
             actionText="Manage"
             helpText="Publish"
-            onActionClick={this.handleActionClick}
+            onActionClick={() => this.handleActionClick(q)}
           />
         );
       })

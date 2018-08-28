@@ -37,7 +37,7 @@ class Main extends Component {
           />
           <PrivateRoute
             exact
-            path="/questionpaper/manage"
+            path="/questionpaper/:questionPaperId/questions"
             component={QuestionPaperManageContainer}
           />
           {/* <PrivateRoute

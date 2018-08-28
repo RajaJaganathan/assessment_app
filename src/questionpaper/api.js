@@ -11,16 +11,18 @@ const QuestionPapersApi = {
     return fetch('/api/v1/questionpaper', options).then(res => res.json());
   },
   createQuestionPaper(payload) {
-    return fetch('/api/v1/questionpaper/new', {
+    return fetch('/api/v1/questionpaper/create', {
       ...options,
       method: 'POST',
-      body: JSON.stringify(payload),
+      body: JSON.stringify(payload)
     }).then(res => res.json());
   },
   fetchQuestionPaperByQuestionBank(questionBankId) {
-    return fetch(`/api/v1/questionbanks/${questionBankId}/questions`, options).then(res =>
-      res.json(),
+    return fetch(`/api/v1/questionbanks/${questionBankId}/questions`, options).then(res => res.json()
     );
+  },
+  fetchQuestionByQP(questionPaperId) {    
+    return fetch(`/api/v1/questionpaper/${questionPaperId}/questions`, options).then(res => res.json());
   },
 };
 
