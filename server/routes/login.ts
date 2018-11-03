@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 
 const router = express.Router();
 const { login, logout } = require('../controllers/loginController');
@@ -6,4 +6,4 @@ const { login, logout } = require('../controllers/loginController');
 router.post('/login', login);
 router.get('/logout', logout);
 
-module.exports = router;
+export default router;

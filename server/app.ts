@@ -1,23 +1,26 @@
-const express = require('express');
-const path = require('path');
+require('source-map-support').install();
+
+import express from 'express';
+import path from 'path';
 // const favicon = require("serve-favicon");
-const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const mongoose = require('mongoose');
+import cors from 'cors';
+import logger from 'morgan';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import session from 'express-session';
+import mongoose from 'mongoose';
 
 // Middleware
-const requireLogin = require('./middleware/requireLogin');
-const notFound = require('./middleware/notFound');
-const errorHandler = require('./middleware/errorHandler');
+import { requireLogin } from './middleware/requireLogin';
+import { notFound } from './middleware/notFound';
+import { errorHandler } from './middleware/errorHandler';
 
 // Routes
-const questionsRoutes = require('./routes/questions');
-const questionBankRoutes = require('./routes/questionbank');
-const questionPapersRoutes = require('./routes/question-paper');
-const loginRoutes = require('./routes/login');
-const userRoutes = require('./routes/user');
+import questionsRoutes from './routes/questions';
+import questionBankRoutes from './routes/questionbank';
+import questionPapersRoutes from './routes/question-paper';
+import loginRoutes from './routes/login';
+import userRoutes from './routes/user';
 
 const app = express();
 
@@ -28,6 +31,8 @@ require('dotenv').config();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+
+app.use(cors())
 // app.set('trust proxy', true);
 // app.set('view engine', 'ejs');
 

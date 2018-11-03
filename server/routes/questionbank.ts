@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 
 const router = express.Router();
 
@@ -17,4 +17,4 @@ router.get('/questionbanks/:questionBankId/questions', fetchQuestionsById);
 router.post('/questionbanks/:questionBankId/create', createQuestionInQuestionBank);
 router.post('/questionbanks/:questionBankId/delete', deleteQuestionFromQB);
 
-module.exports = router;
+export default router;

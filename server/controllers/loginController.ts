@@ -1,29 +1,40 @@
-const mongoose = require('mongoose');
+import mongoose, { DocumentQuery, Document } from 'mongoose';
+import { Request, Response } from 'express';
 
-exports.login = async (req, res, next) => {
+type Role = 'superadmin' | 'admin' | 'user';
+
+export interface IUserModel extends Document {
+  username: string,
+  password: string,
+  role: Role,
+  created: Date
+}
+
+export async function login(req: Request, res: Response, next: Function) {
   const { username, password } = req.body;
   const UserModel = mongoose.model('User');
 
   const user = await UserModel.findOne({ username, password });
+  
   if (user) {
     req.session.authenticated = true;
     req.session.user = user;
     res.status(200).json({
       code: 200,
-      message: 'Authentication successfully',
-      description: 'Authentication successfully',
+      message: 'authentication successfully',
+      description: 'authentication successfully',
       user
     });
   } else {
     res.status(401).json({
       code: 200,
-      message: 'Authentication failed',
-      description: 'Authentication failed'
+      message: 'authentication failed',
+      description: 'authentication failed'
     });
   }
 };
 
-exports.logout = (req, res, next) => {
+export function logout(req, res, next) {
   delete req.session.authenticated;
   delete req.session.user;
 

@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 
 const router = express.Router();
 
@@ -6,4 +6,4 @@ const { user } = require('../controllers/userController');
 
 router.get('/user', user);
 
-module.exports = router;
+export default router;

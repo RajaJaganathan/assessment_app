@@ -1,3 +1,5 @@
 build/**
 config/**
 db/mongoscript.js
+
+server/dist

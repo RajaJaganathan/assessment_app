@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const questionPaperSchema = new mongoose.Schema({
   title: {
@@ -17,4 +17,4 @@ const questionPaperSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('QuestionPaper', questionPaperSchema);
+export default mongoose.model('QuestionPaper', questionPaperSchema);

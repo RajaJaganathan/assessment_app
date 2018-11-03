@@ -1,12 +1,12 @@
-const fs = require('fs');
-const mongoose = require('mongoose');
+import fs from 'fs';
+import mongoose from 'mongoose';
 
 const shuffle = require('lodash/shuffle');
 
 const QuestionModal = require('../models/Questions');
 const QuestionPaper = require('../models/QuestionPaper');
 
-exports.fetchQuestionsPaper = async function fetchQuestionsPaper(req, res) {
+export async function fetchQuestionsPaper(req, res) {
   const questionPapers = await QuestionPaper.find({});
   res.setHeader('Content-Type', 'application/json');
   res.status(200).send({ questionPapers });
@@ -16,7 +16,7 @@ exports.fetchQuestionsPaper = async function fetchQuestionsPaper(req, res) {
   res.status(200).send(JSON.parse(fileContent));
 };
 
-exports.createQuestionPaper = async function createQuestionPaper(req, res) {
+export async function createQuestionPaper(req, res) {
   console.log('object ::', req.body);
   const questionPaper = new QuestionPaper(req.body);
   const response = await questionPaper.save();
@@ -24,7 +24,7 @@ exports.createQuestionPaper = async function createQuestionPaper(req, res) {
   res.status(200).send({ questionPaper: response });
 };
 
-exports.fetchQuestionsByQuestionBank = async function fetchQuestionsByQuestionBank(req, res) {
+export async function fetchQuestionsByQuestionBank(req, res) {
   const UserModel = mongoose.model('Questions');
   const questions = await QuestionModal.find({});
   console.log('questions ', questions);
@@ -33,7 +33,8 @@ exports.fetchQuestionsByQuestionBank = async function fetchQuestionsByQuestionBa
   });
 };
 
-exports.deleteQuestionPaper = async function deleteQuestionPaper(req, res) {
+export async function deleteQuestionPaper(req, res) {
+  // @ts-ignore
   const questionPaper = await QuestionPaper.findOneAndDelete({
     _id: req.body.questionPaperId
   });
@@ -43,7 +44,7 @@ exports.deleteQuestionPaper = async function deleteQuestionPaper(req, res) {
   });
 };
 
-exports.fetchQuestionByQP = async function fetchQuestionByQP(req, res) {
+export async function fetchQuestionByQP(req, res) {
   const questionPaper = await QuestionPaper.findOne({
     _id: req.params.questionPaperId,
   });
@@ -57,7 +58,7 @@ exports.fetchQuestionByQP = async function fetchQuestionByQP(req, res) {
   });
 };
 
-exports.createQuestionInQP = async function createQuestionInQP(req, res) {
+export async function createQuestionInQP(req, res) {
   console.log('req.body ', req.body);
   // const questionModal = new QuestionModal(req.body);
   // const question = await questionModal.save();
@@ -66,7 +67,7 @@ exports.createQuestionInQP = async function createQuestionInQP(req, res) {
   const questionPaper = await QuestionPaper.findOneAndUpdate(
     { _id: questionPaperId },
     { $push: { questionIds: req.body.questionId } },
-    { safe: true, upsert: true });
+    { upsert: true }); // safe: true,
   const response = await questionPaper.save();
   const question = {};
   res.status(200).json({

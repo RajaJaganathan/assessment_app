@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 
 const router = express.Router();
 const { getQuestions } = require('../controllers/questionsController');
@@ -6,4 +6,4 @@ const { getQuestions } = require('../controllers/questionsController');
 /* GET users listing. */
 router.get('/questions', getQuestions);
 
-module.exports = router;
+export default router;
