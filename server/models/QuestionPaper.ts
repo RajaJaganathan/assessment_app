@@ -17,4 +17,4 @@ const questionPaperSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model('QuestionPaper', questionPaperSchema);
+export = mongoose.model('QuestionPaper', questionPaperSchema);

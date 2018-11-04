@@ -1,5 +1,7 @@
 import express from 'express';
 
+import { requireLogin } from '../middleware/requireLogin';
+
 const router = express.Router();
 
 import {
@@ -12,7 +14,7 @@ import {
 } from '../controllers/questionPaperController';
 
 /* GET users listing. */
-router.get('/questionpaper', fetchQuestionsPaper);
+router.get('/questionpaper', requireLogin, fetchQuestionsPaper);
 router.post('/questionpaper/create', createQuestionPaper);
 router.post('/questionpaper/delete', deleteQuestionPaper);
 router.get('/questionpaper/:questionPaperId/questions', fetchQuestionByQP);

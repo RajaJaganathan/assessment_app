@@ -1,15 +1,6 @@
 import mongoose, { DocumentQuery, Document } from 'mongoose';
 import { Request, Response } from 'express';
 
-type Role = 'superadmin' | 'admin' | 'user';
-
-export interface IUserModel extends Document {
-  username: string,
-  password: string,
-  role: Role,
-  created: Date
-}
-
 export async function login(req: Request, res: Response, next: Function) {
   const { username, password } = req.body;
   const UserModel = mongoose.model('User');

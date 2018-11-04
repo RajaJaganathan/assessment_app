@@ -1,9 +1,8 @@
 import express from 'express';
+import { fetchUser } from '../controllers/userController';
 
 const router = express.Router();
 
-const { user } = require('../controllers/userController');
+router.get('/user', fetchUser);
 
-router.get('/user', user);
-
-export default router;
+export = router;

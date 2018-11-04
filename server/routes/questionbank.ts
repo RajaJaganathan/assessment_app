@@ -2,13 +2,13 @@ import express from 'express';
 
 const router = express.Router();
 
-const {
+import {
   fetchAllQuestionBanks,
   fetchQuestionsById,
   createQuestionInQuestionBank,
   createQuestionBank,
   deleteQuestionFromQB
-} = require('../controllers/questionBankController');
+} from '../controllers/questionBankController';
 
 /* GET questionbank listing. */
 router.get('/questionbanks', fetchAllQuestionBanks);
@@ -17,4 +17,4 @@ router.get('/questionbanks/:questionBankId/questions', fetchQuestionsById);
 router.post('/questionbanks/:questionBankId/create', createQuestionInQuestionBank);
 router.post('/questionbanks/:questionBankId/delete', deleteQuestionFromQB);
 
-export default router;
+export = router;

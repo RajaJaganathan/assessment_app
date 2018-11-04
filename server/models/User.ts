@@ -1,18 +1,4 @@
-import { IUserModel } from './../controllers/loginController';
-import mongoose, { DocumentQuery, Document } from 'mongoose';
-
-enum Role {
-  superAdmin = 'superadmin',
-  admin = 'admin',
-  user = 'user'
-}
-
-export interface IUserModel extends Document {
-  username: string,
-  password: string,
-  role: Role,
-  created: Date
-}
+import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -34,4 +20,4 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-export default mongoose.model('User', userSchema);
+export = mongoose.model('User', userSchema);
