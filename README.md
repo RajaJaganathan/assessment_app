@@ -1,8 +1,8 @@
-#Assessment Application 
-
+# Assessment Application 
+----------
 Built by using React, Node and MongoDB
 
-##Development
+### Development
 
 To start mongo server:
   > cd npm run start-db

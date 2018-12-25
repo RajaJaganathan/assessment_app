@@ -87,7 +87,7 @@ class QuestionBankManageContainer extends Component {
     });
   }
   onDeleteQuestion(question) {
-    const { questionBankId } = this.props.match.params;    
+    const { questionBankId } = this.props.match.params;
     this.props.deleteQuestionsFromQB({question, questionBankId});
     this.setState({
       showCreateQuestionModal: false,
@@ -95,7 +95,7 @@ class QuestionBankManageContainer extends Component {
   }
 
   render() {
-    const { questions } = this.state;
+    const { questions, showCreateQuestionModal } = this.state;
     const { questionNo, text, options, tags } = this.state.selectedQuestion;
     return (
       <div>
@@ -123,15 +123,15 @@ class QuestionBankManageContainer extends Component {
           </div>
         </div>
         <CreateQuestionModal
-          questionNo={questionNo}
-          text={text}
-          options={options}
-          tags={tags}
-          show={this.state.showCreateQuestionModal}
-          isEditMode={this.state.isEditMode}
-          onHide={this.onHideQuestionModal}
-          onCreate={this.onCreateQuestion}
-          onUpdate={this.onUpdateQuestion}
+            questionNo={questionNo}
+            text={text}
+            options={options}
+            tags={tags}
+            show={this.state.showCreateQuestionModal}
+            isEditMode={this.state.isEditMode}
+            onHide={this.onHideQuestionModal}
+            onCreate={this.onCreateQuestion}
+            onUpdate={this.onUpdateQuestion}
         />
       </div>
     );
