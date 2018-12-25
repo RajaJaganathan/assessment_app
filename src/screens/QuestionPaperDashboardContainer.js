@@ -51,10 +51,10 @@ class QuestionPaperDashboardContainer extends Component {
     return (
       questionPapers &&
       questionPapers.map(q => {
-        const { id, title, desc } = q;
+        const { _id, title, desc } = q;
         return (
           <DashboardCard
-            key={id}
+            key={_id}
             title={title}
             desc={desc}
             actionText="Manage"
