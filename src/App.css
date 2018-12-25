@@ -168,6 +168,11 @@ body {
 
 .question__label {
     font-weight: normal;
+    padding-left: 15px;
+}
+
+.question__no {
+    padding-right: 15px;
 }
 
 .question-paper__actions {

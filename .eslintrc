@@ -40,6 +40,8 @@
     "react/jsx-boolean-value": 2,
     "react/jsx-no-bind": 2,
     "react/jsx-indent":0,
+    "react/jsx-indent-props": 0,
+    "react/jsx-closing-bracket-location":2,
     "react/jsx-filename-extension": [
       2,
       {
