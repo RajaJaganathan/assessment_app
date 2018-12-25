@@ -105,7 +105,7 @@ body {
 }
 
 .body-wrapper {
-    width: 90%;
+    width: 70%;
     margin: 0 auto;
     padding-top: 80px;
 }
@@ -168,6 +168,11 @@ body {
 
 .question__label {
     font-weight: normal;
+    padding-left: 15px;
+}
+
+.question__no {
+    padding-right: 15px;
 }
 
 .question-paper__actions {
