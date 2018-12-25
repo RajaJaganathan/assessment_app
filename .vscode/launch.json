@@ -16,7 +16,7 @@
         "name": "server start",
         "program": "${workspaceFolder}/server/app.ts",
         "runtimeExecutable": "/Users/rjaganathan/.nvm/versions/node/v8.8.0/bin/ts-node",
-        "runtimeArgs": ["-r", "ts-node/register"],
+        "runtimeArgs": ["-r", "ts-node/register"]
     },
     {
         "name": "TS Debugger",
@@ -29,7 +29,7 @@
           "cwd": "${workspaceRoot}",
           "protocol": "inspector",
           "outFiles": [
-            "${workspaceFolder}/server/dist/app.js",
+            "${workspaceFolder}/server/dist/app.js"
           ]
       }
     ]
