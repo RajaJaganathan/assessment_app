@@ -5,6 +5,7 @@
 
 # production
 /build
+/dist
 
 # environment variables
 variable.env

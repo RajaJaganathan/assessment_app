@@ -1,3 +1,3 @@
-exports.user = (req, res) => {
+export function fetchUser(req, res){
   res.status(200).json(req.session.user);
 };

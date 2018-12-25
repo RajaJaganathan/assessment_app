@@ -3,14 +3,16 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "nodemon dist/app.js",
     "db": "mongod --dbpath=~/data/db",
-    "dev": "concurrently --kill-others \"npm start\" \"npm run db\""
+    "dev": "concurrently --kill-others \"npm start\" \"npm run db\"",
+    "build": "tsc -p ."
   },
   "dependencies": {
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "cookie-session": "^2.0.0-beta.2",
+    "cors": "^2.8.4",
     "debug": "~2.6.3",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.6",
@@ -20,10 +22,18 @@
     "mongoose": "^4.11.1",
     "morgan": "~1.8.1",
     "pug": "~2.0.0-beta11",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "ts-node": "^7.0.1"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.1",
+    "@types/express": "^4.16.0",
+    "@types/express-session": "^1.15.10",
+    "@types/mongoose": "^5.2.7",
+    "@types/morgan": "^1.7.35",
     "concurrently": "^3.5.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "source-map-support": "^0.5.9",
+    "typescript": "^3.1.0-dev.20180828"
   }
 }
