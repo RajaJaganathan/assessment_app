@@ -1,5 +1,5 @@
 # Assessment Application 
-----------
+
 Built by using React, Node and MongoDB
 
 ### Development
